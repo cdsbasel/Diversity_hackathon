@@ -9,7 +9,7 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ## Setup
 
-The Center for Cognitive and Decision Sciences (CDS) coordinates collaborative project involving CDS members and MSc students associated with the center as part of its mission to train MSc students in data analytics (see [cds.unibas.ch](https://psychologie.unibas.ch/de/fakultaet/abteilungen/cognitive-and-decision-sciences-305/msc-project/) for more information). 
+The Center for Cognitive and Decision Sciences (CDS) coordinates collaborative projects involving CDS members and MSc students associated with the center as part of its mission to provide training in data analytics (see [cds.unibas.ch](https://psychologie.unibas.ch/de/fakultaet/abteilungen/cognitive-and-decision-sciences-305/msc-project/) for more information). 
 
 Dr. Dirk Wulff and Prof. Dr. Rui Mata supervised the project and Dr. Dirk Wulff conducted all data preprocessing and setup for the hackathons. The project consists of a series of planning [sessions](https://psychologie.unibas.ch/de/fakultaet/abteilungen/cognitive-and-decision-sciences-305/events/) and two collaborative [hackathons](hackathon.html) described below. Resources related to the hackathons are available on this <a href="https://github.com/cdsbasel/Diversity_hackathon"><b>Github repository</b></a>. 
 
