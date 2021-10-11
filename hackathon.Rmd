@@ -21,9 +21,7 @@ Dr. Dirk Wulff and Prof. Dr. Rui Mata supervised the project and Dr. Dirk Wulff 
 
 The goal of the first hackathon part is to produce different visualizations illustrating...
 
-1. XXXX. 
-2. XXXX. 
-3. XXXX.
+[to be determined at the first planning meeting, Oct 12th, 2021]
 
 #### Rules
 

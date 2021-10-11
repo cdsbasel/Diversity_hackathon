@@ -1,2 +1,2 @@
-# SDG_hackathon
-Hackathon analyzing SDG prevalence in research publications
+# Diversity_hackathon
+Hackathon to analyse diversity in the research output of the University of Basel
