@@ -1,2 +1,2 @@
-# Diversity_Hackathon
-Diversity Hackathon @ CDS, Basel, Autumn 2021
+# SDG_hackathon
+Hackathon analyzing SDG prevalence in research publications
