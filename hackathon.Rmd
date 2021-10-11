@@ -9,35 +9,34 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ## Setup
 
-The Center for Cognitive and Decision Sciences (CDS) coordinated a collaborative project involving several CDS members and MSc students associated with the center as part of its mission to train MSc students in data analytics (see [cds.unibas.ch](https://psychologie.unibas.ch/de/fakultaet/abteilungen/cognitive-and-decision-sciences-305/msc-project/) for more information). The initiative was supported by [IMPULS](https://vorlesungsverzeichnis.unibas.ch/de/home?id=255075). 
+The Center for Cognitive and Decision Sciences (CDS) coordinated a collaborative project involving CDS members and MSc students associated with the center as part of its mission to train MSc students in data analytics (see [cds.unibas.ch](https://psychologie.unibas.ch/de/fakultaet/abteilungen/cognitive-and-decision-sciences-305/msc-project/) for more information). The initiative was supported by [IMPULS](https://vorlesungsverzeichnis.unibas.ch/de/home?id=255075). 
 
-Dr. Dirk Wulff and Prof. Dr. Rui Mata coordinated the project and Dr. Dirk Wulff conducted all data preprocessing and setup for the hackathons (thank you!!!). The project consisted of a series of planning [sessions](https://psychologie.unibas.ch/de/fakultaet/abteilungen/cognitive-and-decision-sciences-305/events/) and two collaborative [hackathons](hackathon.html) described below. Resources related to the hackathons are available on this <a href="https://github.com/cdsbasel/SDG_hackathon"><b>Github repository</b></a>. 
+Dr. Dirk Wulff and Prof. Dr. Rui Mata coordinated the project and Dr. Dirk Wulff conducted all data preprocessing and setup for the hackathons. The project consisted of a series of planning [sessions](https://psychologie.unibas.ch/de/fakultaet/abteilungen/cognitive-and-decision-sciences-305/events/) and two collaborative [hackathons](hackathon.html) described below. Resources related to the hackathons are available on this <a href="https://github.com/cdsbasel/Diversity_hackathon"><b>Github repository</b></a>. 
 
 ## Hackathons 
 
-### Part I - Data Visualization (April 14th, 2021)
+### Part I - Data Visualization (October 14th, 2021)
 
 #### Goal
 
-The goal of the first hackathon part is to produce three quality visualizations illustrating...
+The goal of the first hackathon part is to produce different visualizations illustrating...
 
-1. The frequency distribution of sustainable development goals detected in Unibas publications and projects. 
-2. The distribution of sustainable development goals detected in Unibas publications and projects as a function of Unibas organizational units. 
-3. The relationship between sustainable development goals. 
+1. XXXX. 
+2. XXXX. 
+3. XXXX.
 
 #### Rules
 
-1. Each group creates and works in a single R script that is given a unique name by the group, e.g., a group pseudonym, to not infer with the other groups' script files. The script file is stored in `1_code`. See code template including the placeholder `GROUPPSEUDONYM`.
-2. Each group creates three `.pdf` figure files in the `2_figures` folder. Figure files also must receive a suffix identifying the group. See example figure. 
+1. Each group creates and works in a single R script that is given a unique name by the group, e.g., a group pseudonym (to avoid conflicts with the other groups' script files). The script file is stored in `1_code`. See code template including the placeholder `GROUPPSEUDONYM`.
+2. Each group creates XXX `.pdf` figure files in the `2_figures` folder. Figure files also must receive a suffix identifying the group. See example figure. 
 3. Pull before you Push.
 
-### Part II - Reporting (April 29th, 2021)
+### Part II - Reporting (October 20th, 2021)
 
-**Participants**: Nina Frings, Sophia Prix, Samuel Aeschbach, Alexandra Bagaini, Yun-Rui Liu, Rui Mata, Gayoung Son, Dirk Wulff
 
 #### Goal
 
-The goal of the second hackathon part is to produce a report partly based on the visualizations produced in the first hackathon using R Markdown, in particular those concerning the distribution of SDG-matches overall and by organizational unit. 
+The goal of the second hackathon part is to produce a report based on the visualizations produced in the first hackathon using R Markdown. 
 
 #### Rules
 
