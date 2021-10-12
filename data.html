@@ -2085,23 +2085,13 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 <div class="d-article">
 <h4 id="data-and-preprocessing">Data and Preprocessing</h4>
-<p>The Sustainability Office of the University of Basel supplied data from two different databases containing information of the University’s electronic research output (publications and projects).</p>
-<p>The publications dataset had to be processed to generate abstracts that could be searched using search queries in English:</p>
-<p><i>Publications</i></p>
-<ol type="1">
-<li>The database included journal articles (N = 43,229), book items (chapters, 13,443), journal items (5,028), proceedings items (2,144), and books (1,897).</li>
-<li>We selected publications with English titles (~85%) and DOI present (~80%) that were published between 2010 and 2020 (~60%) using a custom-made <em>R</em> script. About half of all publications remained.<br />
-</li>
-<li>We identified abstracts for all publications using <a href="https://cran.r-project.org/web/packages/rscopus/index.html">rscopus</a>. About ~85% of abstracts could be retrieved.</li>
-</ol>
-<p><i>Publications &amp; Projects</i></p>
-<ol type="1">
-<li>Team members identified faculty-level organizational units within the University of Basel (including associated and cross-disciplinary institutes) manually, using the <a href="https://edoc.unibas.ch/view/divisions/">descriptors</a> currently in use at the University of Basel.</li>
-<li>We used translations of the SDG queries of <a href="https://data.mendeley.com/datasets/87txkw7khs/1">Elsevier</a> (Jayabalasingham, Boverhof, Agnew &amp; Klein, 2019) and the <a href="https://github.com/Aurora-Network-Global/sdg-queries">Aurora</a> network using the <a href="https://cran.r-project.org/web/packages/corpustools/corpustools.pdf">corpustools</a> <em>R</em> package to detect whether titles or abstracts were SDG-relevant.</li>
-</ol>
-<p>The data is shared via this <a href="https://github.com/cdsbasel/SDG_hackathon"><b>Github</b></a> repository.</p>
+<p>We use data from a database listing the University of Basel’s research output between 2000 and 2020.</p>
+<p><i>Diversity Dimensions</i></p>
+<p>We use information concerning diversity by categorizing author’s names (e.g., gender, age, nationality). More details to follow.</p>
+<p><i>Organizational Units</i></p>
+<p>In a previous project, CDS members identified faculty-level organizational units within the University of Basel (including associated and cross-disciplinary institutes) manually, using the <a href="https://edoc.unibas.ch/view/divisions/">descriptors</a> currently in use at the University of Basel.</p>
+<p>The data is shared via this <a href="https://github.com/cdsbasel/Diversity_hackathon"><b>Github</b></a> repository.</p>
 <h4 id="variables">Variables</h4>
-<p><i>Publications</i></p>
 <table>
 <colgroup>
 <col style="width: 26%" />
@@ -2161,73 +2151,6 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <tr class="even">
 <td style="text-align: left;"><code>Org-*</code></td>
 <td style="text-align: left;">Logical vectors indicating Unibas faculty-level organizations involved in publication.</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"><code>SDG-*</code></td>
-<td style="text-align: left;">Logical vectors indicating whether publication addresses the 17 sustainable development goals.</td>
-</tr>
-</tbody>
-</table>
-<p><i>Projects</i></p>
-<table>
-<colgroup>
-<col style="width: 26%" />
-<col style="width: 73%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: left;">Variable</th>
-<th style="text-align: left;">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;"><code>lead</code></td>
-<td style="text-align: left;">Name of project lead researcher.</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><code>co_lead</code></td>
-<td style="text-align: left;">Names of project co-lead researchers.</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"><code>organisation</code></td>
-<td style="text-align: left;">Original list of Unibas organizations involved in project</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><code>title</code></td>
-<td style="text-align: left;">Title of project.</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"><code>year</code></td>
-<td style="text-align: left;">Year of project start.</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><code>abstract</code></td>
-<td style="text-align: left;">Abstract of project.</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"><code>keywords</code></td>
-<td style="text-align: left;">Keywords of project.</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><code>type</code></td>
-<td style="text-align: left;">Type of project: self- or externally financed.</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"><code>status</code></td>
-<td style="text-align: left;">Active or Completed</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><code>id</code></td>
-<td style="text-align: left;">Internal idenifier number</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"><code>Org-*</code></td>
-<td style="text-align: left;">Logical vectors indicating Unibas faculty-level organizations involved in project.</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><code>SDG-*</code></td>
-<td style="text-align: left;">Logical vectors indicating whether publication addresses the 17 sustainable development goals.</td>
 </tr>
 </tbody>
 </table>

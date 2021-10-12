@@ -9,26 +9,19 @@ knitr::opts_chunk$set(echo = FALSE)
 
 #### Data and Preprocessing
 
-The Sustainability Office of the University of Basel supplied data from two different databases containing information of the University's electronic research output (publications and projects). 
+We use data from a database listing the University of Basel's research output between 2000 and 2020. 
 
-The publications dataset had to be processed to generate abstracts that could be searched using search queries in English:
+<i>Diversity Dimensions</i>
 
-<i>Publications</i>
+We use information concerning diversity by categorizing author's names (e.g., gender, age, nationality). More details to follow. 
 
-1. The database included journal articles (N = 43,229), book items (chapters, 13,443), journal items (5,028), proceedings items (2,144), and books (1,897).
-2. We selected publications with English titles (~85%) and DOI present (~80%) that were published between 2010 and 2020 (~60%) using a custom-made *R* script. About half of all publications remained.    
-3. We identified abstracts for all publications using <a href="https://cran.r-project.org/web/packages/rscopus/index.html">rscopus</a>. About ~85% of abstracts could be retrieved.    
+<i>Organizational Units</i>
 
-<i>Publications & Projects</i>
+In a previous project, CDS members identified faculty-level organizational units within the University of Basel (including associated and cross-disciplinary institutes) manually, using the [descriptors](https://edoc.unibas.ch/view/divisions/) currently in use at the University of Basel. 
 
-1. Team members identified faculty-level organizational units within the University of Basel (including associated and cross-disciplinary institutes) manually, using the [descriptors](https://edoc.unibas.ch/view/divisions/) currently in use at the University of Basel. 
-2. We used translations of the SDG queries of [Elsevier](https://data.mendeley.com/datasets/87txkw7khs/1) (Jayabalasingham, Boverhof, Agnew & Klein, 2019) and the <a href="https://github.com/Aurora-Network-Global/sdg-queries">Aurora</a> network using the <a href="https://cran.r-project.org/web/packages/corpustools/corpustools.pdf">corpustools</a> *R* package to detect whether titles or abstracts were SDG-relevant.  
-
-The data is shared via this <a href="https://github.com/cdsbasel/SDG_hackathon"><b>Github</b></a> repository. 
+The data is shared via this <a href="https://github.com/cdsbasel/Diversity_hackathon"><b>Github</b></a> repository. 
 
 #### Variables
-
-<i>Publications</i>
 
 | Variable | Description |
 |:-------------|:-------------------------------------|
@@ -43,22 +36,4 @@ The data is shared via this <a href="https://github.com/cdsbasel/SDG_hackathon">
 | `unibas_authors` | Publication authors at University of Basel. |
 | `unibas_publcation` | Publication offically affiliated with University of Basel. (?) |
 | `doi` | Digital object identfier |
-| `Org-*` | Logical vectors indicating Unibas faculty-level organizations involved in publication. |
-| `SDG-*` | Logical vectors indicating whether publication addresses the 17 sustainable development goals. |
-
-<i>Projects</i>
-
-| Variable | Description |
-|:-------------|:-------------------------------------|
-| `lead` | Name of project lead researcher. |
-| `co_lead` | Names of project co-lead researchers.  |
-| `organisation` | Original list of Unibas organizations involved in project |
-| `title` | Title of project. |
-| `year` | Year of project start.  |
-| `abstract` | Abstract of project. |
-| `keywords` |  Keywords of project. |
-| `type` | Type of project: self- or externally financed. |
-| `status` | Active or Completed |
-| `id` | Internal idenifier number |
-| `Org-*` | Logical vectors indicating Unibas faculty-level organizations involved in project. |
-| `SDG-*` | Logical vectors indicating whether publication addresses the 17 sustainable development goals. |
+| `Org-*` | Logical vectors indicating Unibas faculty-level organizations involved in publication. 
