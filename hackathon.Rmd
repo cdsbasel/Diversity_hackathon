@@ -19,9 +19,14 @@ Dr. Dirk Wulff and Prof. Dr. Rui Mata supervised the project and Dr. Dirk Wulff 
 
 #### Goal
 
-The goal of the first hackathon part is to produce different visualizations illustrating...
+The goal of the first hackathon session is to produce different visualizations illustrating...
 
-[to be determined at the first planning meeting, Oct 12th, 2021]
+1. diversity gaps (gender, age, nationality) in number of publications over time (2000-2020) 
+
+2. assess the role of moderators on the different diversity gaps, such as the role of...
+  - organizational units 
+  - authorship type (e.g., single, first, last)
+  - publication type (e.g., journal articles, books, conference proceedings)
 
 #### Rules
 
