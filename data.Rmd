@@ -9,11 +9,23 @@ knitr::opts_chunk$set(echo = FALSE)
 
 #### Data and Preprocessing
 
-We use data from a database listing the University of Basel's research output between 2000 and 2020. 
+We use data from a database listing the University of Basel's research output between 2000 and 2020. There are a total 67'269 publications including several different categories: 43'997 journal articles, 11'959 book chapters, 3'454 book (edited and authored), 2'014 proceedings articles, 1'671 theses, and 4'174 other items including news articles and discussion papers.   
 
 <i>Diversity Dimensions</i>
 
-We use information concerning diversity by categorizing author's names (e.g., gender, age, nationality). More details to follow. 
+We use information concerning diversity derived from the authors' first names. 
+
+We recruit the services [genderize.io](https://genderize.io/), [agify.io](https://agify.io/), [nationalize.io](https://nationalize.io/) to determine the authors' probable gender, age, and nation, respectively. Estimates are provided based on the services' databases that include hundreds of thousands of confirmed mappings on the internet between first names and these three characteristics. In addition to probable categories, the services return information on confidence. For instance, for the name Alexandra, agify.io informs that 98% of 122'985 gender records point to a female gender, that the probable age is 27 based on 114,238 age records, and that there is a 11.7% probability that the nation is Romania, a 5.1% probability that the nation is Ecudor, and a 4.5% probability that the nation is Portugal.  
+
+You can use the links below to try out the three services for yourself.  
+
+```{html}
+https://api.genderize.io/?name=Samuel
+https://agify.io?name=Samuel
+https://api.nationalize.io/?name=Samuel
+```
+
+We have processed the data in the following way to simplify our analysis. For gender and age, we only use the probable value, irrespective of the number of instances or the assigned probability. For nation, we determine whether any of the three most probable nations include a "western" nation defined as geographic Europe, the US, Canada, and Australia. 
 
 <i>Organizational Units</i>
 
@@ -25,15 +37,23 @@ The data is shared via this <a href="https://github.com/cdsbasel/Diversity_hacka
 
 | Variable | Description |
 |:-------------|:-------------------------------------|
-| `type` | Type of publication. |
-| `year` | Year of publication.  |
-| `authors` | Author list of publication. |
+| `author` | List of authors. |
+| `year` | Year of publication. |
 | `title` | Title of publication. |   
-| `abstract` | Abstract of publication. |
-| `outlet` | Name of journal, book, or proceedings publication. |
-| `peer_reviewed` | Has publication been subjected to peer review. |
-| `organisation` | Original list of Unibas organizations involved in publication. |
-| `unibas_authors` | Publication authors at University of Basel. |
-| `unibas_publcation` | Publication offically affiliated with University of Basel. (?) |
-| `doi` | Digital object identfier |
+| `organization` | Original list of Unibas organizations involved in publication. |
+| `unibas` | Publication offically affiliated with University of Basel. |
+| `category` | Category of publication: Journal, Chapter, Book, Thesis, Proceedings, Other. |
+| `n_authors` | Number of authors |
+| `gender_proportion` | Proportion of female authors. |
+| `gender_first` | Is first author female: 1 = yes, 0 = no. |
+| `gender_middle` |  Proportion of female authors excluding first and last author, where available. |
+| `gender_last` | Is last author female: 1 = yes, 0 = no. |
+| `age_average` | Average age of authors. |
+| `age_first` | Age of first author. |
+| `age_middle` |  Average age of authors excluding first and last author, where available. |
+| `age_last` | Age of last author. |
+| `nation_proportion` | Proportion of western authors. |
+| `nation_first` | Is first author western: 1 = yes, 0 = no. |
+| `nation_middle` |  Proportion of western authors excluding first and last author, where available. |
+| `nation_last` | Is last author western: 1 = yes, 0 = no. |
 | `Org-*` | Logical vectors indicating Unibas faculty-level organizations involved in publication. 
