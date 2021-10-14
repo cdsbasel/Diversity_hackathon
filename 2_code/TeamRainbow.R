@@ -33,7 +33,7 @@ diversity %>%
    ylim(c(35,60)) +
    labs(x='Publication year',y='Mean age', title='Mean age ~ author position over time') +
    theme_bw() +
-  ggsave("3_figures/Age_Position_years.pdf")
+  ggsave("3_figures/TeamRainbow_AgeByPositionOverTime.pdf")
 
 ### GENDER GAP
 
