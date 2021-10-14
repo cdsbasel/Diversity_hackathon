@@ -2085,11 +2085,17 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 <div class="d-article">
 <h4 id="data-and-preprocessing">Data and Preprocessing</h4>
-<p>We use data from a database listing the University of Basel’s research output between 2000 and 2020.</p>
+<p>We use data from a database listing the University of Basel’s research output between 2000 and 2020. There are a total 67’269 publications including several different categories: 43’997 journal articles, 11’959 book chapters, 3’454 books (edited and authored), 2’014 proceedings articles, 1’671 theses, and 4’174 other items including news articles and discussion papers.</p>
 <p><i>Diversity Dimensions</i></p>
-<p>We use information concerning diversity by categorizing author’s names (e.g., gender, age, nationality). More details to follow.</p>
+<p>We use information concerning diversity derived from the authors’ first names.</p>
+<p>We recruit the services <a href="https://genderize.io/">genderize.io</a>, <a href="https://agify.io/">agify.io</a>, <a href="https://nationalize.io/">nationalize.io</a> to determine the authors’ probable gender, age, and nation, respectively. Estimates are provided based on the services’ databases that include hundreds of thousands of confirmed mappings on the internet between first names and these three characteristics. In addition to probable categories, the services return information on confidence. For instance, for the name Alexandra, agify.io informs that 98% of 122’985 gender records point to a female gender, that the probable age is 27 based on 114,238 age records, and that there is a 11.7% probability that the nation is Romania, a 5.1% probability that the nation is Ecudor, and a 4.5% probability that the nation is Portugal.</p>
+<p>You can use the links above to try out the three services for yourself.</p>
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
+<p>We have processed the data in the following way to simplify our analysis. For gender and age, we only use the probable value, irrespective of the number of instances or the assigned probability. For nation, we determine whether any of the three most probable nations include a “western” nation defined as geographic Europe, the US, Canada, and Australia.</p>
 <p><i>Organizational Units</i></p>
-<p>In a previous project, CDS members identified faculty-level organizational units within the University of Basel (including associated and cross-disciplinary institutes) manually, using the <a href="https://edoc.unibas.ch/view/divisions/">descriptors</a> currently in use at the University of Basel.</p>
+<p>In a previous project, CDS members identified faculty-level organizational units within the University of Basel (including associated and cross-disciplinary institutes) manually, using the <a href="https://edoc.unibas.ch/view/divisions/">descriptors</a> in use at the University of Basel in 2021.</p>
 <p>The data is shared via this <a href="https://github.com/cdsbasel/Diversity_hackathon"><b>Github</b></a> repository.</p>
 <h4 id="variables">Variables</h4>
 <table>
@@ -2105,48 +2111,80 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;"><code>type</code></td>
-<td style="text-align: left;">Type of publication.</td>
+<td style="text-align: left;"><code>author</code></td>
+<td style="text-align: left;">List of authors.</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><code>year</code></td>
 <td style="text-align: left;">Year of publication.</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><code>authors</code></td>
-<td style="text-align: left;">Author list of publication.</td>
-</tr>
-<tr class="even">
 <td style="text-align: left;"><code>title</code></td>
 <td style="text-align: left;">Title of publication.</td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;"><code>abstract</code></td>
-<td style="text-align: left;">Abstract of publication.</td>
-</tr>
 <tr class="even">
-<td style="text-align: left;"><code>outlet</code></td>
-<td style="text-align: left;">Name of journal, book, or proceedings publication.</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"><code>peer_reviewed</code></td>
-<td style="text-align: left;">Has publication been subjected to peer review.</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><code>organisation</code></td>
+<td style="text-align: left;"><code>organization</code></td>
 <td style="text-align: left;">Original list of Unibas organizations involved in publication.</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><code>unibas_authors</code></td>
-<td style="text-align: left;">Publication authors at University of Basel.</td>
+<td style="text-align: left;"><code>unibas</code></td>
+<td style="text-align: left;">Publication offically affiliated with University of Basel.</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><code>unibas_publcation</code></td>
-<td style="text-align: left;">Publication offically affiliated with University of Basel. (?)</td>
+<td style="text-align: left;"><code>category</code></td>
+<td style="text-align: left;">Category of publication: Journal, Chapter, Book, Thesis, Proceedings, Other.</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><code>doi</code></td>
-<td style="text-align: left;">Digital object identfier</td>
+<td style="text-align: left;"><code>n_authors</code></td>
+<td style="text-align: left;">Number of authors</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>gender_proportion</code></td>
+<td style="text-align: left;">Proportion of female authors.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>gender_first</code></td>
+<td style="text-align: left;">Is first author female: 1 = yes, 0 = no.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>gender_middle</code></td>
+<td style="text-align: left;">Proportion of female authors excluding first and last author, where available.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>gender_last</code></td>
+<td style="text-align: left;">Is last author female: 1 = yes, 0 = no.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>age_average</code></td>
+<td style="text-align: left;">Average age of authors.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>age_first</code></td>
+<td style="text-align: left;">Age of first author.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>age_middle</code></td>
+<td style="text-align: left;">Average age of authors excluding first and last author, where available.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>age_last</code></td>
+<td style="text-align: left;">Age of last author.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>nation_proportion</code></td>
+<td style="text-align: left;">Proportion of western authors.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>nation_first</code></td>
+<td style="text-align: left;">Is first author western: 1 = yes, 0 = no.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>nation_middle</code></td>
+<td style="text-align: left;">Proportion of western authors excluding first and last author, where available.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>nation_last</code></td>
+<td style="text-align: left;">Is last author western: 1 = yes, 0 = no.</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><code>Org-*</code></td>
