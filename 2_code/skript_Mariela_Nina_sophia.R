@@ -34,7 +34,21 @@ ggplot(data=gender ,aes(x=year, y=gender)) +
 data_age <- data %>% group_by(year) %>% summarise(age= mean(age_average, na.rm=TRUE), age.sd= sd(age_average, na.rm=TRUE)  )
 
 ggplot(data=data_age ,aes(x=year, y=age)) +
-  geom_point () + theme_bw() + ylim(20,70)
+  geom_point () + theme_bw() + ylim(20,70) + 
+  ylab("average age") + labs( title="Age in Unibas publications", subtitle="from 2000 to 2020") 
+
+data$age.cat[data$age_average <36] <- 1
+data$age.cat[data$age_average >35 &data$age_average <51] <- 2
+data$age.cat[data$age_average >50 &data$age_average <66] <- 3
+data$age.cat[data$age_average >65] <- 4
+
+
+data_age2 <- data %>% group_by(year, age.cat) %>% tally()
+
+ggplot(data=data_age2 ,aes(x=year, y=n, color=as.factor(age.cat)) ) +
+  geom_point () + theme_bw() + 
+  ylab("number of publications") + labs( title="Age categories in Unibas publications", subtitle="from 2000 to 2020") 
+
 
 ### nationality
 # 1= western
