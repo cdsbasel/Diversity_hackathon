@@ -21,9 +21,9 @@ Dr. Dirk Wulff and Prof. Dr. Rui Mata supervised the project and Dr. Dirk Wulff 
 
 The goal of the first hackathon session is to produce different visualizations illustrating...
 
-1. diversity gaps (gender, age, nationality) in number of publications over time (2000-2020) 
+1. three diversity gaps (i.e., gender, age, nationality) in number of publications over time (2000-2020);
 
-2. assess the role of moderators on the different diversity gaps, such as the role of...
+2. the role of moderators on the different diversity gaps, such as the role of...
   - organizational units 
   - authorship type (e.g., single, first, last)
   - publication type (e.g., journal articles, books, conference proceedings)
@@ -31,7 +31,7 @@ The goal of the first hackathon session is to produce different visualizations i
 #### Rules
 
 1. Each group creates and works in a single R script that is given a unique name by the group, e.g., a group pseudonym (to avoid conflicts with the other groups' script files). The script file is stored in `1_code`. See code template including the placeholder `GROUPPSEUDONYM`.
-2. Each group creates XXX `.pdf` figure files in the `2_figures` folder. Figure files also must receive a suffix identifying the group. See example figure. 
+2. Each group creates a `.pdf` file containing the figure per visualization in the `2_figures` folder. Figure files also must receive a suffix identifying the group. See example figure. 
 3. Pull before you Push.
 
 ### Part II - Reporting (October 20th, 2021)
