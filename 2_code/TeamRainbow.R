@@ -33,7 +33,7 @@ diversity %>%
    ylim(c(35,60)) +
    labs(x='Publication year',y='Mean age', title='Mean age ~ author position over time') +
    theme_bw() +
-  ggsave("3_figures/TeamRainbow_AgeByPositionOverTime.pdf")
+  ggsave("3_figures/Age_Position_years.pdf")
 
 ### GENDER GAP
 
@@ -59,6 +59,7 @@ nation <- nation %>%
                 names_to = "nationality",
                 values_to = "percentage"
                 )
+
 barplot_n <- nation %>% 
   ggplot() +
   geom_bar(aes(x = year,
@@ -67,6 +68,18 @@ barplot_n <- nation %>%
                color = nationality),
            stat = "identity",
            position = position_dodge()
-           )
+           ) +
+  theme(axis.text.x = element_text(angle = 45, 
+                                   vjust = 0.5)
+        ) +
+  scale_x_continuous(breaks = c(2000:2020))
+
+
+ggsave("3_figures/TeamRainbow_Nations.png",
+       width = 1920,
+       height = 1080,
+       units = "px")
 
 barplot_n
+
+
