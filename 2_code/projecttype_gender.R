@@ -49,9 +49,11 @@ ggplot(data=data.gender.org.l,
   facet_grid(Org~category) + 
   ylim(0,1) +
   theme_minimal() +
-  theme(strip.text.y = element_text(angle = 0, hjust=0), axis.text.x = element_text(angle=90, hjust=1)) +
+  theme(strip.text.y = element_text(angle = 0, hjust=0, size = 4), 
+        axis.text.x = element_text(angle=50, hjust=1),
+        legend.position = "bottom") +
   scale_y_continuous(breaks = c(0,1) ) + 
-  scale_x_continuous(breaks= c(2000,2020)) 
+  scale_x_continuous(breaks= c(2000,2010,2020)) 
 
 
 
