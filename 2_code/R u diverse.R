@@ -24,7 +24,7 @@ ggplot(data=data_year ,aes(x=year, y=gender)) +
 gender <- data %>% group_by(year) %>% summarise(gender= mean(gender_proportion, na.rm=TRUE)  )
 
 ## alle
-ggplot(data=gender ,aes(x=year, y=gender)) +
+gender.plot <- ggplot(data=gender ,aes(x=year, y=gender)) +
   geom_line() + theme_bw () + ylim(0,1) +
   geom_hline(yintercept=0.5, color="black",linetype="dashed", size= .5) +
   ylab("proportion female") + labs( title="Gender gap in Unibas publications", subtitle="from 2000 to 2020") 
