@@ -48,12 +48,15 @@ The data is shared via this <a href="https://github.com/cdsbasel/Diversity_hacka
 | `gender_first` | Is first author female: 1 = yes, 0 = no. |
 | `gender_middle` |  Proportion of female authors excluding first and last author, where available. |
 | `gender_last` | Is last author female: 1 = yes, 0 = no. |
+| `gender_diversity` | measure of gender dispersion  |
 | `age_average` | Average age of authors. |
 | `age_first` | Age of first author. |
 | `age_middle` |  Average age of authors excluding first and last author, where available. |
 | `age_last` | Age of last author. |
+| `age_diversity` | measure of age dispersion |
 | `nation_proportion` | Proportion of western authors. |
 | `nation_first` | Is first author western: 1 = yes, 0 = no. |
 | `nation_middle` |  Proportion of western authors excluding first and last author, where available. |
 | `nation_last` | Is last author western: 1 = yes, 0 = no. |
+| `nation_diversity` | measure of nationality dispersion |
 | `Org-*` | Logical vectors indicating Unibas faculty-level organizations involved in publication. 
