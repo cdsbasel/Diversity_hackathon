@@ -1,6 +1,7 @@
 # dependencies
 library(tidyverse)
 
+
 # read data
 data <- read_csv("1_data/unibas_diversity.csv")
 
