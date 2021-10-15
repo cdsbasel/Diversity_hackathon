@@ -46,5 +46,5 @@ ggsave(
   height = 10, 
   width = 15, 
   scale = 0.6
-  )
+)
 
