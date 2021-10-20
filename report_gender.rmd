@@ -55,30 +55,30 @@ pA1 <- ggplot(gender_inst_time, aes(x= year, y=publication, fill=gender)) +
   theme_void() +
   geom_label(data = label_num, aes(label=label), fill = NA,
              x = 2001, y = 51, hjust= 0, vjust = 0,  label.size = NA,
-             family = "Oswald Bold", size = 5, color = "white" ,
+             family = "Arial Bold", size = 5, color = "white" ,
              inherit.aes = FALSE) +
   geom_label(data = label_f, aes(label=label), fill = NA,
              y = 5, x = 2010, hjust=0.5,  label.size = NA,
-             family = "Oswald Bold", size = 5, color = "white" ,
+             family = "Arial Bold", size = 5, color = "white" ,
              inherit.aes = FALSE) +
   geom_label(data = label_m, aes(label=label), fill = NA,
              y = 95, x = 2010, hjust=0.5,  label.size = NA,
-             family = "Oswald Bold", size = 5, color = "white" ,
+             family = "Arial Bold", size = 5, color = "white" ,
              inherit.aes = FALSE) +
   scale_x_continuous(breaks = c(2000, 2020)) +
   scale_y_continuous(expand = c(0.01,0), breaks = c(0, 100)) +
   facet_wrap(.~ toupper(organisation_name), nrow = 1) +
   labs(title = "PERCENTAGE OF FEMALE AUTHORS", subtitle = "OVER TIME BY FACULTY: ALL AUTHORSHIPS COMBINED", x = "YEAR", y = "PERC.") +
   theme(legend.position = "none",
-        axis.text.x = element_text(family = "Oswald", size = 9, colour = "grey60"),
-        axis.text.y = element_text(family = "Oswald", size = 9, colour = "grey60"),
+        axis.text.x = element_text(family = "Arial", size = 9, colour = "grey60"),
+        axis.text.y = element_text(family = "Arial", size = 9, colour = "grey60"),
         panel.spacing = unit(1, "lines"),
-        strip.text = element_text(family = "Oswald Bold", size = 11.5, colour = charcoal),
-        axis.title.x = element_text(family = "Oswald Bold", size = 10, colour = "grey60"),
-        axis.title.y = element_text(family = "Oswald Bold", size = 10, colour = "grey60", angle = 90),
-        plot.title = element_text(face = "bold", family = "Oswald", hjust = 0, margin = margin(t = 15,b = 25), size = 20, color = charcoal),
-        plot.subtitle = element_text(family = "Oswald", hjust = 0.008, margin = margin(b = 10), size = 17, color = charcoal),
-        plot.caption =element_text(family = "Oswald ExtraLight", face = "italic", size = 6.5, hjust = 1, margin = margin(t = 5)))
+        strip.text = element_text(family = "Arial Bold", size = 11.5, colour = charcoal),
+        axis.title.x = element_text(family = "Arial Bold", size = 10, colour = "grey60"),
+        axis.title.y = element_text(family = "Arial Bold", size = 10, colour = "grey60", angle = 90),
+        plot.title = element_text(face = "bold", family = "Arial", hjust = 0, margin = margin(t = 15,b = 25), size = 20, color = charcoal),
+        plot.subtitle = element_text(family = "Arial", hjust = 0.008, margin = margin(b = 10), size = 17, color = charcoal),
+        plot.caption =element_text(family = "Arial ExtraLight", face = "italic", size = 6.5, hjust = 1, margin = margin(t = 5)))
 
 
 
@@ -143,15 +143,15 @@ pA2 <- author_dat %>%
   theme_void() +
   geom_label(data = label_num, aes(label=label), fill = NA,
              x = 2001, y = 51, hjust= 0, vjust = 0,  label.size = NA,
-             family = "Oswald Bold", size = 5, color = "white" ,
+             family = "Arial Bold", size = 5, color = "white" ,
              inherit.aes = FALSE) +
   geom_label(data = label_f, aes(label=label), fill = NA,
              y = 95, x = 2001, hjust= 0, vjust = 1,  label.size = NA,
-             family = "Oswald Bold", size = 5, color = "#4ADABF" ,
+             family = "Arial Bold", size = 5, color = "#4ADABF" ,
              inherit.aes = FALSE) +
   geom_label(data = label_m, aes(label=label), fill = NA,
              y = 89, x = 2001, hjust= 0, vjust = 1,  label.size = NA,
-             family = "Oswald Bold", size = 5, color = "white" ,
+             family = "Arial Bold", size = 5, color = "white" ,
              inherit.aes = FALSE) +
   facet_wrap(toupper(organisation_name)~., nrow = 1)+
   scale_color_manual(values = col_pal) +
@@ -161,23 +161,28 @@ pA2 <- author_dat %>%
   labs(title = "OVER TIME BY FACULTY: FIRST VERSUS LAST AUTHOR" , x = "YEAR", y = "PERC.",
        caption = "Data from the UNIBAS publication database.") +
   theme(legend.position = "none",
-        axis.text.x = element_text(family = "Oswald", size = 10, colour = "grey60"),
-        axis.text.y = element_text(family = "Oswald", size = 10, colour = "grey60",  margin = margin(l = 5, r = 5)),
-        axis.title.x = element_text(family = "Oswald Bold", size = 10, colour = "grey60"),
-        axis.title.y = element_text(family = "Oswald Bold", size = 10, colour = "grey60", angle = 90),
+        axis.text.x = element_text(family = "Arial", size = 10, colour = "grey60"),
+        axis.text.y = element_text(family = "Arial", size = 10, colour = "grey60",  margin = margin(l = 5, r = 5)),
+        axis.title.x = element_text(family = "Arial", size = 10, colour = "grey60"),
+        axis.title.y = element_text(family = "Arial", size = 10, colour = "grey60", angle = 90),
         panel.spacing = unit(2, "lines"),
         panel.background = element_rect(fill = "#4E4BD8"),
         plot.margin = unit(c(0,0.5,0,0), "cm"),
-        strip.text.x = element_text(family = "Oswald Bold", size = 12, colour = charcoal, margin = margin(b = 3)),
+        strip.text.x = element_text(family = "Arial", size = 12, colour = charcoal, margin = margin(b = 3)),
         panel.border  = element_rect(colour = charcoal, fill = "NA", size = 0.75, linetype = "solid"),
-        plot.title = element_text(family = "Oswald", hjust = 0, margin = margin(b = 10, t = 30),colour = charcoal, size = 17),
-        plot.caption =element_text(family = "Oswald ExtraLight", face = "italic", size = 6.5, hjust = 1, margin = margin(t = 5)))
+        plot.title = element_text(family = "Arial", hjust = 0, margin = margin(b = 10, t = 30),colour = charcoal, size = 17),
+        plot.caption =element_text(family = "Arial", face = "italic", size = 6.5, hjust = 1, margin = margin(t = 5)))
 
 
 
 pA <- pA1/pA2
 
 pA
+````
+
+```{r, echo=FALSE, eval=TRUE}
+
+
 
 prop_fem <- author_dat %>%
   filter(year %in% c(2020, 2000)) %>%
@@ -199,17 +204,24 @@ prop_fem_inst_nyr <- author_dat %>%
 
 ```
 
-Women are systematically underrepresented in academia. Whilst this inequality varies across academic departments, there has been an general upward trend in the proportion of female authors from the University of Basel over the last two decades, starting at `r round(prop_fem$prop_female[1], 2)` in 2000 and reaching `r round(prop_fem$prop_female[2], 2)` in 2020. This trend is also reflected in the percentage of first and last female authors. In this section, we offer a by-faculty insight into these developments over time. In particular, the prize for most improved goes to the Faculties of Humanities and Social Sciences, with Psychology and Medicine as runners up. These improvements are less noticeable in the Faculties of Science, Law, and Business & Economics, and the trend is reversed for the Faculty of Theology. However, this latter case may not be so informative as the sample of publications is considerably smaller.
+<!-- Women are systematically underrepresented in academia. Whilst this inequality varies across academic departments, there has been an general upward trend in the proportion of female authors from the University of Basel over the last two decades, starting at `r round(prop_fem$prop_female[1], 2)` in 2000 and reaching `r round(prop_fem$prop_female[2], 2)` in 2020. This trend is also reflected in the percentage of first and last female authors. In this section, we offer a by-faculty insight into these developments over time. In particular, the prize for most improved goes to the Faculties of Humanities and Social Sciences, with Psychology and Medicine as runners up. These improvements are less noticeable in the Faculties of Science, Law, and Business & Economics, and the trend is reversed for the Faculty of Theology. However, this latter case may not be so informative as the sample of publications is considerably smaller. -->
 
 
- - Considering the publication at  UNIBAS over the  last 20 years, in some faculties a greater percentage of females are authors in publications than in others (highest Human soc sci:  `r round(prop_fem_inst_nyr$prop_female[prop_fem_inst$organisation_name == "Faculty of\nHumanties & Soc. Sci."], 2)`%; lowest: Business and Econ.  `r round(prop_fem_inst_nyr$prop_female[prop_fem_inst$organisation_name == "Faculty of\nBusiness & Econ."], 2)`%).
+- Considering the publications at the University of Basel over the last 20 years, in some faculties a greater percentage of authors are females in publications ranging from the Humanities and Social Sciences (`r round(prop_fem_inst_nyr$prop_female[prop_fem_inst_nyr$organisation_name == "Faculty of\nHumanties & Soc. Sci."], 2)`%) to Business and Economics  (`r round(prop_fem_inst_nyr$prop_female[prop_fem_inst_nyr$organisation_name == "Faculty of\nBusiness & Econ."], 2)`%).
 
-- There has been an general upward trend in the proportion of female authors from the University of Basel over the last two decades who have published, starting at `r round(prop_fem$prop_female[1], 2)` in 2000 and reaching `r round(prop_fem$prop_female[2], 2)` in 2020.
+- There has been an general upward trend in the proportion of female authors from the University of Basel over the last two decades who have published. While in 2000 `r round(prop_fem$prop_female[1], 2)`% of authors were female, this share has increased to `r round(prop_fem$prop_female[2], 2)`% in 2020.
 
-- For some faculties this increase was more noticeable for instance, Faculty of Psychology ( increase between 2000 to 2020: `r round(prop_fem_inst$diff[prop_fem_inst$organisation_name == "Faculty of\nPsychology" & prop_fem_inst$year == 2000], 2)`%), and less so for others, such as the Faculty of Law  ( increase between 2000 to 2020: `r round(prop_fem_inst$diff[prop_fem_inst$organisation_name == "Faculty of\nLaw" & prop_fem_inst$year == 2000], 2)`%).
+- For some faculties this increase was more noticeable. For instance in the Faculty of Psychology the increase of percentage points between 2000 to 2020 was highest with `r round(prop_fem_inst$diff[prop_fem_inst$organisation_name == "Faculty of\nPsychology" & prop_fem_inst$year == 2000], 2)`%, while the Faculty of Law had the lowest increase between 2000 to 2020 with a difference of `r round(prop_fem_inst$diff[prop_fem_inst$organisation_name == "Faculty of\nLaw" & prop_fem_inst$year == 2000], 2)`%. Publication data for the Faculty of Theology allows for less confident statements but suggests a decrease in the proportion of female authors.
 
+- In addition to the general author proportions, we investigated authorship positions by looking at first and last authors' gender. There is a general trend for higher female proportions in first authors than last authors. When comparing between faculties, it should be noted however, that authorship position assignment may follow different practices in different fields.
 
-- 
+### key points
+- In the last 20 years, considerably more than half of the authors in the publications invesitgated irrespective of faculties, are male.
+
+- This gender gap in publications has decreased for most faculties over the last 20 years. 
+
+- Generally, in the publications looked at, proportion of women among first authors was higher than among last authors. 
+
 
 ## Nationality
 
