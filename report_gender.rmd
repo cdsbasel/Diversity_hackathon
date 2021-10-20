@@ -215,7 +215,7 @@ prop_fem_inst_nyr <- author_dat %>%
 
 - In addition to the general author proportions, we investigated authorship positions by looking at first and last authors' gender. There is a general trend for higher female proportions in first authors than last authors. When comparing between faculties, it should be noted however, that authorship position assignment may follow different practices in different fields.
 
-### key points
+### Key points
 - In the last 20 years, considerably more than half of the authors in the publications invesitgated irrespective of faculties, are male.
 
 - This gender gap in publications has decreased for most faculties over the last 20 years. 
