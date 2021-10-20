@@ -15,14 +15,14 @@ pub_data <- read_csv("1_data/unibas_diversity.csv")
 
 ## Background
 
-## Methods 
+## Methods
 
 ## Gender Diversity
 
 ```{r, echo=FALSE, eval=TRUE, fig.width = 10, fig.height= 10}
 gender_inst_time <- pub_data %>% 
   select(year, gender_proportion, `Org-Swiss Tropical and Public Health Institute`: `Org-Basel Institute on Governance`) %>%
-  pivot_longer(!year:gender_proportion,names_to = "organisation_name", values_to = "applies") %>% 
+  pivot_longer(!year:gender_proportion,names_to = "organisation_name", values_to = "applies") %>%
   filter(applies == 1) %>% #only select those rows that could be classified
   mutate(organisation_name = case_when(organisation_name == "Org-Faculty of Theology" ~ "Faculty of\nTheology",
                                        organisation_name == "Org-Faculty of Science" ~ "Faculty of\nScience",
@@ -30,9 +30,9 @@ gender_inst_time <- pub_data %>%
                                        organisation_name == "Org-Faculty of Humanties and Social Sciences" ~ "Faculty of\nHumanties & Soc. Sci.",
                                        organisation_name == "Org-Faculty of Medicine"  ~ "Faculty of\nMedicine",
                                        organisation_name == "Org-Faculty of Business and Economics" ~ "Faculty of\nBusiness & Econ.",
-                                       organisation_name == "Org-Faculty of Psychology" ~ "Faculty of\nPsychology")) %>% 
+                                       organisation_name == "Org-Faculty of Psychology" ~ "Faculty of\nPsychology")) %>%
   filter(!is.na(organisation_name)) %>% # ignoring non-faculty organizations
-  group_by(organisation_name, year) %>% 
+  group_by(organisation_name, year) %>%
   summarise(FEMALE = 100*mean(gender_proportion, na.rm = TRUE),
             MALE = 100 - FEMALE) %>%
   pivot_longer(FEMALE:MALE, names_to = "gender", values_to = "publication")
@@ -85,10 +85,10 @@ pA1 <- ggplot(gender_inst_time, aes(x= year, y=publication, fill=gender)) +
 # OVER TIME FEMALE 1ST and LAST AUTHOR BY FACULTY ----------------------------------------------------------------
 
 # data
-author_first <- pub_data %>% 
-  filter(n_authors > 1) %>% 
+author_first <- pub_data %>%
+  filter(n_authors > 1) %>%
   select(year, gender_first, `Org-Swiss Tropical and Public Health Institute`: `Org-Basel Institute on Governance`) %>%
-  pivot_longer(!year:gender_first,names_to = "organisation_name", values_to = "applies") %>% 
+  pivot_longer(!year:gender_first,names_to = "organisation_name", values_to = "applies") %>%
   filter(applies == 1) %>% #only select those rows that could be classified
   mutate(organisation_name = case_when(organisation_name == "Org-Faculty of Theology" ~ "Faculty of\nTheology",
                                        organisation_name == "Org-Faculty of Science" ~ "Faculty of\nScience",
@@ -96,18 +96,18 @@ author_first <- pub_data %>%
                                        organisation_name == "Org-Faculty of Humanties and Social Sciences" ~ "Faculty of\nHumanties & Soc. Sci.",
                                        organisation_name == "Org-Faculty of Medicine"  ~ "Faculty of\nMedicine",
                                        organisation_name == "Org-Faculty of Business and Economics" ~ "Faculty of\nBusiness & Econ.",
-                                       organisation_name == "Org-Faculty of Psychology" ~ "Faculty of\nPsychology")) %>% 
+                                       organisation_name == "Org-Faculty of Psychology" ~ "Faculty of\nPsychology")) %>%
   filter(!is.na(organisation_name)) %>% # ignoring non-faculty organizations
-  group_by(organisation_name, year) %>% 
-  summarise(mean_f = 100*mean(gender_first, na.rm = TRUE))  %>% 
-  mutate(author_type = "FIRST AUTHOR") 
+  group_by(organisation_name, year) %>%
+  summarise(mean_f = 100*mean(gender_first, na.rm = TRUE))  %>%
+  mutate(author_type = "FIRST AUTHOR")
 
 
 
-author_last <- pub_data %>% 
-  filter(n_authors > 1) %>% 
+author_last <- pub_data %>%
+  filter(n_authors > 1) %>%
   select(year, gender_last, `Org-Swiss Tropical and Public Health Institute`: `Org-Basel Institute on Governance`) %>%
-  pivot_longer(!year:gender_last,names_to = "organisation_name", values_to = "applies") %>% 
+  pivot_longer(!year:gender_last,names_to = "organisation_name", values_to = "applies") %>%
   filter(applies == 1) %>% #only select those rows that could be classified
   mutate(organisation_name = case_when(organisation_name == "Org-Faculty of Theology" ~ "Faculty of\nTheology",
                                        organisation_name == "Org-Faculty of Science" ~ "Faculty of\nScience",
@@ -115,13 +115,13 @@ author_last <- pub_data %>%
                                        organisation_name == "Org-Faculty of Humanties and Social Sciences" ~ "Faculty of\nHumanties & Soc. Sci.",
                                        organisation_name == "Org-Faculty of Medicine"  ~ "Faculty of\nMedicine",
                                        organisation_name == "Org-Faculty of Business and Economics" ~ "Faculty of\nBusiness & Econ.",
-                                       organisation_name == "Org-Faculty of Psychology" ~ "Faculty of\nPsychology")) %>% 
+                                       organisation_name == "Org-Faculty of Psychology" ~ "Faculty of\nPsychology")) %>%
   filter(!is.na(organisation_name)) %>% # ignoring non-faculty organizations
-  group_by(organisation_name, year) %>% 
-  summarise(mean_f = 100*mean(gender_last, na.rm = TRUE))  %>% 
-  mutate(author_type = "LAST AUTHOR") 
+  group_by(organisation_name, year) %>%
+  summarise(mean_f = 100*mean(gender_last, na.rm = TRUE))  %>%
+  mutate(author_type = "LAST AUTHOR")
 
-author_dat <- bind_rows(author_first, author_last) 
+author_dat <- bind_rows(author_first, author_last)
 
 
 label_num <- data.frame(organisation_name= unique(author_dat$organisation_name), label= c("50%", rep("", 6)))
@@ -133,13 +133,11 @@ label_m <- data.frame(organisation_name= unique(author_dat$organisation_name), l
 
 # plot
 
-
-
 charcoal <-  "#31424B"
 col_pal <- c("#4ADABF", "white")
 
-pA2 <- author_dat %>% 
-  ggplot(aes(x = year, y = mean_f, color = author_type ))+ 
+pA2 <- author_dat %>%
+  ggplot(aes(x = year, y = mean_f, color = author_type ))+
   geom_line(size = 1.2 ) +
   geom_point(size = 2)+
   theme_void() +
@@ -181,9 +179,27 @@ pA <- pA1/pA2
 
 pA
 
-``` 
+```
 
-Women are systematically underrepresented in academia. Whilst this inequality varies across academic departments, there has been an general upward trend in the proportion of female authors from the University of Basel over the last two decades, starting at X in 2000 and reaching Y in 2020. This trend is also reflected in the percentage of first and last female authors. In this section, we offer a by-faculty insight into these developments over time. In particular, the prize for most improved goes to the Faculties of Humanities and Social Sciences, with Psychology and Medicine as runners up. These improvements are less noticeable in the Faculties of Science, Law, and Business & Economics, and the trend is reversed for the Faculty of Theology. However, this latter case may not be so informative as the sample of publications is considerably smaller. 
+Women are systematically underrepresented in academia. Whilst this inequality varies across academic departments, there has been an general upward trend in the proportion of female authors from the University of Basel over the last two decades, starting at X in 2000 and reaching Y in 2020. This trend is also reflected in the percentage of first and last female authors. In this section, we offer a by-faculty insight into these developments over time. In particular, the prize for most improved goes to the Faculties of Humanities and Social Sciences, with Psychology and Medicine as runners up. These improvements are less noticeable in the Faculties of Science, Law, and Business & Economics, and the trend is reversed for the Faculty of Theology. However, this latter case may not be so informative as the sample of publications is considerably smaller.
+
+
+
+
+```{r, echo=FALSE, eval=TRUE}
+prop_fem_2000 <- pub_data %>%
+  filter(year == 2000) %>%
+  summarise(prop_female = mean(gender_proportion, na.rm = TRUE)) %>%
+  pull(prop_female)
+
+prop_fem_2020 <- pub_data %>%
+  filter(year == 2020) %>%
+  summarise(prop_female = mean(gender_proportion, na.rm = TRUE)) %>%
+  pull(prop_female)
+
+
+```
+
 
 ## Nationality
 
@@ -197,7 +213,4 @@ Women are systematically underrepresented in academia. Whilst this inequality va
 ## Conclusion
 
 
-## References 
-
-
-
+## References
