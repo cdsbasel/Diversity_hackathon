@@ -19,7 +19,7 @@ pub_data <- read_csv("1_data/unibas_diversity.csv")
 
 ## Gender Diversity
 
-```{r, echo=FALSE, eval=TRUE}
+```{r, echo=FALSE, eval=TRUE, fig.width = 10, fig.height= 10}
 gender_inst_time <- pub_data %>% 
   select(year, gender_proportion, `Org-Swiss Tropical and Public Health Institute`: `Org-Basel Institute on Governance`) %>%
   pivot_longer(!year:gender_proportion,names_to = "organisation_name", values_to = "applies") %>% 
@@ -181,8 +181,9 @@ pA <- pA1/pA2
 
 pA
 
-```
+``` 
 
+Women are systematically underrepresented in academia. Whilst this inequality varies across academic departments, there has been an general upward trend in the proportion of female authors from the University of Basel over the last two decades, starting at X in 2000 and reaching Y in 2020. This trend is also reflected in the percentage of first and last female authors. In this section, we offer a by-faculty insight into these developments over time. In particular, the prize for most improved goes to the Faculties of Humanities and Social Sciences, with Psychology and Medicine as runners up. These improvements are less noticeable in the Faculties of Science, Law, and Business & Economics, and the trend is reversed for the Faculty of Theology. However, this latter case may not be so informative as the sample of publications is considerably smaller. 
 
 ## Nationality
 
