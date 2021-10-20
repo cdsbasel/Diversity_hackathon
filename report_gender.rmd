@@ -19,7 +19,7 @@ pub_data <- read_csv("1_data/unibas_diversity.csv")
 
 ## Gender Diversity
 
-```{r, echo=FALSE, eval=TRUE, fig.width = 10, fig.height= 10}
+```{r, echo=FALSE, eval=TRUE, fig.width = 15, fig.height= 12}
 gender_inst_time <- pub_data %>% 
   select(year, gender_proportion, `Org-Swiss Tropical and Public Health Institute`: `Org-Basel Institute on Governance`) %>%
   pivot_longer(!year:gender_proportion,names_to = "organisation_name", values_to = "applies") %>%
@@ -179,27 +179,37 @@ pA <- pA1/pA2
 
 pA
 
+prop_fem <- author_dat %>%
+  filter(year %in% c(2020, 2000)) %>%
+  group_by(year) %>%
+  summarise(prop_female = mean(mean_f, na.rm = TRUE))
+
+prop_fem_inst <- author_dat %>%
+  filter(year %in% c(2020, 2000)) %>%
+  group_by(year, organisation_name) %>%
+  summarise(prop_female = mean(mean_f, na.rm = TRUE)) %>% 
+  group_by(organisation_name) %>% 
+  mutate(diff = diff(prop_female)) 
+  
+
+prop_fem_inst_nyr <- author_dat %>%
+  group_by(organisation_name) %>%
+  summarise(prop_female = mean(mean_f, na.rm = TRUE))
+
+
 ```
 
-Women are systematically underrepresented in academia. Whilst this inequality varies across academic departments, there has been an general upward trend in the proportion of female authors from the University of Basel over the last two decades, starting at X in 2000 and reaching Y in 2020. This trend is also reflected in the percentage of first and last female authors. In this section, we offer a by-faculty insight into these developments over time. In particular, the prize for most improved goes to the Faculties of Humanities and Social Sciences, with Psychology and Medicine as runners up. These improvements are less noticeable in the Faculties of Science, Law, and Business & Economics, and the trend is reversed for the Faculty of Theology. However, this latter case may not be so informative as the sample of publications is considerably smaller.
+Women are systematically underrepresented in academia. Whilst this inequality varies across academic departments, there has been an general upward trend in the proportion of female authors from the University of Basel over the last two decades, starting at `r round(prop_fem$prop_female[1], 2)` in 2000 and reaching `r round(prop_fem$prop_female[2], 2)` in 2020. This trend is also reflected in the percentage of first and last female authors. In this section, we offer a by-faculty insight into these developments over time. In particular, the prize for most improved goes to the Faculties of Humanities and Social Sciences, with Psychology and Medicine as runners up. These improvements are less noticeable in the Faculties of Science, Law, and Business & Economics, and the trend is reversed for the Faculty of Theology. However, this latter case may not be so informative as the sample of publications is considerably smaller.
 
 
+ - Considering the publication at  UNIBAS over the  last 20 years, in some faculties a greater percentage of females are authors in publications than in others (highest Human soc sci:  `r round(prop_fem_inst_nyr$prop_female[prop_fem_inst$organisation_name == "Faculty of\nHumanties & Soc. Sci."], 2)`%; lowest: Business and Econ.  `r round(prop_fem_inst_nyr$prop_female[prop_fem_inst$organisation_name == "Faculty of\nBusiness & Econ."], 2)`%).
+
+- There has been an general upward trend in the proportion of female authors from the University of Basel over the last two decades who have published, starting at `r round(prop_fem$prop_female[1], 2)` in 2000 and reaching `r round(prop_fem$prop_female[2], 2)` in 2020.
+
+- For some faculties this increase was more noticeable for instance, Faculty of Psychology ( increase between 2000 to 2020: `r round(prop_fem_inst$diff[prop_fem_inst$organisation_name == "Faculty of\nPsychology" & prop_fem_inst$year == 2000], 2)`%), and less so for others, such as the Faculty of Law  ( increase between 2000 to 2020: `r round(prop_fem_inst$diff[prop_fem_inst$organisation_name == "Faculty of\nLaw" & prop_fem_inst$year == 2000], 2)`%).
 
 
-```{r, echo=FALSE, eval=TRUE}
-prop_fem_2000 <- pub_data %>%
-  filter(year == 2000) %>%
-  summarise(prop_female = mean(gender_proportion, na.rm = TRUE)) %>%
-  pull(prop_female)
-
-prop_fem_2020 <- pub_data %>%
-  filter(year == 2020) %>%
-  summarise(prop_female = mean(gender_proportion, na.rm = TRUE)) %>%
-  pull(prop_female)
-
-
-```
-
+- 
 
 ## Nationality
 
