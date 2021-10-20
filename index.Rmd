@@ -1,6 +1,6 @@
 ---
 title: "CDS Diversity Hackathon"
-description: "Mapping Diversity at the University of Basel"
+description: "Visualizing Diversity at the University of Basel"
 site: distill::distill_website
 ---
 

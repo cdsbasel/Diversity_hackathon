@@ -11,4 +11,6 @@ navbar:
       href: hackathon.html
     - text: "Data"
       href: data.html
+    - text: "Contributors"
+      href: contributors.html
 output: distill::distill_article

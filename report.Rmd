@@ -1,0 +1,82 @@
+---
+title: "Report"
+description: Visualizing Diversity in Research Outputs at the University of Basel
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+
+library(tidyverse)
+
+
+
+```
+
+## Executive Summary
+
+XXXX 
+
+
+## Background
+
+#### Why does diversity matter?
+
+Achieving gender equality (SDG 5) and reducing inequalities (SDG10) are central parts of the [Sustainable Development Goals (SDGs)](https://sdgs.un.org/goals). Universities can play a key role in advancing these goals by empowering women and disadvantaged minorities to allow them to make contributions to scientific innovation and research. The University of Basel is strongly committed to monitoring and increasing diversity of its staff and student population in a number of efforts spearheaded by its [Diversity Office](https://www.unibas.ch/en/University/Administration-Services/Vice-President-s-Office-for-People-and-Culture/Diversity-and-Inclusion/Diversity.html). 
+
+#### Why does monitoring of research outputs matter?
+
+Monitoring diversity is a first step towards identifying inequalities and potential solutions to reduce them. As a consequence, there have been continued efforts on the part of the Diversity Office of the University of Basel to monitor diversity, for example, in the form of an [Equal opportunities monitoring](https://www.unibas.ch/en/University/Administration-Services/Vice-President-s-Office-for-People-and-Culture/Diversity-and-Inclusion/Diversity/Diversity-Management/Monitoring.html). However, the current monitoring focuses on the gender gap in employment and does not fully capture other aspects of equal opportunities. The monitoring of publication outputs can be helpful as an additional indicator that can better reflect access to resources (e.g., time, funding) or other inequalities that are otherwise not easily quantifiable and go beyond employment. 
+
+Further, past monitoring has focused on gender but diversity should, ideally, be conceptualized through several dimensions. The tools of data science, such as the ones we use here, offer complementary approaches to capturing different dimensions of diversity, such as nationality or age that are not readily available for monitoring by the Diversity Office. 
+
+#### Our goals
+- make diversity in research outputs at University Basel visible
+- provide ideas for future monitoring, including informing decisions about future methodological approaches or data collection efforts
+- discuss whether the monitoring of research outputs can help guide future interventions
+
+## Methods 
+
+#### Research Output of the University of Basel 2000-2020
+
+We use data from a database listing the University of Basel's research output between 2000 and 2020. There are a total 67'269 publications including several different categories: 43'997 journal articles, 11'959 book chapters, 3'454 books (edited and authored), 2'014 proceedings articles, 1'671 theses, and 4'174 other items including news articles and discussion papers.   
+
+In a previous project, CDS members identified faculty-level organizational units within the University of Basel that we use to assign publications to specific organizational unites (i.g., faculties). RATIONALE FOR YEARS () comparability with previous work that used similar ranges (Odic & Wodjc, 2019), availability for earlier years is very limited.  We focus on faculties not associated institutes because there is larger number but vast majority has few publications that make it difficult to consider trends over time (link to organigram figure?)
+
+
+#### Diversity Labeling from Author First Names
+
+We use information concerning diversity derived from the authors' first names. 
+
+We recruit the services [genderize.io](https://genderize.io/), [agify.io](https://agify.io/), [nationalize.io](https://nationalize.io/) to determine the authors' probable gender, age, and nation, respectively. Estimates are provided based on the services' databases that include hundreds of thousands of confirmed mappings on the internet between first names and these three characteristics. Additional details are provided on the [Data](data.html).   
+
+We have processed the data in the following way to simplify our analysis. For gender and age, we only use the probable value, irrespective of the number of instances or the assigned probability. For nation, we determine whether any of the three most probable nations include a "western" nation defined as geographic Europe, the US, Canada, Australia, and New Zealand. 
+
+
+
+The data is shared via this <a href="https://github.com/cdsbasel/Diversity_hackathon"><b>Github</b></a> repository. 
+
+
+## Gender Diversity
+
+```{r}
+
+
+```
+
+
+## Nationality
+
+```{r}
+
+```
+
+## Limitations and Outlook
+
+
+## Conclusion
+
+
+## References 
+
+
+
