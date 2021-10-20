@@ -335,7 +335,6 @@ pB2 <- author_dat %>%
         plot.caption =element_text(family = "Oswald ExtraLight", face = "italic", size = 6.5, hjust = 1, margin = margin(t = 5)))
 
 
-
 pB <- pB1/pB2
 
 
