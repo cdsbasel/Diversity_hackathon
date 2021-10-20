@@ -20,6 +20,7 @@ pub_data <- read_csv("1_data/unibas_diversity.csv")
 ## Gender Diversity
 
 ```{r, echo=FALSE, eval=TRUE}
+
 gender_inst_time <- pub_data %>% 
   select(year, gender_proportion, `Org-Swiss Tropical and Public Health Institute`: `Org-Basel Institute on Governance`) %>%
   pivot_longer(!year:gender_proportion,names_to = "organisation_name", values_to = "applies") %>% 
@@ -133,8 +134,6 @@ label_m <- data.frame(organisation_name= unique(author_dat$organisation_name), l
 
 # plot
 
-
-
 charcoal <-  "#31424B"
 col_pal <- c("#4ADABF", "white")
 
@@ -180,6 +179,24 @@ pA2 <- author_dat %>%
 pA <- pA1/pA2
 
 pA
+
+```
+
+
+
+
+
+```{r, echo=FALSE, eval=TRUE}
+prop_fem_2000 <- pub_data %>% 
+  filter(year == 2000) %>% 
+  summarise(prop_female = mean(gender_proportion, na.rm = TRUE)) %>% 
+  pull(prop_female)
+
+prop_fem_2020 <- pub_data %>% 
+  filter(year == 2020) %>% 
+  summarise(prop_female = mean(gender_proportion, na.rm = TRUE)) %>% 
+  pull(prop_female)
+
 
 ```
 
