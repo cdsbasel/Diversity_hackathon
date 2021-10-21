@@ -16,7 +16,7 @@ pub_data <- read_csv("1_data/unibas_diversity.csv")
 
 ## Executive Summary
 
-Monitoring of diversity is an important first step towards reducing inequalities in access to scientific innovation and research. We contribute to monitoring of author diversity in scientific production at the University of Basel by conducting an analysis of gender distribution in scientific publications. We analysed the diversity of the University of Basel's research output by categorizing authors' gender based on authors' first names and visualizing temporal trends between 2000 and 2020 in gender distribution across time for all 7 faculties of the University of Basel. Our results for the University of Basel match similar reports of gender publication gaps in the sciences. Crucially, we find large differences across faculties and author positions (first vs. last) suggesting that targeted measures may be needed for different organizational units and career stages. We discuss implications for future efforts to monitoring diversity in scientific production and associated interventions at the University of Basel and beyond.
+Monitoring of diversity is an important first step towards reducing inequalities in access to scientific innovation and research. We contribute to monitoring of author diversity in scientific production at the University of Basel by conducting an analysis of gender distribution in scientific publications. We analysed the diversity of the University of Basel's research output by categorizing authors' gender based on authors' first names and visualizing temporal trends between 2000 and 2020 in gender distribution for all 7 faculties of the University of Basel. Our results for the University of Basel match similar reports of gender publication gaps in the sciences. Crucially, we find large differences across faculties and author positions (first vs. last) suggesting that targeted measures may be needed for different organizational units and career stages. We discuss implications for future efforts to monitoring diversity in scientific production and associated interventions at the University of Basel and beyond.
  
 ## Background
 
@@ -51,7 +51,7 @@ Our report focuses on gender in line with the majority of past monitoring of div
 
 Our analyses used first names to estimate the gender of authors using extant technology. This classification system assigns names to either "female" or "male", thus, providing a traditional, binary classification of gender. We would like to state that this choice is of technical nature and should not be understood as a rejection of more inclusive, non-binary gender definitions. 
 
-## Gender Diversity
+## The Gender Publication Gap at the University of Basel
 
 ```{r, echo=FALSE, eval=TRUE, fig.width = 15, fig.height= 12}
 gender_inst_time <- pub_data %>% 
@@ -249,7 +249,7 @@ prop_fem_inst_nyr <- author_dat %>%
 
 - In addition to the general author proportions, we investigated authorship positions by looking at first and last authors' gender. There is a general trend for higher female proportions in first authors than last authors. When comparing between faculties, it should be noted however, that authorship position assignment may follow different practices in different fields.
 
-### Key points
+### Key findings
 - In the last 20 years, considerably more than half of the authors in the publications invesitgated irrespective of faculties, are male.
 
 - This gender gap in publications has decreased for most faculties over the last 20 years. 
@@ -258,9 +258,7 @@ prop_fem_inst_nyr <- author_dat %>%
 
 ## Limitations and Outlook
 
-
-## Conclusion
-
+To be included after group discussion and input from Diversity Office (Oct 26th, 2021).
 
 ## References 
 
