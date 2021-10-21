@@ -2089,32 +2089,48 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <p>XXXX</p>
 <h2 id="background">Background</h2>
 <h4 id="why-does-diversity-matter">Why does diversity matter?</h4>
-<p>Achieving gender equality and reducing inequalities are central parts of the <a href="https://sdgs.un.org/goals">Sustainable Development Goals (SDGs)</a>. Universities can play a key role in advancing these goals by empowering women and disadvantaged minorities to allow them to make contributions to scientific innovation and research. The University of Basel is strongly committed to monitoring and increasing diversity of its staff and student population in a number of efforts spearheaded by its <a href="https://www.unibas.ch/en/University/Administration-Services/Vice-President-s-Office-for-People-and-Culture/Diversity-and-Inclusion/Diversity.html">Diversity Office</a>.</p>
+<p>Achieving gender equality (SDG 5) and reducing inequalities (SDG10) are central parts of the <a href="https://sdgs.un.org/goals">Sustainable Development Goals (SDGs)</a>. Universities can play a key role in advancing these goals by empowering women and disadvantaged minorities to allow them to make contributions to scientific innovation and research. The University of Basel is strongly committed to monitoring and increasing diversity of its staff and student population in a number of efforts spearheaded by its <a href="https://www.unibas.ch/en/University/Administration-Services/Vice-President-s-Office-for-People-and-Culture/Diversity-and-Inclusion/Diversity.html">Diversity Office</a>.</p>
 <h4 id="why-does-monitoring-of-research-outputs-matter">Why does monitoring of research outputs matter?</h4>
-<p>Monitoring diversity is a first step towards identifying inequalities and potential solutions to reduce them. As a consequence, there have been continued efforts on the part of the Diversity Office of the University of Basel to monitor diversity, for example, in the form of an <a href="https://www.unibas.ch/en/University/Administration-Services/Vice-President-s-Office-for-People-and-Culture/Diversity-and-Inclusion/Diversity/Diversity-Management/Monitoring.html">Equal opportunities monitoring</a>. However, the current monitoring focuses on gender gap in employment and does not fully capture other aspects of equal opportunities. The monitoring of publication outputs can be helpful as an additional indicator that can better reflect access to funding or other resources (e.g., time) that are otherwise not easily quantifiable.</p>
-<p>In addition, current monitoring focuses on gender but diversity should, ideally, be capture through several dimensions. The tools of data science, such as the ones we use here, may offer complementary approaches to capturing different dimensions of diversity, such as nationality or age that are not readily available for monitoring by the Diversity Office due to data privacy issues (gender, nationality).</p>
-<h4 id="our-goals">Our goals</h4>
+<p>Monitoring diversity is a first step towards identifying inequalities and potential solutions to reduce them. As a consequence, there have been continued efforts on the part of the Diversity Office of the University of Basel to monitor diversity, for example, in the form of an <a href="https://www.unibas.ch/en/University/Administration-Services/Vice-President-s-Office-for-People-and-Culture/Diversity-and-Inclusion/Diversity/Diversity-Management/Monitoring.html">Equal opportunities monitoring</a>. However, the current monitoring focuses on the gender gap in employment and does not fully capture other aspects of equal opportunities. The monitoring of publication outputs can be helpful as an additional indicator that can better reflect access to resources (e.g., time, funding) or other inequalities that are otherwise not easily quantifiable and go beyond employment.</p>
+<p>Further, past monitoring has focused on gender but diversity should, ideally, be conceptualized through several dimensions. The tools of data science, such as the ones we use here, offer complementary approaches to capturing different dimensions of diversity, such as nationality or age that are not readily available for monitoring by the Diversity Office.</p>
+<h3 id="goals-of-the-report">Goals of the Report</h3>
 <ul>
-<li>make diversity in research outputs at University Basel visible</li>
-<li>provide ideas for future monitoring, including informing decisions about future methodological approaches or data collection efforts</li>
-<li>discuss whether the monitoring of research outputs can help guide future interventions</li>
+<li>visualize the diversity in research outputs at the University Basel</li>
+<li>provide ideas for future monitoring of diversity at the University of Basel, including future methodological approaches or data collection efforts</li>
+<li>discuss whether the monitoring of research outputs can help guide future interventions aimed at increasing diversity at the University of Basel</li>
 </ul>
 <h2 id="methods">Methods</h2>
-<h4 id="research-output-of-the-university-of-basel-2000-2020">Research Output of the University of Basel 2000-2020</h4>
-<p>We use data from a database listing the University of Basel’s research output between 2000 and 2020. There are a total 67’269 publications including several different categories: 43’997 journal articles, 11’959 book chapters, 3’454 books (edited and authored), 2’014 proceedings articles, 1’671 theses, and 4’174 other items including news articles and discussion papers.</p>
-<p>unibas data source (research database unibas) number and type of publications exclusion criteria (year?), data selection (only faculties), not associated institutes (link to organigram figure)</p>
+<h4 id="research-output-of-the-university-of-basel">Research Output of the University of Basel</h4>
+<p>We use data from a database listing the University of Basel’s research output. We focus on data between 2000 and 2020. RATIONALE FOR YEARS () comparability with previous work that used similar ranges (Odic &amp; Wodjc, 2019), availability for earlier years is very limited. We focus on faculties not associated institutes because there is larger number but vast majority has few publications that make it difficult to consider trends over time (link to organigram figure?)</p>
+<p>There are a total 67’269 publications including several different categories: 43’997 journal articles, 11’959 book chapters, 3’454 books (edited and authored), 2’014 proceedings articles, 1’671 theses, and 4’174 other items including news articles and discussion papers.</p>
+<p>In a previous project, CDS members identified faculty-level organizational units within the University of Basel that we use to assign publications to specific organizational unites (i.g., faculties).</p>
 <h4 id="diversity-labeling-from-author-first-names">Diversity Labeling from Author First Names</h4>
 <p>We use information concerning diversity derived from the authors’ first names.</p>
-<p>We recruit the services <a href="https://genderize.io/">genderize.io</a>, <a href="https://agify.io/">agify.io</a>, <a href="https://nationalize.io/">nationalize.io</a> to determine the authors’ probable gender, age, and nation, respectively. Estimates are provided based on the services’ databases that include hundreds of thousands of confirmed mappings on the internet between first names and these three characteristics. Additional details are provided on the <a href="/data.html">Data</a></p>
-<p>software (R?), packages</p>
-<h2 id="gender-diversity">Gender Diversity</h2>
+<p>We recruit the services <a href="https://genderize.io/">genderize.io</a>, <a href="https://agify.io/">agify.io</a>, <a href="https://nationalize.io/">nationalize.io</a> to determine the authors’ probable gender, age, and nation, respectively. Estimates are provided based on the services’ databases that include hundreds of thousands of confirmed mappings on the internet between first names and these three characteristics. Additional details are provided on the <a href="data.html">Data</a>.</p>
+<p>We have processed the data in the following way to simplify our analysis. For gender and age, we only use the probable value, irrespective of the number of instances or the assigned probability. For nation, we determine whether any of the three most probable nations include a “western” nation defined as geographic Europe, the US, Canada, Australia, and New Zealand.</p>
+<p>The data is shared via this <a href="https://github.com/cdsbasel/Diversity_hackathon"><b>Github</b></a> repository.</p>
+<h3 id="disclaimer">Disclaimer</h3>
+<p>The following analysis uses first names to estimate the gender of the author. This classification system assigns names to either “female” or “male”. While we would like to consider all genders, our analysis is therefore limited to these two categories.</p>
+<h3 id="gender-diversity">Gender diversity</h3>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="report_files/figure-html5/unnamed-chunk-1-1.png" width="1440" /></p>
+</div>
 <div class="layout-chunk" data-layout="l-body">
 
 </div>
-<h2 id="nationality">Nationality</h2>
-<div class="layout-chunk" data-layout="l-body">
-
-</div>
+<!-- Women are systematically underrepresented in academia. Whilst this inequality varies across academic departments, there has been an general upward trend in the proportion of female authors from the University of Basel over the last two decades, starting at 23.07 in 2000 and reaching 31.44 in 2020. This trend is also reflected in the percentage of first and last female authors. In this section, we offer a by-faculty insight into these developments over time. In particular, the prize for most improved goes to the Faculties of Humanities and Social Sciences, with Psychology and Medicine as runners up. These improvements are less noticeable in the Faculties of Science, Law, and Business & Economics, and the trend is reversed for the Faculty of Theology. However, this latter case may not be so informative as the sample of publications is considerably smaller. -->
+<ul>
+<li><p>Considering the publications at the University of Basel over the last 20 years, in some faculties a greater percentage of authors are females in publications ranging from the Humanities and Social Sciences (39.45%) to Business and Economics (10.69%).</p></li>
+<li><p>There has been an general upward trend in the proportion of female authors from the University of Basel over the last two decades who have published. While in 2000 23.07% of authors were female, this share has increased to 31.44% in 2020.</p></li>
+<li><p>For some faculties this increase was more noticeable. For instance in the Faculty of Psychology the increase of percentage points between 2000 to 2020 was highest with 27.57%, while the Faculty of Law had the lowest increase between 2000 to 2020 with a difference of 6.86%. Publication data for the Faculty of Theology allows for less confident statements but suggests a decrease in the proportion of female authors.</p></li>
+<li><p>In addition to the general author proportions, we investigated authorship positions by looking at first and last authors’ gender. There is a general trend for higher female proportions in first authors than last authors. When comparing between faculties, it should be noted however, that authorship position assignment may follow different practices in different fields.</p></li>
+</ul>
+<h3 id="key-points">Key points</h3>
+<ul>
+<li><p>In the last 20 years, considerably more than half of the authors in the publications invesitgated irrespective of faculties, are male.</p></li>
+<li><p>This gender gap in publications has decreased for most faculties over the last 20 years.</p></li>
+<li><p>Generally, in the publications looked at, proportion of women among first authors was higher than among last authors.</p></li>
+</ul>
 <h2 id="limitations-and-outlook">Limitations and Outlook</h2>
 <h2 id="conclusion">Conclusion</h2>
 <h2 id="references">References</h2>
