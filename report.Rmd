@@ -16,7 +16,7 @@ pub_data <- read_csv("1_data/unibas_diversity.csv")
 
 ## Executive Summary
 
-Monitoring of diversity is an important first step towards reducing inequalities in access to scientific innovation and research. We contribute to monitoring of author diversity in scientific production at the University of Basel by conducting an analysis of gender distribution in scientific publications. We analysed the diversity of the University of Basel's research output by categorizing authors' gender based on authors' first names and visualizing temporal trends between 2000 and 2020 in gender distribution across time for all 7 faculties of the University of Basel. Our results for the University of Basel match similar reports of gender publication gaps in the sciences. Crucially, we find large differences across faculties and author positions (first vs. last) suggesting that targeted measures may be needed for different fields and organizational units. We discuss implications for future efforts to monitoring diversity in scientific production and associated interventions at the University of Basel and beyond.
+Monitoring of diversity is an important first step towards reducing inequalities in access to scientific innovation and research. We contribute to monitoring of author diversity in scientific production at the University of Basel by conducting an analysis of gender distribution in scientific publications. We analysed the diversity of the University of Basel's research output by categorizing authors' gender based on authors' first names and visualizing temporal trends between 2000 and 2020 in gender distribution across time for all 7 faculties of the University of Basel. Our results for the University of Basel match similar reports of gender publication gaps in the sciences. Crucially, we find large differences across faculties and author positions (first vs. last) suggesting that targeted measures may be needed for different organizational units and career stages. We discuss implications for future efforts to monitoring diversity in scientific production and associated interventions at the University of Basel and beyond.
  
 ## Background
 
@@ -28,8 +28,8 @@ Achieving gender equality (SDG 5) and reducing inequalities (SDG10) are central 
 
 Monitoring diversity is a first step towards identifying inequalities and potential solutions to reduce them. As a consequence, there have been continued efforts on the part of the [Diversity Office](https://www.unibas.ch/en/University/Administration-Services/Vice-President-s-Office-for-People-and-Culture/Diversity-and-Inclusion/Diversity.html) of the University of Basel to monitor diversity, for example, in the form of an [Equal opportunities monitoring](https://www.unibas.ch/en/University/Administration-Services/Vice-President-s-Office-for-People-and-Culture/Diversity-and-Inclusion/Diversity/Diversity-Management/Monitoring.html). However, the current monitoring does not fully capture all aspects of equal opportunities to scientific production. The monitoring of publication outputs can be helpful as an additional indicator because it has the potential to reflect access to resources (e.g., time, internal funding) that go beyond employment and are otherwise not easily quantifiable. 
 
-### Goals of the Report
-- visualize the diversity in research outputs at the University Basel
+## Goals of this Report
+- visualize the gender diversity in research outputs at the University Basel
 - provide ideas for future monitoring of diversity at the University of Basel, including future methodological approaches or data collection efforts
 - discuss whether the monitoring of research outputs can help guide future interventions aimed at increasing diversity at the University of Basel
 
@@ -37,7 +37,7 @@ Monitoring diversity is a first step towards identifying inequalities and potent
 
 #### Research Output of the University of Basel
 
-We use data from a database listing the University of Basel's research output. We focus on data between 2000 and 2020 because availability for earlier years is very limited and this time range allows some comparability to previous efforts (Odic & Wojcik, 2019). We focus pur analyses on faculties and neglect smaller associated institutes because there is large number of the latter with relatively few publications that make it difficult to consider trends over time.
+We use data from a database listing the University of Basel's research output. We focus on data between 2000 and 2020 because availability for earlier years is very limited and this time range allows some comparability to previous efforts (e.g., Odic & Wojcik, 2019). We focus our analyses on University of Basel's 7 faculties and neglect smaller associated institutes because there is large number of the latter with relatively few publications that make it difficult to consider trends over time.
 
 We analyze a total 67'269 publications including several different categories: 43'997 journal articles, 11'959 book chapters, 3'454 books (edited and authored), 2'014 proceedings articles, 1'671 theses, and 4'174 other items including news articles and discussion papers.    
 
@@ -45,13 +45,13 @@ We analyze a total 67'269 publications including several different categories: 4
 
 We use information concerning diversity derived from the authors' first names. We recruited existing publicly available services (e.g., [genderize.io](https://genderize.io/)) to determine each author's individual characteristics, such as gender. Estimates are provided based on the services' databases that include hundreds of thousands of confirmed mappings between first names and individuals' characteristics. Additional details are provided on the [Data](data.html) page. 
 
-Our report focuses on gender in line with the majority of past monitoring of diversity at the University of Basel and other similar efforts. Ideally, however, diversity should be conceptualized through several dimensions, that could include cultural and socio-economic background, political views, age, nationality, or religion, to name but a few. In our efforts, we strove to include different dimensions beyond gender, namely, nationality and age, to capture diversity, but our simple validation efforts suggested such categorizations are likely inappropriate so we refrain from reporting results concerning these dimensions below. We discuss limitatons of our approach and alternative methods in the *Limitations and Outlook* section below. 
+Our report focuses on gender in line with the majority of past monitoring of diversity at the University of Basel and other similar efforts. Ideally, however, diversity should be conceptualized through several dimensions, that could include cultural and socio-economic background, political views, age, nationality, or religion, to name but a few. In our efforts, we strove to include different dimensions beyond gender, namely, nationality and age. Our simple validation efforts suggested, however, that such categorizations are unreliable so we refrain from reporting results concerning these dimensions below. We discuss limitations of our approach and alternative methods in the *Limitations and Outlook* section. 
 
 #### Disclaimer
 
-Our analyses used first names to estimate the gender of authors using existing technology. This classification system assigns names to either "female" or "male", thus, providing a traditional, binary classification of gender. We would like to state that this choice is of technical nature and should not be understood as a rejection of more inclusive, non-binary gender definitions. 
+Our analyses used first names to estimate the gender of authors using extant technology. This classification system assigns names to either "female" or "male", thus, providing a traditional, binary classification of gender. We would like to state that this choice is of technical nature and should not be understood as a rejection of more inclusive, non-binary gender definitions. 
 
-### Gender diversity
+## Gender Diversity
 
 ```{r, echo=FALSE, eval=TRUE, fig.width = 15, fig.height= 12}
 gender_inst_time <- pub_data %>% 
@@ -256,8 +256,6 @@ prop_fem_inst_nyr <- author_dat %>%
 
 - Generally, in the publications looked at, proportion of women among first authors was higher than among last authors. 
 
-
-
 ## Limitations and Outlook
 
 
@@ -266,5 +264,4 @@ prop_fem_inst_nyr <- author_dat %>%
 
 ## References 
 
-
-
+Odic, D., & Wojcik, E. H. (2020). The publication gender gap in psychology. *American Psychologist, 75*(1), 92–103. [http://doi.org/10.1037/amp0000480](http://doi.org/10.1037/amp0000480)
