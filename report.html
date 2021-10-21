@@ -88,27 +88,27 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--radix_placeholder_meta_tags-->
   <title>CDS Hackathon: Report</title>
 
-  <meta property="description" itemprop="description" content="Visualizing Diversity in Research Outputs at the University of Basel"/>
+  <meta property="description" itemprop="description" content="Visualizing diversity in research outputs at the University of Basel"/>
 
 
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
   <meta property="og:title" content="CDS Hackathon: Report"/>
   <meta property="og:type" content="article"/>
-  <meta property="og:description" content="Visualizing Diversity in Research Outputs at the University of Basel"/>
+  <meta property="og:description" content="Visualizing diversity in research outputs at the University of Basel"/>
   <meta property="og:locale" content="en_US"/>
   <meta property="og:site_name" content="CDS Hackathon"/>
 
   <!--  https://dev.twitter.com/cards/types/summary -->
   <meta property="twitter:card" content="summary"/>
   <meta property="twitter:title" content="CDS Hackathon: Report"/>
-  <meta property="twitter:description" content="Visualizing Diversity in Research Outputs at the University of Basel"/>
+  <meta property="twitter:description" content="Visualizing diversity in research outputs at the University of Basel"/>
 
   <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description"]}},"value":[{"type":"character","attributes":{},"value":["Report"]},{"type":"character","attributes":{},"value":["Visualizing Diversity in Research Outputs at the University of Basel"]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description"]}},"value":[{"type":"character","attributes":{},"value":["Report"]},{"type":"character","attributes":{},"value":["Visualizing diversity in research outputs at the University of Basel"]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   <!--radix_placeholder_navigation_in_header-->
@@ -2053,7 +2053,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Report","description":"Visualizing Diversity in Research Outputs at the University of Basel","authors":[]}
+{"title":"Report","description":"Visualizing diversity in research outputs at the University of Basel","authors":[]}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2065,6 +2065,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </div>
 <div class="nav-right">
 <a href="index.html">Home</a>
+<a href="report.html">Report</a>
 <a href="hackathon.html">Hackathon</a>
 <a href="data.html">Data</a>
 <a href="contributors.html">Contributors</a>
@@ -2080,19 +2081,18 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <h1>Report</h1>
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
-<p>Visualizing Diversity in Research Outputs at the University of Basel</p>
+<p>Visualizing diversity in research outputs at the University of Basel</p>
 </div>
 
 
 <div class="d-article">
 <h2 id="executive-summary">Executive Summary</h2>
-<p>XXXX</p>
+<p>Monitoring of diversity is an important first step towards reducing inequalities in access to scientific innovation and research. We contribute to monitoring of author diversity in scientific production at the University of Basel by conducting an analysis of gender distribution in scientific publications. We analysed the diversity of the University of Basel’s research output by categorizing authors’ gender based on authors’ first names and visualizing temporal trends between 2000 and 2020 in gender distribution across time for all 7 faculties of the University of Basel. Our results for the University of Basel match similar reports of gender publication gaps in the sciences. Crucially, we find large differences across faculties and author positions (first vs. last) suggesting that targeted measures may be needed for different fields and organizational units. We discuss implications for future efforts to monitoring diversity in scientific production and associated interventions at the University of Basel and beyond.</p>
 <h2 id="background">Background</h2>
 <h4 id="why-does-diversity-matter">Why does diversity matter?</h4>
 <p>Achieving gender equality (SDG 5) and reducing inequalities (SDG10) are central parts of the <a href="https://sdgs.un.org/goals">Sustainable Development Goals (SDGs)</a>. Universities can play a key role in advancing these goals by empowering women and disadvantaged minorities to allow them to make contributions to scientific innovation and research. The University of Basel is strongly committed to monitoring and increasing diversity of its staff and student population in a number of efforts spearheaded by its <a href="https://www.unibas.ch/en/University/Administration-Services/Vice-President-s-Office-for-People-and-Culture/Diversity-and-Inclusion/Diversity.html">Diversity Office</a>.</p>
 <h4 id="why-does-monitoring-of-research-outputs-matter">Why does monitoring of research outputs matter?</h4>
-<p>Monitoring diversity is a first step towards identifying inequalities and potential solutions to reduce them. As a consequence, there have been continued efforts on the part of the Diversity Office of the University of Basel to monitor diversity, for example, in the form of an <a href="https://www.unibas.ch/en/University/Administration-Services/Vice-President-s-Office-for-People-and-Culture/Diversity-and-Inclusion/Diversity/Diversity-Management/Monitoring.html">Equal opportunities monitoring</a>. However, the current monitoring focuses on the gender gap in employment and does not fully capture other aspects of equal opportunities. The monitoring of publication outputs can be helpful as an additional indicator that can better reflect access to resources (e.g., time, funding) or other inequalities that are otherwise not easily quantifiable and go beyond employment.</p>
-<p>Further, past monitoring has focused on gender but diversity should, ideally, be conceptualized through several dimensions. The tools of data science, such as the ones we use here, offer complementary approaches to capturing different dimensions of diversity, such as nationality or age that are not readily available for monitoring by the Diversity Office.</p>
+<p>Monitoring diversity is a first step towards identifying inequalities and potential solutions to reduce them. As a consequence, there have been continued efforts on the part of the <a href="https://www.unibas.ch/en/University/Administration-Services/Vice-President-s-Office-for-People-and-Culture/Diversity-and-Inclusion/Diversity.html">Diversity Office</a> of the University of Basel to monitor diversity, for example, in the form of an <a href="https://www.unibas.ch/en/University/Administration-Services/Vice-President-s-Office-for-People-and-Culture/Diversity-and-Inclusion/Diversity/Diversity-Management/Monitoring.html">Equal opportunities monitoring</a>. However, the current monitoring does not fully capture all aspects of equal opportunities to scientific production. The monitoring of publication outputs can be helpful as an additional indicator because it has the potential to reflect access to resources (e.g., time, internal funding) that go beyond employment and are otherwise not easily quantifiable.</p>
 <h3 id="goals-of-the-report">Goals of the Report</h3>
 <ul>
 <li>visualize the diversity in research outputs at the University Basel</li>
@@ -2101,16 +2101,13 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </ul>
 <h2 id="methods">Methods</h2>
 <h4 id="research-output-of-the-university-of-basel">Research Output of the University of Basel</h4>
-<p>We use data from a database listing the University of Basel’s research output. We focus on data between 2000 and 2020. RATIONALE FOR YEARS () comparability with previous work that used similar ranges (Odic &amp; Wodjc, 2019), availability for earlier years is very limited. We focus on faculties not associated institutes because there is larger number but vast majority has few publications that make it difficult to consider trends over time (link to organigram figure?)</p>
-<p>There are a total 67’269 publications including several different categories: 43’997 journal articles, 11’959 book chapters, 3’454 books (edited and authored), 2’014 proceedings articles, 1’671 theses, and 4’174 other items including news articles and discussion papers.</p>
-<p>In a previous project, CDS members identified faculty-level organizational units within the University of Basel that we use to assign publications to specific organizational unites (i.g., faculties).</p>
+<p>We use data from a database listing the University of Basel’s research output. We focus on data between 2000 and 2020 because availability for earlier years is very limited and this time range allows some comparability to previous efforts (Odic &amp; Wojcik, 2019). We focus pur analyses on faculties and neglect smaller associated institutes because there is large number of the latter with relatively few publications that make it difficult to consider trends over time.</p>
+<p>We analyze a total 67’269 publications including several different categories: 43’997 journal articles, 11’959 book chapters, 3’454 books (edited and authored), 2’014 proceedings articles, 1’671 theses, and 4’174 other items including news articles and discussion papers.</p>
 <h4 id="diversity-labeling-from-author-first-names">Diversity Labeling from Author First Names</h4>
-<p>We use information concerning diversity derived from the authors’ first names.</p>
-<p>We recruit the services <a href="https://genderize.io/">genderize.io</a>, <a href="https://agify.io/">agify.io</a>, <a href="https://nationalize.io/">nationalize.io</a> to determine the authors’ probable gender, age, and nation, respectively. Estimates are provided based on the services’ databases that include hundreds of thousands of confirmed mappings on the internet between first names and these three characteristics. Additional details are provided on the <a href="data.html">Data</a>.</p>
-<p>We have processed the data in the following way to simplify our analysis. For gender and age, we only use the probable value, irrespective of the number of instances or the assigned probability. For nation, we determine whether any of the three most probable nations include a “western” nation defined as geographic Europe, the US, Canada, Australia, and New Zealand.</p>
-<p>The data is shared via this <a href="https://github.com/cdsbasel/Diversity_hackathon"><b>Github</b></a> repository.</p>
-<h3 id="disclaimer">Disclaimer</h3>
-<p>The following analysis uses first names to estimate the gender of the author. This classification system assigns names to either “female” or “male”. While we would like to consider all genders, our analysis is therefore limited to these two categories.</p>
+<p>We use information concerning diversity derived from the authors’ first names. We recruited existing publicly available services (e.g., <a href="https://genderize.io/">genderize.io</a>) to determine each author’s individual characteristics, such as gender. Estimates are provided based on the services’ databases that include hundreds of thousands of confirmed mappings between first names and individuals’ characteristics. Additional details are provided on the <a href="data.html">Data</a> page.</p>
+<p>Our report focuses on gender in line with the majority of past monitoring of diversity at the University of Basel and other similar efforts. Ideally, however, diversity should be conceptualized through several dimensions, that could include cultural and socio-economic background, political views, age, nationality, or religion, to name but a few. In our efforts, we strove to include different dimensions beyond gender, namely, nationality and age, to capture diversity, but our simple validation efforts suggested such categorizations are likely inappropriate so we refrain from reporting results concerning these dimensions below. We discuss limitatons of our approach and alternative methods in the <em>Limitations and Outlook</em> section below.</p>
+<h4 id="disclaimer">Disclaimer</h4>
+<p>Our analyses used first names to estimate the gender of authors using existing technology. This classification system assigns names to either “female” or “male”, thus, providing a traditional, binary classification of gender. We would like to state that this choice is of technical nature and should not be understood as a rejection of more inclusive, non-binary gender definitions.</p>
 <h3 id="gender-diversity">Gender diversity</h3>
 <div class="layout-chunk" data-layout="l-body">
 <p><img src="report_files/figure-html5/unnamed-chunk-1-1.png" width="1440" /></p>

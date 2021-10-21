@@ -1,6 +1,6 @@
 ---
 title: "Report"
-description: Visualizing Diversity in Research Outputs at the University of Basel
+description: Visualizing diversity in research outputs at the University of Basel
 ---
 
 ```{r setup, include=FALSE}
@@ -16,9 +16,8 @@ pub_data <- read_csv("1_data/unibas_diversity.csv")
 
 ## Executive Summary
 
-XXXX 
-
-
+Monitoring of diversity is an important first step towards reducing inequalities in access to scientific innovation and research. We contribute to monitoring of author diversity in scientific production at the University of Basel by conducting an analysis of gender distribution in scientific publications. We analysed the diversity of the University of Basel's research output by categorizing authors' gender based on authors' first names and visualizing temporal trends between 2000 and 2020 in gender distribution across time for all 7 faculties of the University of Basel. Our results for the University of Basel match similar reports of gender publication gaps in the sciences. Crucially, we find large differences across faculties and author positions (first vs. last) suggesting that targeted measures may be needed for different fields and organizational units. We discuss implications for future efforts to monitoring diversity in scientific production and associated interventions at the University of Basel and beyond.
+ 
 ## Background
 
 #### Why does diversity matter?
@@ -27,9 +26,7 @@ Achieving gender equality (SDG 5) and reducing inequalities (SDG10) are central 
 
 #### Why does monitoring of research outputs matter?
 
-Monitoring diversity is a first step towards identifying inequalities and potential solutions to reduce them. As a consequence, there have been continued efforts on the part of the Diversity Office of the University of Basel to monitor diversity, for example, in the form of an [Equal opportunities monitoring](https://www.unibas.ch/en/University/Administration-Services/Vice-President-s-Office-for-People-and-Culture/Diversity-and-Inclusion/Diversity/Diversity-Management/Monitoring.html). However, the current monitoring focuses on the gender gap in employment and does not fully capture other aspects of equal opportunities. The monitoring of publication outputs can be helpful as an additional indicator that can better reflect access to resources (e.g., time, funding) or other inequalities that are otherwise not easily quantifiable and go beyond employment. 
-
-Further, past monitoring has focused on gender but diversity should, ideally, be conceptualized through several dimensions. The tools of data science, such as the ones we use here, offer complementary approaches to capturing different dimensions of diversity, such as nationality or age that are not readily available for monitoring by the Diversity Office. 
+Monitoring diversity is a first step towards identifying inequalities and potential solutions to reduce them. As a consequence, there have been continued efforts on the part of the [Diversity Office](https://www.unibas.ch/en/University/Administration-Services/Vice-President-s-Office-for-People-and-Culture/Diversity-and-Inclusion/Diversity.html) of the University of Basel to monitor diversity, for example, in the form of an [Equal opportunities monitoring](https://www.unibas.ch/en/University/Administration-Services/Vice-President-s-Office-for-People-and-Culture/Diversity-and-Inclusion/Diversity/Diversity-Management/Monitoring.html). However, the current monitoring does not fully capture all aspects of equal opportunities to scientific production. The monitoring of publication outputs can be helpful as an additional indicator because it has the potential to reflect access to resources (e.g., time, internal funding) that go beyond employment and are otherwise not easily quantifiable. 
 
 ### Goals of the Report
 - visualize the diversity in research outputs at the University Basel
@@ -40,26 +37,19 @@ Further, past monitoring has focused on gender but diversity should, ideally, be
 
 #### Research Output of the University of Basel
 
-We use data from a database listing the University of Basel's research output. We focus on data between 2000 and 2020. RATIONALE FOR YEARS () comparability with previous work that used similar ranges (Odic & Wodjc, 2019), availability for earlier years is very limited.  We focus on faculties not associated institutes because there is larger number but vast majority has few publications that make it difficult to consider trends over time (link to organigram figure?)
+We use data from a database listing the University of Basel's research output. We focus on data between 2000 and 2020 because availability for earlier years is very limited and this time range allows some comparability to previous efforts (Odic & Wojcik, 2019). We focus pur analyses on faculties and neglect smaller associated institutes because there is large number of the latter with relatively few publications that make it difficult to consider trends over time.
 
-There are a total 67'269 publications including several different categories: 43'997 journal articles, 11'959 book chapters, 3'454 books (edited and authored), 2'014 proceedings articles, 1'671 theses, and 4'174 other items including news articles and discussion papers.   
-
-In a previous project, CDS members identified faculty-level organizational units within the University of Basel that we use to assign publications to specific organizational unites (i.g., faculties). 
+We analyze a total 67'269 publications including several different categories: 43'997 journal articles, 11'959 book chapters, 3'454 books (edited and authored), 2'014 proceedings articles, 1'671 theses, and 4'174 other items including news articles and discussion papers.    
 
 #### Diversity Labeling from Author First Names
 
-We use information concerning diversity derived from the authors' first names. 
+We use information concerning diversity derived from the authors' first names. We recruited existing publicly available services (e.g., [genderize.io](https://genderize.io/)) to determine each author's individual characteristics, such as gender. Estimates are provided based on the services' databases that include hundreds of thousands of confirmed mappings between first names and individuals' characteristics. Additional details are provided on the [Data](data.html) page. 
 
-We recruit the services [genderize.io](https://genderize.io/), [agify.io](https://agify.io/), [nationalize.io](https://nationalize.io/) to determine the authors' probable gender, age, and nation, respectively. Estimates are provided based on the services' databases that include hundreds of thousands of confirmed mappings on the internet between first names and these three characteristics. Additional details are provided on the [Data](data.html).   
+Our report focuses on gender in line with the majority of past monitoring of diversity at the University of Basel and other similar efforts. Ideally, however, diversity should be conceptualized through several dimensions, that could include cultural and socio-economic background, political views, age, nationality, or religion, to name but a few. In our efforts, we strove to include different dimensions beyond gender, namely, nationality and age, to capture diversity, but our simple validation efforts suggested such categorizations are likely inappropriate so we refrain from reporting results concerning these dimensions below. We discuss limitatons of our approach and alternative methods in the *Limitations and Outlook* section below. 
 
-We have processed the data in the following way to simplify our analysis. For gender and age, we only use the probable value, irrespective of the number of instances or the assigned probability. For nation, we determine whether any of the three most probable nations include a "western" nation defined as geographic Europe, the US, Canada, Australia, and New Zealand. 
+#### Disclaimer
 
-
-
-The data is shared via this <a href="https://github.com/cdsbasel/Diversity_hackathon"><b>Github</b></a> repository. 
-
-### Disclaimer
-The following analysis uses first names to estimate the gender of the author. This classification system assigns names to either "female" or "male". While we would like to consider all genders, our analysis is therefore limited to these two categories.
+Our analyses used first names to estimate the gender of authors using existing technology. This classification system assigns names to either "female" or "male", thus, providing a traditional, binary classification of gender. We would like to state that this choice is of technical nature and should not be understood as a rejection of more inclusive, non-binary gender definitions. 
 
 ### Gender diversity
 
@@ -249,7 +239,6 @@ prop_fem_inst_nyr <- author_dat %>%
 ```
 
 <!-- Women are systematically underrepresented in academia. Whilst this inequality varies across academic departments, there has been an general upward trend in the proportion of female authors from the University of Basel over the last two decades, starting at `r round(prop_fem$prop_female[1], 2)` in 2000 and reaching `r round(prop_fem$prop_female[2], 2)` in 2020. This trend is also reflected in the percentage of first and last female authors. In this section, we offer a by-faculty insight into these developments over time. In particular, the prize for most improved goes to the Faculties of Humanities and Social Sciences, with Psychology and Medicine as runners up. These improvements are less noticeable in the Faculties of Science, Law, and Business & Economics, and the trend is reversed for the Faculty of Theology. However, this latter case may not be so informative as the sample of publications is considerably smaller. -->
-
 
 
 - Considering the publications at the University of Basel over the last 20 years, in some faculties a greater percentage of authors are females in publications ranging from the Humanities and Social Sciences (`r round(prop_fem_inst_nyr$prop_female[prop_fem_inst_nyr$organisation_name == "Faculty of\nHumanties & Soc. Sci."], 2)`%) to Business and Economics  (`r round(prop_fem_inst_nyr$prop_female[prop_fem_inst_nyr$organisation_name == "Faculty of\nBusiness & Econ."], 2)`%).

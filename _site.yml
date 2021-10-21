@@ -7,6 +7,8 @@ navbar:
   right:
     - text: "Home"
       href: index.html
+    - text: "Report"
+      href: report.html
     - text: "Hackathon"
       href: hackathon.html
     - text: "Data"
