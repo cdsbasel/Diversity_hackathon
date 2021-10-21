@@ -27,10 +27,10 @@
     {
       "path": "index.html",
       "title": "CDS Diversity Hackathon",
-      "description": "Visualizing Diversity at the University of Basel",
+      "description": "Visualizing diversity at the University of Basel\n\nLast update: `r format(Sys.time(), \"%b %d, %Y\")`\n",
       "author": [],
       "contents": "\nThis is the home of the CDS Diversity Hackathon taking place Fall 2021 (HS21).\nThe project is the result of a partnership between the Diversity Office and the Center for Cognitive and Decision Sciences of the University of Basel aimed at obtaining an overview of the research output of the University of Basel.\nThis project received support of the Sustainability Office of the University of Basel and was funded by IMPULS, a program of the University of Basel and U-Change: www.unibas.ch/impuls.\nThe project consists of a hackathon that utilizes data from the scientific outputs of Unibas researchers to map how different groups of individuals (e.g., males vs. females) contribute to research. You can find information about the contributors, the hackathon, and the associated data in the respective pages. The results of the hackathon are available in an online report.\n\nPhoto by ThisisEngineering RAEng on Unsplash\n\n\n\n\n",
-      "last_modified": "2021-10-21T09:19:25+02:00"
+      "last_modified": "2021-10-21T09:31:26+02:00"
     },
     {
       "path": "report_gender.html",

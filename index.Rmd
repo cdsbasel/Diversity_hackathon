@@ -1,6 +1,10 @@
 ---
 title: "CDS Diversity Hackathon"
-description: "Visualizing Diversity at the University of Basel"
+description: |
+  Visualizing diversity at the University of Basel
+  
+  Last update: `r format(Sys.time(), "%b %d, %Y")`
+
 site: distill::distill_website
 ---
 
