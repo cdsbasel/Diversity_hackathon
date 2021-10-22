@@ -54,7 +54,7 @@ Our analyses used first names to estimate the gender of authors using extant tec
 
 ## The Publication and Employment Gender Gaps at the University of Basel
 
-```{r, echo=FALSE, eval=TRUE, fig.width = 20, fig.height= 21}
+```{r, echo=FALSE, eval=TRUE}
 # OVER TIME GENDER BY FACULTY ----------------------------------------------------------------
 
 # data
@@ -289,16 +289,26 @@ pA3 <- prof_data_l %>%
     plot.subtitle = element_text(family = "Oswald", hjust = 0, margin = margin(b = 10, t = 30),colour = charcoal, size = 17),
     plot.caption =element_text(family = "Oswald ExtraLight", size = 20, hjust = 1, margin = margin(t = 20, b = 3, r = 3)))
 
+```
 
+```{r, echo=FALSE, eval=TRUE, fig.width = 20, fig.height= 10}
 
-pA <- pA1/pA2/pA3
-pA
+#pA <- pA1/pA2/pA3
+#pA
+
+fig_authors<- pA1
+
+fig_authors
 
 ```
+
+
 
 ```{r, echo=FALSE, eval=TRUE}
 
 
+prop_fem_total <- author_dat %>%
+  summarise(prop_female = mean(mean_f, na.rm = TRUE))
 
 prop_fem <- author_dat %>%
   filter(year %in% c(2020, 2000)) %>%
@@ -312,7 +322,6 @@ prop_fem_inst <- author_dat %>%
   group_by(organisation_name) %>% 
   mutate(diff = diff(prop_female)) 
   
-
 prop_fem_inst_nyr <- author_dat %>%
   group_by(organisation_name) %>%
   summarise(prop_female = mean(mean_f, na.rm = TRUE))
@@ -320,16 +329,22 @@ prop_fem_inst_nyr <- author_dat %>%
 
 ```
 
+- The figure above shows evidence of a publication gender gap, with fewer publications of the University of Basel involving females relative to males (`r round(prop_fem_total$prop_female, 0)`%). Notwithstanding, the figure suggests there has been an general upward trend in the percentage of publications involving female authors over the last two decades. While in 2000 about `r round(prop_fem$prop_female[1], 0)`% of authors were female, this share has increased to `r round(prop_fem$prop_female[2], 0)`% in 2020.
+
+- The overall levels as well as temporal trend vary, however, across faculties. Some faculties have a greater percentage of female authors overall, most notably the Faculty of Humanities and Social Sciences (`r round(prop_fem_inst_nyr$prop_female[prop_fem_inst_nyr$organisation_name == "Humanities &\nSocial Sciences"], 0)`%), the Faculty of Psychology (`r round(prop_fem_inst_nyr$prop_female[prop_fem_inst_nyr$organisation_name == "Psychology"], 0)`%), and the Faculty of Law (`r round(prop_fem_inst_nyr$prop_female[prop_fem_inst_nyr$organisation_name == "Law"], 0)`%). Concerning trends, while for the Faculty of Psychology the increase of percentage points between 2000 to 2020 was `r round(prop_fem_inst$diff[prop_fem_inst$organisation_name == "Psychology" & prop_fem_inst$year == 2000], 0)`%, the Faculty of Law saw an increase between 2000 to 2020 of `r round(prop_fem_inst$diff[prop_fem_inst$organisation_name == "Law" & prop_fem_inst$year == 2000], 0)`%. 
+
+
+```{r, echo=FALSE, eval=TRUE, fig.width = 20, fig.height= 21}
+
+fig_authors_staff <- pA2/pA3
+fig_authors_staff 
+
+```
+
 <!-- Women are systematically underrepresented in academia. Whilst this inequality varies across academic departments, there has been an general upward trend in the proportion of female authors from the University of Basel over the last two decades, starting at `r round(prop_fem$prop_female[1], 2)` in 2000 and reaching `r round(prop_fem$prop_female[2], 2)` in 2020. This trend is also reflected in the percentage of first and last female authors. In this section, we offer a by-faculty insight into these developments over time. In particular, the prize for most improved goes to the Faculties of Humanities and Social Sciences, with Psychology and Medicine as runners up. These improvements are less noticeable in the Faculties of Science, Law, and Business & Economics, and the trend is reversed for the Faculty of Theology. However, this latter case may not be so informative as the sample of publications is considerably smaller. -->
 
-
-- Considering the publications at the University of Basel over the last 20 years, in some faculties a greater percentage of authors are females in publications ranging from the Humanities and Social Sciences (`r round(prop_fem_inst_nyr$prop_female[prop_fem_inst_nyr$organisation_name == "Faculty of\nHumanties & Soc. Sci."], 2)`%) to Business and Economics  (`r round(prop_fem_inst_nyr$prop_female[prop_fem_inst_nyr$organisation_name == "Faculty of\nBusiness & Econ."], 2)`%).
-
-- There has been an general upward trend in the proportion of female authors from the University of Basel over the last two decades who have published. While in 2000 `r round(prop_fem$prop_female[1], 2)`% of authors were female, this share has increased to `r round(prop_fem$prop_female[2], 2)`% in 2020.
-
-- For some faculties this increase was more noticeable. For instance in the Faculty of Psychology the increase of percentage points between 2000 to 2020 was highest with `r round(prop_fem_inst$diff[prop_fem_inst$organisation_name == "Faculty of\nPsychology" & prop_fem_inst$year == 2000], 2)`%, while the Faculty of Law had the lowest increase between 2000 to 2020 with a difference of `r round(prop_fem_inst$diff[prop_fem_inst$organisation_name == "Faculty of\nLaw" & prop_fem_inst$year == 2000], 2)`%. Publication data for the Faculty of Theology allows for less confident statements but suggests a decrease in the proportion of female authors.
-
 - In addition to the general author proportions, we investigated authorship positions by looking at first and last authors' gender. There is a general trend for higher female proportions in first authors than last authors. When comparing between faculties, it should be noted however, that authorship position assignment may follow different practices in different fields.
+Publication data for the Faculty of Theology allows for less confident statements but suggests a decrease in the proportion of female authors.
 
 ### Key findings
 - In the last 20 years, considerably more than half of the authors in the publications invesitgated irrespective of faculties, are male.
