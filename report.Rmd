@@ -52,9 +52,9 @@ Our report focuses on gender in line with the majority of past monitoring of div
 
 Our analyses used first names to estimate the gender of authors using extant technology. This classification system assigns names to either "female" or "male", thus, providing a traditional, binary classification of gender. We would like to state that this choice is of technical nature and should not be understood as a rejection of more inclusive, non-binary gender definitions. 
 
-## The Gender Publication Gap at the University of Basel
+## The Publication and Employment Gender Gaps at the University of Basel
 
-```{r, echo=FALSE, eval=TRUE, fig.width = 18, fig.height= 15}
+```{r, echo=FALSE, eval=TRUE, fig.width = 20, fig.height= 20}
 # OVER TIME GENDER BY FACULTY ----------------------------------------------------------------
 
 # data
@@ -106,9 +106,8 @@ pA1 <- ggplot(gender_inst_time, aes(x= year, y=publication, fill=gender)) +
   scale_x_continuous(breaks = c(2000, 2020)) +
   scale_y_continuous(expand = c(0.01,0), breaks = c(0, 100)) +
   facet_wrap(.~ toupper(organisation_name), nrow = 1) +
-  labs(title = "PERCENTAGE OF FEMALE RESEARCHERS", 
-       subtitle = "OVERALL PROPORTION OF FEMALE AUTHORS IN PUBLICATIONS (2000 - 2020) ", 
-       x = "YEAR", y = "PERC.") +
+  labs(title = "PERCENTAGE OF FEMALE AUTHORS (2000 - 2020)", 
+       x = "YEAR", y = "PERCENTAGE") +
   theme(legend.position = "none",
         axis.text.x = element_text(family = "Oswald", size = 9, colour = "grey60"),
         axis.text.y = element_text(family = "Oswald", size = 9, colour = "grey60"),
@@ -203,8 +202,8 @@ pA2 <- author_dat %>%
   geom_hline(yintercept = 50, linetype = "dashed", color = "white") +
   scale_x_continuous(breaks = c(2000, 2020)) +
   scale_y_continuous(breaks = c(0, 100)) +
-  labs(subtitle = "PERCENTAGE OF FIRST VS. LAST FEMALE AUTHORS IN PUBLICATIONS (2000 - 2020) ", 
-       x = "YEAR", y = "PERC.") +
+  labs(title = "PERCENTAGE OF FEMALE AUTHORS: FIRST VS. LAST (2000 - 2020)", 
+       x = "YEAR", y = "PERCENTAGE") +
   theme(
     legend.position = "none",
     axis.text.x = element_text(family = "Oswald", size = 9, colour = "grey60"),
@@ -273,8 +272,8 @@ pA3 <- prof_data_l %>%
   geom_hline(yintercept = 50, linetype = "dashed", color = "white") +
   scale_x_continuous(breaks = c(2000, 2020), limits = c(2000,2020)) +
   scale_y_continuous(breaks = c(0, 100), limits = c(0,100)) +
-  labs(subtitle = "PERCENTAGE OF FEMALES: PROFESSORSHIPS & ACADEMIC STAFF (2013 - 2019) ", 
-       x = "YEAR", y = "PERC.",
+  labs(title = "PERCENTAGE OF FEMALES EMPLOYED: ACADEMIC STAFF VS. PROFESSORSHIPS (2013 - 2019)", 
+       x = "YEAR", y = "PERCENTAGE",
        caption = "Data from the University of Basel publication database. Lines represent the predictions from a linear regression") +
   theme(
     legend.position = "none",
