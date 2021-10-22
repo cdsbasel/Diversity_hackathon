@@ -1,11 +1,6 @@
----
-title: "Report"
-description: Visualizing diversity in research outputs at the University of Basel
----
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
 
+# PACKAGES --------------------------------------------------------------------
 library(tidyverse)
 library(ggtext)
 library(patchwork)
@@ -13,48 +8,7 @@ library(readxl)
 
 pub_data <- read_csv("1_data/unibas_diversity.csv")
 prof_data <- read_xlsx("1_data/akademisches_unibas.xlsx", sheet = "female_perc")
-```
 
-## Executive Summary
-
-Monitoring of diversity is an important first step towards reducing inequalities in access to scientific innovation and research. We contribute to monitoring of author diversity in scientific production at the University of Basel by conducting an analysis of gender distribution in scientific publications. We analysed the diversity of the University of Basel's research output by categorizing authors' gender based on authors' first names and visualizing temporal trends between 2000 and 2020 in gender distribution for all 7 faculties of the University of Basel. Our results for the University of Basel match similar reports of gender publication gaps in the sciences. Crucially, we find large differences across faculties and author positions (first vs. last) suggesting that targeted measures may be needed for different organizational units and career stages. We discuss implications for future efforts to monitoring diversity in scientific production and associated interventions at the University of Basel and beyond.
- 
-## Background
-
-#### Why does diversity matter?
-
-Achieving gender equality (SDG 5) and reducing inequalities (SDG10) are central parts of the [Sustainable Development Goals (SDGs)](https://sdgs.un.org/goals). Universities can play a key role in advancing these goals by empowering women and disadvantaged minorities to allow them to make contributions to scientific innovation and research. The University of Basel is strongly committed to monitoring and increasing diversity of its staff and student population in a number of efforts spearheaded by its [Diversity Office](https://www.unibas.ch/en/University/Administration-Services/Vice-President-s-Office-for-People-and-Culture/Diversity-and-Inclusion/Diversity.html). 
-
-#### Why does monitoring of research outputs matter?
-
-Monitoring diversity is a first step towards identifying inequalities and potential solutions to reduce them. As a consequence, there have been continued efforts on the part of the [Diversity Office](https://www.unibas.ch/en/University/Administration-Services/Vice-President-s-Office-for-People-and-Culture/Diversity-and-Inclusion/Diversity.html) of the University of Basel to monitor diversity, for example, in the form of an [Equal opportunities monitoring](https://www.unibas.ch/en/University/Administration-Services/Vice-President-s-Office-for-People-and-Culture/Diversity-and-Inclusion/Diversity/Diversity-Management/Monitoring.html). However, the current monitoring does not fully capture all aspects of equal opportunities to scientific production. The monitoring of publication outputs can be helpful as an additional indicator because it has the potential to reflect access to resources (e.g., time, internal funding) that go beyond employment and are otherwise not easily quantifiable. 
-
-## Goals of this Report
-- visualize the gender diversity in research outputs at the University Basel
-- provide ideas for future monitoring of diversity at the University of Basel, including future methodological approaches or data collection efforts
-- discuss whether the monitoring of research outputs can help guide future interventions aimed at increasing diversity at the University of Basel
-
-## Methods 
-
-#### Research Output of the University of Basel
-
-We use data from a database listing the University of Basel's research output. We focus on data between 2000 and 2020 because availability for earlier years is very limited and this time range allows some comparability to previous efforts (e.g., Odic & Wojcik, 2019). We focus our analyses on University of Basel's 7 faculties and neglect smaller associated institutes because there is large number of the latter with relatively few publications that make it difficult to consider trends over time.
-
-We analyze a total 67'269 publications including several different categories: 43'997 journal articles, 11'959 book chapters, 3'454 books (edited and authored), 2'014 proceedings articles, 1'671 theses, and 4'174 other items including news articles and discussion papers.    
-
-#### Diversity Labeling from Author First Names
-
-We use information concerning diversity derived from the authors' first names. We recruited existing publicly available services (e.g., [genderize.io](https://genderize.io/)) to determine each author's individual characteristics, such as gender. Estimates are provided based on the services' databases that include hundreds of thousands of confirmed mappings between first names and individuals' characteristics. Additional details are provided on the [Data](data.html) page. 
-
-Our report focuses on gender in line with the majority of past monitoring of diversity at the University of Basel and other similar efforts. Ideally, however, diversity should be conceptualized through several dimensions, that could include cultural and socio-economic background, political views, age, nationality, or religion, to name but a few. In our efforts, we strove to include different dimensions beyond gender, namely, nationality and age. Our simple validation efforts suggested, however, that such categorizations are unreliable so we refrain from reporting results concerning these dimensions below. We discuss limitations of our approach and alternative methods in the *Limitations and Outlook* section. 
-
-#### Disclaimer
-
-Our analyses used first names to estimate the gender of authors using extant technology. This classification system assigns names to either "female" or "male", thus, providing a traditional, binary classification of gender. We would like to state that this choice is of technical nature and should not be understood as a rejection of more inclusive, non-binary gender definitions. 
-
-## The Gender Publication Gap at the University of Basel
-
-```{r, echo=FALSE, eval=TRUE, fig.width = 18, fig.height= 15}
 # OVER TIME GENDER BY FACULTY ----------------------------------------------------------------
 
 # data
@@ -291,58 +245,7 @@ pA3 <- prof_data_l %>%
     plot.caption =element_text(family = "Oswald ExtraLight", face = "italic", size = 9, hjust = 1, margin = margin(t = 5, b = 3, r = 3)))
 
 
-
+# SAVE PLOTS --------------------------------------------------------------
 pA <- pA1/pA2/pA3
-pA
+ggsave("3_figures/AB_pA_new.png", plot = pA ,dpi = 600, width = 45, height = 37, units = "cm")
 
-```
-
-```{r, echo=FALSE, eval=TRUE}
-
-
-
-prop_fem <- author_dat %>%
-  filter(year %in% c(2020, 2000)) %>%
-  group_by(year) %>%
-  summarise(prop_female = mean(mean_f, na.rm = TRUE))
-
-prop_fem_inst <- author_dat %>%
-  filter(year %in% c(2020, 2000)) %>%
-  group_by(year, organisation_name) %>%
-  summarise(prop_female = mean(mean_f, na.rm = TRUE)) %>% 
-  group_by(organisation_name) %>% 
-  mutate(diff = diff(prop_female)) 
-  
-
-prop_fem_inst_nyr <- author_dat %>%
-  group_by(organisation_name) %>%
-  summarise(prop_female = mean(mean_f, na.rm = TRUE))
-
-
-```
-
-<!-- Women are systematically underrepresented in academia. Whilst this inequality varies across academic departments, there has been an general upward trend in the proportion of female authors from the University of Basel over the last two decades, starting at `r round(prop_fem$prop_female[1], 2)` in 2000 and reaching `r round(prop_fem$prop_female[2], 2)` in 2020. This trend is also reflected in the percentage of first and last female authors. In this section, we offer a by-faculty insight into these developments over time. In particular, the prize for most improved goes to the Faculties of Humanities and Social Sciences, with Psychology and Medicine as runners up. These improvements are less noticeable in the Faculties of Science, Law, and Business & Economics, and the trend is reversed for the Faculty of Theology. However, this latter case may not be so informative as the sample of publications is considerably smaller. -->
-
-
-- Considering the publications at the University of Basel over the last 20 years, in some faculties a greater percentage of authors are females in publications ranging from the Humanities and Social Sciences (`r round(prop_fem_inst_nyr$prop_female[prop_fem_inst_nyr$organisation_name == "Faculty of\nHumanties & Soc. Sci."], 2)`%) to Business and Economics  (`r round(prop_fem_inst_nyr$prop_female[prop_fem_inst_nyr$organisation_name == "Faculty of\nBusiness & Econ."], 2)`%).
-
-- There has been an general upward trend in the proportion of female authors from the University of Basel over the last two decades who have published. While in 2000 `r round(prop_fem$prop_female[1], 2)`% of authors were female, this share has increased to `r round(prop_fem$prop_female[2], 2)`% in 2020.
-
-- For some faculties this increase was more noticeable. For instance in the Faculty of Psychology the increase of percentage points between 2000 to 2020 was highest with `r round(prop_fem_inst$diff[prop_fem_inst$organisation_name == "Faculty of\nPsychology" & prop_fem_inst$year == 2000], 2)`%, while the Faculty of Law had the lowest increase between 2000 to 2020 with a difference of `r round(prop_fem_inst$diff[prop_fem_inst$organisation_name == "Faculty of\nLaw" & prop_fem_inst$year == 2000], 2)`%. Publication data for the Faculty of Theology allows for less confident statements but suggests a decrease in the proportion of female authors.
-
-- In addition to the general author proportions, we investigated authorship positions by looking at first and last authors' gender. There is a general trend for higher female proportions in first authors than last authors. When comparing between faculties, it should be noted however, that authorship position assignment may follow different practices in different fields.
-
-### Key findings
-- In the last 20 years, considerably more than half of the authors in the publications invesitgated irrespective of faculties, are male.
-
-- This gender gap in publications has decreased for most faculties over the last 20 years. 
-
-- Generally, in the publications looked at, proportion of women among first authors was higher than among last authors. 
-
-## Limitations and Outlook
-
-To be included after group discussion and input from Diversity Office (Oct 26th, 2021).
-
-## References 
-
-Odic, D., & Wojcik, E. H. (2020). The publication gender gap in psychology. *American Psychologist, 75*(1), 92–103. [http://doi.org/10.1037/amp0000480](http://doi.org/10.1037/amp0000480)
