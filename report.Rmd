@@ -336,7 +336,7 @@ prop_fem_inst_nyr <- author_dat %>%
 
 ## Linking the Publication and Employment Gender Gaps: The Role of Seniority
 
-First authorship is typically (but not always) associated with junior academic roles in publications involving multiple authors, while last authorship typically cues seniority. Consequently, distinguishing between first and last authorship can allows us to consider trends in the publication gender gap as a function of seniority or career stage. When considering these analysis and, particularly, comparing between faculties, it should be noted that determination of authorship order follows different practices across fields (e.g., alphabetical order in economics). Below, we show the breakdown of the publication gap by first vs. last author (upper panel) along with the percentage employment of females in professorships vs. academic staff (lower panel). 
+First authorship is typically (but not always) associated with junior academic roles in publications involving multiple authors, while last authorship typically cues seniority. Consequently, distinguishing between first and last authorship can allow us to consider trends in the publication gender gap as a function of seniority (i.e., career stage). When considering these analysis and, particularly, comparing between faculties, it should be noted that determination of authorship order follows different practices across fields (e.g., alphabetical order in economics). Below, we show the breakdown of the publication gap by first vs. last author (upper panel) along with the percentage employment of females in professorships vs. academic staff (lower panel). 
 
 ```{r, echo=FALSE, eval=TRUE, fig.width = 20, fig.height= 19}
 
