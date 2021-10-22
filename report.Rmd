@@ -242,8 +242,8 @@ prof_data_l <- prof_data %>%
 prof_data_l$organisation_name <- factor(prof_data_l$organisation_name, levels = sort(unique(prof_data_l$organisation_name)))
 
 label_num <- data.frame(organisation_name= unique(prof_data_l$organisation_name), label= c(rep("", 6), "50%"))
-label_p <- data.frame(organisation_name= unique(prof_data_l$organisation_name), label= c(rep("", 6), "PROFESSUREN"))
-label_m <- data.frame(organisation_name= unique(prof_data_l$organisation_name), label= c(rep("", 6), "MITTELBAU"))
+label_p <- data.frame(organisation_name= unique(prof_data_l$organisation_name), label= c(rep("", 6), "ACADEMIC STAFF"))
+label_m <- data.frame(organisation_name= unique(prof_data_l$organisation_name), label= c(rep("", 6), "PROFESSORSHIPS"))
 
 
 
@@ -273,7 +273,7 @@ pA3 <- prof_data_l %>%
   geom_hline(yintercept = 50, linetype = "dashed", color = "white") +
   scale_x_continuous(breaks = c(2000, 2020), limits = c(2000,2020)) +
   scale_y_continuous(breaks = c(0, 100), limits = c(0,100)) +
-  labs(subtitle = "PERCENTAGE OF FEMALE PROFESSUREN VS. MITTELBAU (2013 - 2019) ", 
+  labs(subtitle = "PERCENTAGE OF FEMALES: PROFESSORSHIPS & ACADEMIC STAFF (2013 - 2019) ", 
        x = "YEAR", y = "PERC.",
        caption = "Data from the University of Basel publication database. Lines represent the predictions from a linear regression") +
   theme(
