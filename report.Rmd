@@ -54,7 +54,7 @@ Our analyses used first names to estimate the gender of authors using extant tec
 
 ## The Publication and Employment Gender Gaps at the University of Basel
 
-```{r, echo=FALSE, eval=TRUE, fig.width = 20, fig.height= 20}
+```{r, echo=FALSE, eval=TRUE, fig.width = 20, fig.height= 21}
 # OVER TIME GENDER BY FACULTY ----------------------------------------------------------------
 
 # data
@@ -96,12 +96,12 @@ pA1 <- ggplot(gender_inst_time, aes(x= year, y=publication, fill=gender)) +
              family = "Oswald Bold", size = 7, color = "white" ,
              inherit.aes = FALSE) +
   geom_label(data = label_f, aes(label=label), fill = NA,
-             y = 5, x = 2019.5, hjust= 1,  label.size = NA,
-             family = "Oswald Bold", size = 8, color = "#4E4BD8" ,
+             y = 5, x = 2019.75, hjust= 1,  label.size = NA,
+             family = "Oswald Bold", size = 9, color = "#4E4BD8" ,
              inherit.aes = FALSE) +
   geom_label(data = label_m, aes(label=label), fill = NA,
-             y = 95, x = 2019.5, hjust= 1,  label.size = NA,
-             family = "Oswald Bold", size = 8, color ="#4ADABF" ,
+             y = 95, x = 2019.75, hjust= 1,  label.size = NA,
+             family = "Oswald Bold", size = 9, color ="#4ADABF" ,
              inherit.aes = FALSE) +
   scale_x_continuous(breaks = c(2000, 2020)) +
   scale_y_continuous(expand = c(0.01,0), breaks = c(0, 100)) +
@@ -109,13 +109,13 @@ pA1 <- ggplot(gender_inst_time, aes(x= year, y=publication, fill=gender)) +
   labs(title = "PERCENTAGE OF FEMALE AUTHORS (2000 - 2020)", 
        x = "YEAR", y = "PERCENTAGE") +
   theme(legend.position = "none",
-        axis.text.x = element_text(family = "Oswald", size = 16, colour = "grey60"),
-        axis.text.y = element_text(family = "Oswald", size = 16, colour = "grey60"),
+        axis.text.x = element_text(family = "Oswald", size = 18, colour = "grey60"),
+        axis.text.y = element_text(family = "Oswald", size = 18, colour = "grey60"),
         panel.spacing = unit(1, "lines"),
         strip.text = element_text(family = "Oswald Bold", size = 18, colour = charcoal),
-        axis.title.x = element_text(family = "Oswald Bold", size = 16, colour = "grey60"),
-        axis.title.y = element_text(family = "Oswald Bold", size = 16, colour = "grey60", angle = 90),
-        plot.title = element_text(face = "bold", family = "Oswald", hjust = 0, margin = margin(t = 15,b = 25), size = 24, color = charcoal),
+        axis.title.x = element_text(family = "Oswald Bold", size = 18, colour = "grey60"),
+        axis.title.y = element_text(family = "Oswald Bold", size = 18, colour = "grey60", angle = 90),
+        plot.title = element_text(face = "bold", family = "Oswald", hjust = 0, margin = margin(t = 40,b = 25), size = 24, color = charcoal),
         plot.subtitle = element_text(family = "Oswald", hjust = 0.008, margin = margin(b = 10), size = 17, color = charcoal),
         plot.caption =element_text(family = "Oswald ExtraLight", face = "italic", size = 6.5, hjust = 1, margin = margin(t = 5)))
 
@@ -206,15 +206,15 @@ pA2 <- author_dat %>%
        x = "YEAR", y = "PERCENTAGE") +
   theme(
     legend.position = "none",
-    axis.text.x = element_text(family = "Oswald", size = 16, colour = "grey60"),
-    axis.text.y = element_text(family = "Oswald", size = 16, colour = "grey60"),
+    axis.text.x = element_text(family = "Oswald", size = 18, colour = "grey60"),
+    axis.text.y = element_text(family = "Oswald", size = 18, colour = "grey60"),
     strip.text = element_text(family = "Oswald Bold", size = 18, colour = charcoal, margin = margin(b= 1)),
-    axis.title.x = element_text(family = "Oswald Bold", size = 16, colour = "grey60"),
-    axis.title.y = element_text(family = "Oswald Bold", size = 16, colour = "grey60", angle = 90),
-    panel.spacing = unit(1.75, "lines"),
+    axis.title.x = element_text(family = "Oswald Bold", size = 18, colour = "grey60"),
+    axis.title.y = element_text(family = "Oswald Bold", size = 18, colour = "grey60", angle = 90),
+    panel.spacing = unit(1.9, "lines"),
     panel.background = element_rect(fill = "#4E4BD8"),
     plot.margin = unit(c(0,0.5,0,0), "cm"),
-    plot.title = element_text(face = "bold", family = "Oswald", hjust = 0, margin = margin(t = 15,b = 25), size = 24, color = charcoal),
+    plot.title = element_text(face = "bold", family = "Oswald", hjust = 0, margin = margin(t = 40,b = 25), size = 24, color = charcoal),
     plot.subtitle = element_text(family = "Oswald", hjust = 0, margin = margin(b = 10, t = 30),colour = charcoal, size = 17),
     plot.caption =element_text(family = "Oswald ExtraLight", face = "italic", size = 6.5, hjust = 1, margin = margin(t = 5)))
 
@@ -277,17 +277,17 @@ pA3 <- prof_data_l %>%
        caption = "Data from the University of Basel publication database. Lines represent the predictions from a linear regression") +
   theme(
     legend.position = "none",
-    axis.text.x = element_text(family = "Oswald", size = 16, colour = "grey60"),
-    axis.text.y = element_text(family = "Oswald", size = 16, colour = "grey60"),
+    axis.text.x = element_text(family = "Oswald", size = 18, colour = "grey60"),
+    axis.text.y = element_text(family = "Oswald", size = 18, colour = "grey60"),
     strip.text = element_text(family = "Oswald Bold", size = 18, colour = charcoal, margin = margin(b= 1)),
-    axis.title.x = element_text(family = "Oswald Bold", size = 16, colour = "grey60"),
-    axis.title.y = element_text(family = "Oswald Bold", size = 16, colour = "grey60", angle = 90),
-    panel.spacing = unit(1.75, "lines"),
+    axis.title.x = element_text(family = "Oswald Bold", size = 18, colour = "grey60"),
+    axis.title.y = element_text(family = "Oswald Bold", size = 18, colour = "grey60", angle = 90),
+    panel.spacing = unit(1.9, "lines"),
     panel.background = element_rect(fill = "#4E4BD8"),
     plot.margin = unit(c(0,0.5,0,0), "cm"),
-    plot.title = element_text(face = "bold", family = "Oswald", hjust = 0, margin = margin(t = 15,b = 25), size = 24, color = charcoal),
+    plot.title = element_text(face = "bold", family = "Oswald", hjust = 0, margin = margin(t = 40,b = 25), size = 24, color = charcoal),
     plot.subtitle = element_text(family = "Oswald", hjust = 0, margin = margin(b = 10, t = 30),colour = charcoal, size = 17),
-    plot.caption =element_text(family = "Oswald ExtraLight", face = "italic", size = 16, hjust = 1, margin = margin(t = 5, b = 3, r = 3)))
+    plot.caption =element_text(family = "Oswald ExtraLight", size = 20, hjust = 1, margin = margin(t = 20, b = 3, r = 3)))
 
 
 
