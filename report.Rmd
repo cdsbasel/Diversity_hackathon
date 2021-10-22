@@ -63,7 +63,7 @@ gender_inst_time <- pub_data %>%
   pivot_longer(!year:gender_proportion,names_to = "organisation_name", values_to = "applies") %>% 
   filter(applies == 1) %>% #only select those rows that could be classified
   mutate(organisation_name = case_when(organisation_name == "Org-Faculty of Theology" ~ "Theology",
-                                       organisation_name == "Org-Faculty of Science" ~ "Natural cience",
+                                       organisation_name == "Org-Faculty of Science" ~ "Natural Sciences",
                                        organisation_name == "Org-Faculty of Law" ~ "Law",
                                        organisation_name == "Org-Faculty of Humanties and Social Sciences" ~ "Humanties &\nSocial Sciences",
                                        organisation_name == "Org-Faculty of Medicine"  ~ "Medicine",
