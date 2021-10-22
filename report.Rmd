@@ -65,7 +65,7 @@ gender_inst_time <- pub_data %>%
   mutate(organisation_name = case_when(organisation_name == "Org-Faculty of Theology" ~ "Theology",
                                        organisation_name == "Org-Faculty of Science" ~ "Natural Sciences",
                                        organisation_name == "Org-Faculty of Law" ~ "Law",
-                                       organisation_name == "Org-Faculty of Humanties and Social Sciences" ~ "Humanties &\nSocial Sciences",
+                                       organisation_name == "Org-Faculty of Humanties and Social Sciences" ~ "Humanities &\nSocial Sciences",
                                        organisation_name == "Org-Faculty of Medicine"  ~ "Medicine",
                                        organisation_name == "Org-Faculty of Business and Economics" ~ "Business &\nEconomics",
                                        organisation_name == "Org-Faculty of Psychology" ~ "Psychology")) %>% 
@@ -134,7 +134,7 @@ author_first <- pub_data %>%
   mutate(organisation_name = case_when(organisation_name == "Org-Faculty of Theology" ~ "Theology",
                                        organisation_name == "Org-Faculty of Science" ~ "Natural Sciences",
                                        organisation_name == "Org-Faculty of Law" ~ "Law",
-                                       organisation_name == "Org-Faculty of Humanties and Social Sciences" ~ "Humanties &\nSocial Sciences",
+                                       organisation_name == "Org-Faculty of Humanties and Social Sciences" ~ "Humanities &\nSocial Sciences",
                                        organisation_name == "Org-Faculty of Medicine"  ~ "Medicine",
                                        organisation_name == "Org-Faculty of Business and Economics" ~ "Business &\nEconomics",
                                        organisation_name == "Org-Faculty of Psychology" ~ "Psychology")) %>% 
@@ -153,7 +153,7 @@ author_last <- pub_data %>%
   mutate(organisation_name = case_when(organisation_name == "Org-Faculty of Theology" ~ "Theology",
                                        organisation_name == "Org-Faculty of Science" ~ "Natural Sciences",
                                        organisation_name == "Org-Faculty of Law" ~ "Law",
-                                       organisation_name == "Org-Faculty of Humanties and Social Sciences" ~ "Humanties &\nSocial Sciences",
+                                       organisation_name == "Org-Faculty of Humanties and Social Sciences" ~ "Humanities &\nSocial Sciences",
                                        organisation_name == "Org-Faculty of Medicine"  ~ "Medicine",
                                        organisation_name == "Org-Faculty of Business and Economics" ~ "Business &\nEconomics",
                                        organisation_name == "Org-Faculty of Psychology" ~ "Psychology")) %>% 
@@ -331,7 +331,7 @@ prop_fem_inst_nyr <- author_dat %>%
 
 - The figure above shows evidence of a publication gender gap, with fewer publications of the University of Basel involving females relative to males (`r round(prop_fem_total$prop_female, 0)`%). Notwithstanding, the figure suggests there has been an general upward trend in the percentage of publications involving female authors over the last two decades. While in 2000 about `r round(prop_fem$prop_female[1], 0)`% of authors were female, this share has increased to `r round(prop_fem$prop_female[2], 0)`% in 2020.
 
-- The overall levels as well as temporal trend vary, however, across faculties. Some faculties have a greater percentage of female authors overall, most notably the Faculty of Humanities and Social Sciences (`r round(prop_fem_inst_nyr$prop_female[prop_fem_inst_nyr$organisation_name == "Humanities &\nSocial Sciences"], 0)`%), the Faculty of Psychology (`r round(prop_fem_inst_nyr$prop_female[prop_fem_inst_nyr$organisation_name == "Psychology"], 0)`%), and the Faculty of Law (`r round(prop_fem_inst_nyr$prop_female[prop_fem_inst_nyr$organisation_name == "Law"], 0)`%). Concerning trends, while for the Faculty of Psychology the increase of percentage points between 2000 to 2020 was `r round(prop_fem_inst$diff[prop_fem_inst$organisation_name == "Psychology" & prop_fem_inst$year == 2000], 0)`%, the Faculty of Law saw an increase between 2000 to 2020 of `r round(prop_fem_inst$diff[prop_fem_inst$organisation_name == "Law" & prop_fem_inst$year == 2000], 0)`%. 
+- The overall levels as well as temporal trend vary, however, across faculties. Some faculties have a greater percentage of female authors across the 20-year period analyzed (2000-2020), most notably the Faculty of Humanities and Social Sciences (`r round(prop_fem_inst_nyr$prop_female[prop_fem_inst_nyr$organisation_name == "Humanities &\nSocial Sciences"], 0)`%), the Faculty of Psychology (`r round(prop_fem_inst_nyr$prop_female[prop_fem_inst_nyr$organisation_name == "Psychology"], 0)`%), and the Faculty of Law (`r round(prop_fem_inst_nyr$prop_female[prop_fem_inst_nyr$organisation_name == "Law"], 0)`%). Concerning trends, while for the Faculty of Psychology the increase of percentage points between 2000 to 2020 was `r round(prop_fem_inst$diff[prop_fem_inst$organisation_name == "Psychology" & prop_fem_inst$year == 2000], 0)`%, the Faculty of Law saw an increase between 2000 to 2020 of `r round(prop_fem_inst$diff[prop_fem_inst$organisation_name == "Law" & prop_fem_inst$year == 2000], 0)`%. 
 
 
 ```{r, echo=FALSE, eval=TRUE, fig.width = 20, fig.height= 21}
