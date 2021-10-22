@@ -42,6 +42,10 @@ We use data from a database listing the University of Basel's research output. W
 
 We analyze a total 67'269 publications including several different categories: 43'997 journal articles, 11'959 book chapters, 3'454 books (edited and authored), 2'014 proceedings articles, 1'671 theses, and 4'174 other items including news articles and discussion papers.    
 
+#### Employment Information of the University of Basel
+
+We use data from the [Equal opportunities monitoring](https://www.unibas.ch/en/University/Administration-Services/Vice-President-s-Office-for-People-and-Culture/Diversity-and-Inclusion/Diversity/Diversity-Management/Monitoring.html) concerning the percentage of females in different positions (i.e., professorships, academic staff) available for the period 2013-2019. 
+
 #### Diversity Labeling from Author First Names
 
 We use information concerning diversity derived from the authors' first names. We recruited existing publicly available services (e.g., [genderize.io](https://genderize.io/)) to determine each author's individual characteristics, such as gender. Estimates are provided based on the services' databases that include hundreds of thousands of confirmed mappings between first names and individuals' characteristics. Additional details are provided on the [Data](data.html) page. 
@@ -50,9 +54,7 @@ Our report focuses on gender in line with the majority of past monitoring of div
 
 #### Disclaimer
 
-Our analyses used first names to estimate the gender of authors using extant technology. This classification system assigns names to either "female" or "male", thus, providing a traditional, binary classification of gender. We would like to state that this choice is of technical nature and should not be understood as a rejection of more inclusive, non-binary gender definitions. 
-
-## The Publication and Employment Gender Gaps at the University of Basel
+Our analyses used first names to estimate the gender of authors using extant technology. This classification system assigns names to either "female" or "male", thus, providing a traditional, binary classification of gender. The contributors would like to state that this choice is of technical and pragmatic nature and should not be understood as a rejection of more inclusive, non-binary gender definitions. 
 
 ```{r, echo=FALSE, eval=TRUE}
 # OVER TIME GENDER BY FACULTY ----------------------------------------------------------------
@@ -107,7 +109,8 @@ pA1 <- ggplot(gender_inst_time, aes(x= year, y=publication, fill=gender)) +
   scale_y_continuous(expand = c(0.01,0), breaks = c(0, 100)) +
   facet_wrap(.~ toupper(organisation_name), nrow = 1) +
   labs(title = "PERCENTAGE OF FEMALE AUTHORS (2000 - 2020)", 
-       x = "YEAR", y = "PERCENTAGE") +
+       x = "YEAR", y = "PERCENTAGE",
+       caption = "Data from the University of Basel.") +
   theme(legend.position = "none",
         axis.text.x = element_text(family = "Oswald", size = 18, colour = "grey60"),
         axis.text.y = element_text(family = "Oswald", size = 18, colour = "grey60"),
@@ -117,7 +120,7 @@ pA1 <- ggplot(gender_inst_time, aes(x= year, y=publication, fill=gender)) +
         axis.title.y = element_text(family = "Oswald Bold", size = 18, colour = "grey60", angle = 90),
         plot.title = element_text(face = "bold", family = "Oswald", hjust = 0, margin = margin(t = 40,b = 25), size = 24, color = charcoal),
         plot.subtitle = element_text(family = "Oswald", hjust = 0.008, margin = margin(b = 10), size = 17, color = charcoal),
-        plot.caption =element_text(family = "Oswald ExtraLight", face = "italic", size = 6.5, hjust = 1, margin = margin(t = 5)))
+        plot.caption =element_text(family = "Oswald ExtraLight", size = 20, hjust = 1, margin = margin(t = 20, b = 3, r = 3)))
 
 
 
@@ -170,12 +173,7 @@ label_f <- data.frame(organisation_name= unique(author_dat$organisation_name), l
 label_l <- data.frame(organisation_name= unique(author_dat$organisation_name), label= c("LAST AUTHOR", rep("", 6)))
 
 
-
-
-
 # plot
-
-
 
 charcoal <-  "#31424B"
 col_pal <- c("#4ADABF", "white")
@@ -274,7 +272,7 @@ pA3 <- prof_data_l %>%
   scale_y_continuous(breaks = c(0, 100), limits = c(0,100)) +
   labs(title = "PERCENTAGE OF FEMALES EMPLOYED: ACADEMIC STAFF VS. PROFESSORSHIPS (2013 - 2019)", 
        x = "YEAR", y = "PERCENTAGE",
-       caption = "Data from the University of Basel publication database. Lines represent the predictions from a linear regression") +
+       caption = "Data from the University of Basel. Lines represent the predictions from linear regressions") +
   theme(
     legend.position = "none",
     axis.text.x = element_text(family = "Oswald", size = 18, colour = "grey60"),
@@ -290,6 +288,8 @@ pA3 <- prof_data_l %>%
     plot.caption =element_text(family = "Oswald ExtraLight", size = 20, hjust = 1, margin = margin(t = 20, b = 3, r = 3)))
 
 ```
+
+## The Publication Gender Gap at the University of Basel
 
 ```{r, echo=FALSE, eval=TRUE, fig.width = 20, fig.height= 10}
 
@@ -308,6 +308,7 @@ fig_authors
 
 
 prop_fem_total <- author_dat %>%
+  ungroup() %>% 
   summarise(prop_female = mean(mean_f, na.rm = TRUE))
 
 prop_fem <- author_dat %>%
@@ -329,29 +330,32 @@ prop_fem_inst_nyr <- author_dat %>%
 
 ```
 
-- The figure above shows evidence of a publication gender gap, with fewer publications of the University of Basel involving females relative to males (`r round(prop_fem_total$prop_female, 0)`%). Notwithstanding, the figure suggests there has been an general upward trend in the percentage of publications involving female authors over the last two decades. While in 2000 about `r round(prop_fem$prop_female[1], 0)`% of authors were female, this share has increased to `r round(prop_fem$prop_female[2], 0)`% in 2020.
+- The figure above shows evidence of a publication gender gap at the University of Basel; across all faculties and time, there were overal fewer publications involving females (`r round(prop_fem_total$prop_female, 0)`%) relative to males (`r 100-round(prop_fem_total$prop_female, 0)`%); notwithstanding, the figure suggests a general upward trend in the percentage of publications involving females over the last two decades, while in 2000 the percentage of female authors was `r round(prop_fem$prop_female[1], 0)`%, in 2020 this percentage was `r round(prop_fem$prop_female[2], 0)`%.
 
-- The overall levels as well as temporal trend vary, however, across faculties. Some faculties have a greater percentage of female authors across the 20-year period analyzed (2000-2020), most notably the Faculty of Humanities and Social Sciences (`r round(prop_fem_inst_nyr$prop_female[prop_fem_inst_nyr$organisation_name == "Humanities &\nSocial Sciences"], 0)`%), the Faculty of Psychology (`r round(prop_fem_inst_nyr$prop_female[prop_fem_inst_nyr$organisation_name == "Psychology"], 0)`%), and the Faculty of Law (`r round(prop_fem_inst_nyr$prop_female[prop_fem_inst_nyr$organisation_name == "Law"], 0)`%). Concerning trends, while for the Faculty of Psychology the increase of percentage points between 2000 to 2020 was `r round(prop_fem_inst$diff[prop_fem_inst$organisation_name == "Psychology" & prop_fem_inst$year == 2000], 0)`%, the Faculty of Law saw an increase between 2000 to 2020 of `r round(prop_fem_inst$diff[prop_fem_inst$organisation_name == "Law" & prop_fem_inst$year == 2000], 0)`%. 
+- The overall levels as well as temporal trends vary, however, markedly between faculties: some faculties show a greater percentage of publications involving females across the full 20-year period (2000-2020), most notably the Faculty of Humanities and Social Sciences (`r round(prop_fem_inst_nyr$prop_female[prop_fem_inst_nyr$organisation_name == "Humanities &\nSocial Sciences"], 0)`%), the Faculty of Psychology (`r round(prop_fem_inst_nyr$prop_female[prop_fem_inst_nyr$organisation_name == "Psychology"], 0)`%), and the Faculty of Law (`r round(prop_fem_inst_nyr$prop_female[prop_fem_inst_nyr$organisation_name == "Law"], 0)`%). Concerning temporal trends, some faculties have seen a greater increase, most notably the Faculty of Psychology which saw an increase between 2000 to 2020 of `r round(prop_fem_inst$diff[prop_fem_inst$organisation_name == "Psychology" & prop_fem_inst$year == 2000], 0)`%. 
 
+## Linking the Publication and Employment Gender Gaps: The Role of Seniority
 
-```{r, echo=FALSE, eval=TRUE, fig.width = 20, fig.height= 21}
+We also investigated the publication gap as a function of authorship position by distinguishing between first and last authors (excluding single author publications). First authorship is typically (but not always) associated with junior academic roles in publications involving multiple authors, while last authorship typically cues seniority. Consequently, distinguishing between first and last authorship allows us to consider trends as a function of seniority or career stage. When considering these analysis and, particularly, comparing between faculties, it should be noted that determination of authorship order follows different practices across fields (e.g., alphabetical order in economics). Below, we show the breakdown of the publication gap by first vs. last author (upper panel) along with the percentage employment of females in professorships vs. academic staff (lower panel). 
+
+```{r, echo=FALSE, eval=TRUE, fig.width = 20, fig.height= 19}
 
 fig_authors_staff <- pA2/pA3
 fig_authors_staff 
 
 ```
 
-<!-- Women are systematically underrepresented in academia. Whilst this inequality varies across academic departments, there has been an general upward trend in the proportion of female authors from the University of Basel over the last two decades, starting at `r round(prop_fem$prop_female[1], 2)` in 2000 and reaching `r round(prop_fem$prop_female[2], 2)` in 2020. This trend is also reflected in the percentage of first and last female authors. In this section, we offer a by-faculty insight into these developments over time. In particular, the prize for most improved goes to the Faculties of Humanities and Social Sciences, with Psychology and Medicine as runners up. These improvements are less noticeable in the Faculties of Science, Law, and Business & Economics, and the trend is reversed for the Faculty of Theology. However, this latter case may not be so informative as the sample of publications is considerably smaller. -->
+- As can be seen in the upper panel the figure above, there is a general trend for higher female proportions in first authors than last authors; this pattern matches the larger prevalence of females in junior (academic staff) vs. senior (professorship) roles that is evident in the lower panel. 
 
-- In addition to the general author proportions, we investigated authorship positions by looking at first and last authors' gender. There is a general trend for higher female proportions in first authors than last authors. When comparing between faculties, it should be noted however, that authorship position assignment may follow different practices in different fields.
-Publication data for the Faculty of Theology allows for less confident statements but suggests a decrease in the proportion of female authors.
+- As presented above for the overall percentage of publications, the temporal trends show overall increases over time, with patterns varying somewhat betwen faculties. Crucially, the temporal trends observed are not always parallel for first and last authors (cf. Natural Sciences, Psychology, Theology) suggesting that the dynamics underlying academic productivity can differ somewhat for the different career stages, at least for some faculties. 
 
 ### Key findings
-- In the last 20 years, considerably more than half of the authors in the publications invesitgated irrespective of faculties, are male.
 
-- This gender gap in publications has decreased for most faculties over the last 20 years. 
+- We identified a persistent and sizeable publication gender gap at the University of Basel between 2000-2020. 
 
-- Generally, in the publications looked at, proportion of women among first authors was higher than among last authors. 
+- The publication gender gap has decreased over the last 20 years, albeit at different rates across the 7 faculties that compose the University of Basel. 
+
+- The publication gender gap is larger and more persistant for last (i.e., senior authors) for some but not all faculties, suggesting that different dynamics are at play across faculties and career stages. 
 
 ## Limitations and Outlook
 
