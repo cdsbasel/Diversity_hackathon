@@ -393,7 +393,7 @@ kable(table)
 ```
 ## Linking the Publication and Employment Gender Gaps: The Role of Seniority
 
-First authorship is typically (but not always) associated with junior academic roles in publications involving multiple authors, while last authorship typically cues seniority. Consequently, distinguishing between first and last authorship can allow us to consider trends in the publication gender gap as a function of seniority (i.e., career stage). When considering these analysis and, particularly, comparing between faculties, it should be noted that determination of authorship order follows different practices across fields (e.g., alphabetical order in economics). Below, we show the breakdown of the publication gap by first vs. last author (upper panel) along with the percentage employment of females in professorships vs. academic staff (lower panel). 
+First authorship is typically (but not always) associated with junior academic roles in publications involving multiple authors, while last authorship typically cues seniority. Consequently, distinguishing between first and last authorship can allow us to consider trends in the publication gender gap as a function of seniority (i.e., career stage). When considering these analysis and, particularly, comparing between faculties, it should be noted that determination of authorship order follows different practices across fields (e.g., alphabetical order in economics). Below, we show the breakdown of the publication gap by first vs. last author for publications involving multiple authors (upper panel) along with the percentage employment of females in professorships vs. academic staff (lower panel). 
 
 ```{r, echo=FALSE, eval=TRUE, fig.width = 20, fig.height= 19}
 
@@ -412,7 +412,7 @@ fig_authors_staff
 
 - The publication gender gap has decreased over the last 20 years, albeit at different rates across the 7 faculties that compose the University of Basel. 
 
-- The publication gender gap is larger and more persistant for last (i.e., senior authors) for some faculties, suggesting that different dynamics are at play for different career stages for at least some organizational units of the University of Basel. 
+- The publication gender gap is larger and more persistent for last (i.e., senior authors) for some faculties, suggesting that different dynamics are at play for different career stages for at least some organizational units of the University of Basel. 
 
 ## Limitations and Outlook
 
