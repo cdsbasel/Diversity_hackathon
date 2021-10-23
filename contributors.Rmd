@@ -2,5 +2,20 @@
 title: "Contributors"
 description: Meet the team
 ---
+### Organizers:
+- Rui Mata
+- Dirk Wulff
 
+### Students, Assistants, Helpers:
+- Samuel Aeschbach
+- Alexandra Bagaïni
+- Nina Frings
+- Fiona Gröflin
+- Zakir Hussain
+- Mariela Jaffé
+- Yunrui Liu
+- Tamara Lotz
+- Svea Maeder
+- Sophia Prix
+- Loreen Tisdall
 
