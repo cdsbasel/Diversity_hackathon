@@ -2,12 +2,11 @@
 title: "Contributors"
 description: Meet the team
 ---
-
-## Organizers:
+### Organizers:
 - Rui Mata
 - Dirk Wulff
 
-## Students, Assistants, Helpers:
+### Students, Assistants, Helpers:
 - Samuel Aeschbach
 - Alexandra Bagaïni
 - Nina Frings
