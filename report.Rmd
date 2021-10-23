@@ -98,12 +98,12 @@ pA1 <- ggplot(gender_inst_time, aes(x= year, y=publication, fill=gender)) +
              family = "Oswald Bold", size = 7, color = "white" ,
              inherit.aes = FALSE) +
   geom_label(data = label_f, aes(label=label), fill = NA,
-             y = 5, x = 2019.75, hjust= 1,  label.size = NA,
-             family = "Oswald Bold", size = 9, color = "#4E4BD8" ,
+             y = 5, x = 2019.8, hjust= 1,  label.size = NA,
+             family = "Oswald Bold", size = 9, color = "white" , # #4E4BD8
              inherit.aes = FALSE) +
   geom_label(data = label_m, aes(label=label), fill = NA,
-             y = 95, x = 2019.75, hjust= 1,  label.size = NA,
-             family = "Oswald Bold", size = 9, color ="#4ADABF" ,
+             y = 95, x = 2019.8, hjust= 1,  label.size = NA,
+             family = "Oswald Bold", size = 9, color ="white" , # #4ADABF
              inherit.aes = FALSE) +
   scale_x_continuous(breaks = c(2000, 2020)) +
   scale_y_continuous(expand = c(0.01,0), breaks = c(0, 100)) +
@@ -327,13 +327,70 @@ prop_fem_inst_nyr <- author_dat %>%
   group_by(organisation_name) %>%
   summarise(prop_female = mean(mean_f, na.rm = TRUE))
 
+# create summary table  
+
+prop_fem_total <- pub_data %>%
+  ungroup() %>% 
+  summarise(prop_female = 100*mean(gender_proportion, na.rm = TRUE))
+
+prop_fem_inst_year <- pub_data %>%
+select(year, gender_proportion, `Org-Swiss Tropical and Public Health Institute`: `Org-Basel Institute on Governance`) %>%
+  pivot_longer(!year:gender_proportion,names_to = "organisation_name", values_to = "applies") %>% 
+  filter(applies == 1) %>% #only select those rows that could be classified
+  mutate(organisation_name = case_when(organisation_name == "Org-Faculty of Theology" ~ "Theology",
+                                       organisation_name == "Org-Faculty of Science" ~ "Natural Sciences",
+                                       organisation_name == "Org-Faculty of Law" ~ "Law",
+                                       organisation_name == "Org-Faculty of Humanties and Social Sciences" ~ "Humanities & Social Sciences",
+                                       organisation_name == "Org-Faculty of Medicine"  ~ "Medicine",
+                                       organisation_name == "Org-Faculty of Business and Economics" ~ "Business & Economics",
+                                       organisation_name == "Org-Faculty of Psychology" ~ "Psychology")) %>% 
+  filter(!is.na(organisation_name)) %>% # ignoring non-faculty organizations
+  group_by(organisation_name, year) %>% 
+  summarise(n=n(),prop_female = 100*mean(gender_proportion, na.rm = TRUE))
+
+# calc diff 2020-2000
+prop_fem_inst_diff <- prop_fem_inst_year %>%
+  filter(year %in% c(2020, 2000)) %>%
+  group_by(year, organisation_name) %>%
+  summarise(prop_female = mean(prop_female, na.rm = TRUE)) %>% 
+  group_by(organisation_name) %>% 
+  mutate(diff = diff(prop_female)) 
+
+# total N publications
+prop_fem_inst_n <- prop_fem_inst_year %>% 
+  summarise(n = sum(n, na.rm = TRUE))
+
+# total % females by faculty
+prop_fem_inst <- prop_fem_inst_year %>%
+  group_by(organisation_name) %>%
+  summarise(prop_female = mean(prop_female, na.rm = TRUE))
+
+# put tables together
+table<-prop_fem_inst_diff %>% 
+  pivot_wider(organisation_name,names_from = year,values_from = c(prop_female,diff)) %>% 
+  select(-diff_2000)
+
+table<-left_join(table,prop_fem_inst_n,by="organisation_name") # add n
+  
+table<-left_join(table,prop_fem_inst,by="organisation_name") %>%  # add 
+  select(organisation_name,n,prop_female,prop_female_2000,prop_female_2020,diff_2020) %>% 
+  mutate(across(where(is.numeric), round, 0))
+
+names(table)<-c("Faculty","N","% Female","% Fem 2000", "% Fem 2020", "Diff")
+  
 
 ```
 
-- The figure above shows evidence of a publication gender gap at the University of Basel. Across all faculties and time, there were overal fewer publications involving females (`r round(prop_fem_total$prop_female, 0)`%) relative to males (`r 100-round(prop_fem_total$prop_female, 0)`%). Notwithstanding, the figure suggests a general upward trend in the percentage of publications involving females over the last two decades, while in 2000 the percentage of female authors was `r round(prop_fem$prop_female[1], 0)`%, in 2020 this percentage was `r round(prop_fem$prop_female[2], 0)`%.
+- The figure above shows evidence of a publication gender gap at the University of Basel. Across all faculties and time, the predominance of the dark blue color indicates there were overall more publications involving males (`r 100-round(prop_fem_total$prop_female, 0)`%) relative to females (`r round(prop_fem_total$prop_female, 0)`%). Notwithstanding, the figure suggests a general upward trend in the percentage of publications involving females over the last two decades, while in 2000 the percentage of female authors was `r round(prop_fem$prop_female[1], 0)`%, in 2020 this percentage was `r round(prop_fem$prop_female[2], 0)`%.
 
-- The overall levels as well as temporal trends vary, however, markedly between faculties: some faculties show a greater percentage of publications involving females across the full 20-year period (2000-2020), most notably the Faculty of Humanities and Social Sciences (`r round(prop_fem_inst_nyr$prop_female[prop_fem_inst_nyr$organisation_name == "Humanities &\nSocial Sciences"], 0)`%), the Faculty of Psychology (`r round(prop_fem_inst_nyr$prop_female[prop_fem_inst_nyr$organisation_name == "Psychology"], 0)`%), and the Faculty of Law (`r round(prop_fem_inst_nyr$prop_female[prop_fem_inst_nyr$organisation_name == "Law"], 0)`%). Concerning temporal trends, some faculties have seen a greater increase, most notably the Faculty of Psychology, which saw an increase of `r round(prop_fem_inst$diff[prop_fem_inst$organisation_name == "Psychology" & prop_fem_inst$year == 2000], 0)`% from 2000 to 2020. 
+- The overall levels as well as temporal trends vary, however, markedly between faculties: some faculties show a greater percentage of publications involving females across the full 20-year period (2000-2020), most notably the Faculty of Psychology (`r round(prop_fem_inst$prop_female[prop_fem_inst_nyr$organisation_name == "Psychology"], 0)`%), the Faculty of Humanities and Social Sciences (`r round(prop_fem_inst$prop_female[prop_fem_inst_nyr$organisation_name == "Humanities &\nSocial Sciences"], 0)`%), and the Faculty of Law (`r round(prop_fem_inst$prop_female[prop_fem_inst_nyr$organisation_name == "Law"], 0)`%). Concerning temporal trends, some faculties have seen a greater increase, most notably the Faculty of Psychology, which saw an increase of `r round(prop_fem_inst_diff$diff[prop_fem_inst_diff$organisation_name == "Psychology" & prop_fem_inst_diff$year == 2000], 0)`% from 2000 to 2020. The following table shows the total number of publications, the overal percentage of publications involving females, as well as a breakdown for 2000 vs. 2020 and the difference between the two. 
 
+```{r, echo=FALSE, eval=TRUE}
+
+library(knitr)
+kable(table)
+
+```
 ## Linking the Publication and Employment Gender Gaps: The Role of Seniority
 
 First authorship is typically (but not always) associated with junior academic roles in publications involving multiple authors, while last authorship typically cues seniority. Consequently, distinguishing between first and last authorship can allow us to consider trends in the publication gender gap as a function of seniority (i.e., career stage). When considering these analysis and, particularly, comparing between faculties, it should be noted that determination of authorship order follows different practices across fields (e.g., alphabetical order in economics). Below, we show the breakdown of the publication gap by first vs. last author (upper panel) along with the percentage employment of females in professorships vs. academic staff (lower panel). 
@@ -355,7 +412,7 @@ fig_authors_staff
 
 - The publication gender gap has decreased over the last 20 years, albeit at different rates across the 7 faculties that compose the University of Basel. 
 
-- The publication gender gap is larger and more persistant for last (i.e., senior authors) for some but not all faculties, suggesting that different dynamics are at play across faculties and career stages. 
+- The publication gender gap is larger and more persistant for last (i.e., senior authors) for some faculties, suggesting that different dynamics are at play for different career stages for at least some organizational units of the University of Basel. 
 
 ## Limitations and Outlook
 
