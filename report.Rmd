@@ -48,7 +48,7 @@ We use data from the [Equal opportunities monitoring](https://www.unibas.ch/en/U
 
 #### Diversity Labeling from Author First Names
 
-We use information concerning diversity derived from the authors' first names. We recruited existing publicly available services (e.g., [genderize.io](https://genderize.io/)) to determine each author's individual characteristics, such as gender. Estimates are provided based on the services' databases that include hundreds of thousands of confirmed mappings between first names and individuals' characteristics. Additional details are provided on the [Data](data.html) page. 
+We use information concerning diversity derived from the authors' first names. We recruited existing publicly available services (e.g., [genderize.io](https://genderize.io/)) to determine each author's individual characteristics, such as gender. Estimates are provided based on the services' databases that include hundreds of thousands of confirmed mappings between first names and individuals' characteristics. The figure below shows the most frequent female (left) and male (right) names as identified by [genderize.io](https://genderize.io/). Additional details are provided on the [Data](data.html) page. 
 
 <img src="3_figures/wordcloud.png" width="100%"></img>
 
