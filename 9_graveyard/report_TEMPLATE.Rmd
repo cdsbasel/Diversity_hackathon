@@ -1,0 +1,42 @@
+---
+title: "Diversity at the University of Basel"
+description: Diversity at the University of Basel (2000-2020)
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+
+library(tidyverse)
+
+
+
+```
+
+## Background
+
+## Methods 
+
+## Gender Diversity
+
+```{r}
+
+
+```
+
+
+## Nationality
+
+```{r}
+
+```
+
+## Limitations and Outlook
+
+
+## Conclusion
+
+
+## References 
+
+
+

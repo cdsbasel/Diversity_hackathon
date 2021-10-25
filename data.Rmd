@@ -11,6 +11,8 @@ knitr::opts_chunk$set(echo = FALSE)
 
 We use data from a database listing the University of Basel's research output between 2000 and 2020. There are a total 67'269 publications including several different categories: 43'997 journal articles, 11'959 book chapters, 3'454 books (edited and authored), 2'014 proceedings articles, 1'671 theses, and 4'174 other items including news articles and discussion papers.   
 
+In addition, we use data from the [Equal opportunities monitoring](https://www.unibas.ch/en/University/Administration-Services/Vice-President-s-Office-for-People-and-Culture/Diversity-and-Inclusion/Diversity/Diversity-Management/Monitoring.html) concerning the percentage of females in different positions (i.e., professorships, academic staff) available for the period 2013-2019. 
+
 <i>Diversity Dimensions</i>
 
 We use information concerning diversity derived from the authors' first names. 
