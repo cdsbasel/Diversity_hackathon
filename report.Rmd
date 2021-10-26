@@ -1,6 +1,7 @@
 ---
 title: "Report"
 description: Visualizing diversity in research outputs at the University of Basel
+
 ---
 
 ```{r setup, include=FALSE}
@@ -14,6 +15,8 @@ library(readxl)
 pub_data <- read_csv("1_data/unibas_diversity.csv")
 prof_data <- read_xlsx("1_data/akademisches_unibas.xlsx", sheet = "female_perc")
 ```
+
+<img src="3_figures/header.png" width="80%"></img>
 
 ## Executive Summary
 
