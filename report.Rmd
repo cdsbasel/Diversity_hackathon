@@ -293,6 +293,8 @@ pA3 <- prof_data_l %>%
 
 ## The Publication Gender Gap at the University of Basel
 
+Past work has show a publication gender gap in the sciences (e.g., Ni, Smith, Yuan, Larivière, & Sugimoto, 2021; Odic & Wojcik, 2020). In what follows, we assess the publication gender gap at the University of Basel based on all outputs available in the university's research database. The figure below shows the publication gap over time separately for each of the 7 faculties of the University of Basel. 
+
 ```{r, echo=FALSE, eval=TRUE, fig.width = 20, fig.height= 10}
 
 #pA <- pA1/pA2/pA3
@@ -383,7 +385,7 @@ table<-left_join(table,prop_fem_inst,by="organisation_name") %>%  # add
   select(organisation_name,n,prop_female,prop_female_2000,prop_female_2020,diff_2020) %>% 
   mutate(across(where(is.numeric), round, 0))
 
-names(table)<-c("Faculty","N","% Female","% Fem 2000", "% Fem 2020", "% Diff")
+names(table)<-c("Faculty","Pubs","Total % Female","2000 % Female", "2020 % Female", "Diff %")
   
 
 ```
@@ -427,4 +429,7 @@ To be included after group discussion and input from Diversity Office (Oct 26th,
 
 ## References 
 
+Ni, C., Smith, E., Yuan, H., Larivière, V., & Sugimoto, C. R. (2021). The gendered nature of authorship. *Science Advances, 7*(36), eabe4639. [http://doi.org/10.1126/sciadv.abe4639](http://doi.org/10.1126/sciadv.abe4639)
+
 Odic, D., & Wojcik, E. H. (2020). The publication gender gap in psychology. *American Psychologist, 75*(1), 92–103. [http://doi.org/10.1037/amp0000480](http://doi.org/10.1037/amp0000480)
+
