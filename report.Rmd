@@ -48,9 +48,9 @@ We use data from the [Equal opportunities monitoring](https://www.unibas.ch/en/U
 
 #### Diversity Labeling from Author First Names
 
-We use information concerning diversity derived from the authors' first names. We recruited existing publicly available services (e.g., [genderize.io](https://genderize.io/)) to determine each author's individual characteristics, such as gender. Estimates are provided based on the services' databases that include hundreds of thousands of confirmed mappings between first names and individuals' characteristics. The figure below shows the most frequent female (left) and male (right) names as identified by [genderize.io](https://genderize.io/). Additional details are provided on the [Data](data.html) page. 
+We use information concerning diversity derived from the authors' first names. We recruited existing publicly available services (e.g., [genderize.io](https://genderize.io/)) to determine each author's individual characteristics, such as gender. Estimates are provided based on the services' databases that include hundreds of thousands of confirmed mappings between first names and individuals' characteristics. The figure below shows the most frequent male (left) and female (right) names as identified by [genderize.io](https://genderize.io/). Additional details are provided on the [Data](data.html) page. 
 
-<img src="3_figures/wordcloud.png" width="100%"></img>
+<img src="3_figures/wordcloud_3.png" width="100%"></img>
 
 Our report focuses on gender in line with the majority of past monitoring of diversity at the University of Basel and other similar efforts. Ideally, however, diversity should be conceptualized through several dimensions, that could include cultural and socio-economic background, political views, age, nationality, or religion, to name but a few. In our efforts, we strove to include different dimensions beyond gender, namely, nationality and age. Our simple validation efforts suggested, however, that such categorizations are unreliable so we refrain from reporting results concerning these dimensions below. We discuss limitations of our approach and alternative methods in the *Limitations and Outlook* section. 
 
