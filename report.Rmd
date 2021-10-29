@@ -432,7 +432,7 @@ There are a number of limitations associated with the results we present above, 
 
 - The number of publications per faculty and year are limited and relatively small for some organizational units (e.g., Theology) which makes difficult to assess trends over time, particularly when distinguishing between authors roles. 
 
-- We use faculty as organizational unit but some faculties are composed of an htereogenous number of departments covering different academic fields that may differ from each other in several respects (e.g., Faculty of Sciences). Future work could conduct more specific analysis per department or academic field, albeit smaller number of publications per organizational unit may present a limiting factor for such analyses. 
+- We use faculty as organizational unit but some faculties are composed of an htereogenous number of departments covering different academic fields that may differ from each other in several respects (e.g., Faculty of Natural Sciences). Future work could conduct more specific analysis per department or academic field, albeit smaller number of publications per organizational unit may present a limiting factor for such analyses. 
 
 - We cannot guarantee that the research database we relied upoon provides full and equal coverage of all researchers of the University of Basel. Future work could include the use of additional databases (e.g., Dimensions, Scopus, Web of Science) to assess the current coverage of the research database we used. 
 
