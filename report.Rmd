@@ -446,9 +446,7 @@ There are a number of limitations associated with the results we present above, 
 
 ## Outlook
 
-To the extent that factors leading to the employment gap are the same or correlated with the factors leading to publication success, one can expect the publication gap to be of the same or greater magnitude than the employment gap.
-
-Past work suggests that females are more likely to dedicate more time to teaching, have more family responsibilities, and receive less funding and recognition, each of these contributing to a widening of the gender publication gap over time relative to the extant employment gap. Monitoring the publication gap and, ideally, its underlying causes - particularly the available institutional resources - could be an important contribution of higher-education institutions to advancing equal opportunities in science and innovation. 
+To the extent that factors leading to the employment gap are the same or correlated with the factors leading to publication success, one can expect the publication gap to be of the same or greater magnitude than the employment gap. Past work suggests that females are more likely to dedicate more time to teaching, have more family responsibilities, and receive less funding and recognition, each of these contributing to a widening of the gender publication gap over time relative to the extant employment gap. Monitoring the publication gap and, ideally, its underlying causes - particularly the available institutional resources - could be an important contribution of higher-education institutions to advancing equal opportunities in science and innovation. 
 
 The flow diagram above presents a framework destilled from the existing literature (e.g.Huang et al., 2020; Ni et al. 2021, Odic & Woicik, 2020) and lists factors that may contribute to a widening gap between employment and academic output. 
 
@@ -459,6 +457,8 @@ There are a few recommendations that result from the framework above.
 - The University of Basel could expand its monitoring to assess inequalities in research productivity and its associated factors, specifically the university could expand current monitoring of financial support to academic staff to include financial amounts to males vs. females (cf.  [Career Advancement Activity Reports](https://www.unibas.ch/de/Universitaet/Administration-Services/Vizerektorat-Forschung/Nachwuchsfoerderung/Taetigkeitsberichte.html)) and additional monitoring of internal funding at the professorial level (startup, support staff, lab space). 
 
 - The University of Basel could be interested in linking academic productivity with individual characteristics that are not currently available for analysis (e.g., family status, childcare). There are several challenges associated with this approach, including issues of privacy, but analyses of academic output we present above using such variables have the potential to guide decisions concerning the role of personal characteristics (e.g., family responsibilities) that could receive specific attention by higher-education institutions. 
+
+- Despite our documentation of employment and publication gaps, one should acknoweldge that the University of Basel already has in place a number of programs to counteract these effects (e.g., Antelope). These programs are recent and likely to exert their effects over a time beyond the period we analyzed. Further, while our results support the claim of a (universally) larger publication relative to an employment gaps, the proportion of female authors seems to be increasing more strongly than female employment, which could be indicative of intervention success. A broader focus on program evaluation, including increases in academic productivity could be an important focus for future work on reducing inequalities at the University of Basel.
 
 ## References 
 
