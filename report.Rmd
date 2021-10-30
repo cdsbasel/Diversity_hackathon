@@ -442,21 +442,23 @@ There are a number of limitations associated with the results we present above, 
 
 - We should point out that the gender categorization used in our analyzes may function as a proxy for other individual characteristics or personal situations that correlate but are not equivalent to gender. For example, past research suggest that female academics spend more time caring for children and other family members, so gender may capture effects due to family responsibilities rather than gender per se (see also Outlook). 
 
-- Finally, we analyzed only one dimension of diversity: Gender. The use of similar approaches using other services that  categorize other individual characteristics could, however, be used in the future to complement the diversity monitoring of the University of Basel, for example, regarding country of origin or ethnicity (e.g., [https://www.namsor.com](https://www.namsor.com). 
+- Finally, we analyzed only one dimension of diversity: Gender. The use of similar approaches using other services that  categorize other individual characteristics could, however, be used in the future to complement the diversity monitoring of the University of Basel, for example, regarding country of origin or ethnicity (e.g., [https://www.namsor.com](https://www.namsor.com)). 
 
 ## Outlook
 
 To the extent that factors leading to the employment gap are the same or correlated with the factors leading to publication success, one can expect the publication gap to be of the same or greater magnitude than the employment gap.
 
-Past work suggests that females are more likely to dedicate more time to teaching, have more family responsibilities, and receive less funding and recognition, each of these contributing to a widening of the gender publication gap over time relative to the extant employment gap. Monitoring the publication gap and, ideally, its underlying causes - particularly the available institutional resources - could be an important contribution of higher-education institutions to advancing equal opportunities in science and innovation. The flow diagram above lists some factors derived from the existing literature on the employment and publication gaps (e.g.Huang et al., 2020; Ni et al. 2021, Odic & Woicik, 2020) that may contribute to a widening gap between employment and publication. 
+Past work suggests that females are more likely to dedicate more time to teaching, have more family responsibilities, and receive less funding and recognition, each of these contributing to a widening of the gender publication gap over time relative to the extant employment gap. Monitoring the publication gap and, ideally, its underlying causes - particularly the available institutional resources - could be an important contribution of higher-education institutions to advancing equal opportunities in science and innovation. 
+
+The flow diagram above presents a framework destilled from the existing literature (e.g.Huang et al., 2020; Ni et al. 2021, Odic & Woicik, 2020) and lists factors that may contribute to a widening gap between employment and academic output. 
 
 <img src="3_figures/leakypipeline.png" width="80%"></img>
 
-There are a few recommendations that result from the results above. 
+There are a few recommendations that result from the framework above. 
 
-- The University of Basel could expand its monitoring to include inequalities in research productivity and factors associated with such inequalities, most centrally monitoring of internal funding (startup, support staff). 
+- The University of Basel could expand its monitoring to assess inequalities in research productivity and its associated factors, specifically the university could expand current monitoring of financial support to academic staff to include financial amounts to males vs. females (cf.  [Career Advancement Activity Reports](https://www.unibas.ch/de/Universitaet/Administration-Services/Vizerektorat-Forschung/Nachwuchsfoerderung/Taetigkeitsberichte.html)) and additional monitoring of internal funding at the professorial level (startup, support staff, lab space). 
 
-- The University of Basel could be interested in linking academic productivity with individual characteristics that may or may not be currently available for analysis (e.g., family status, childcare). There are several challenges associated with this approach, including issues of privacy and equity but analyses of the nature we present above using such variable promise to provide more informed decisions concerning the role of personal characteristics that may or may not be amenable to intervention by higher-education institutions, such as the University of Basel. 
+- The University of Basel could be interested in linking academic productivity with individual characteristics that are not currently available for analysis (e.g., family status, childcare). There are several challenges associated with this approach, including issues of privacy, but analyses of academic output we present above using such variables have the potential to guide decisions concerning the role of personal characteristics (e.g., family responsibilities) that could receive specific attention by higher-education institutions. 
 
 ## References 
 
