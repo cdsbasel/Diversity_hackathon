@@ -38,25 +38,27 @@ gender_inst_time$gender = factor(gender_inst_time$gender,levels = c("MALE","FEMA
 charcoal <-  "#31424B"
 
 label_num <- data.frame(organisation_name= unique(gender_inst_time$organisation_name), label= c("50%", rep("", 6)))
-label_f <- data.frame(organisation_name= unique(gender_inst_time$organisation_name), label= c("FEMALE", rep("", 6)))
-label_m <- data.frame(organisation_name= unique(gender_inst_time$organisation_name), label= c("MALE", rep("", 6)))
+label_f <- data.frame(organisation_name= unique(gender_inst_time$organisation_name), 
+                      label= c("FEMALE", rep(NA_character_, 6)))
+label_m <- data.frame(organisation_name= unique(gender_inst_time$organisation_name),
+                      label= c("MALE", rep(NA_character_, 6)))
 
 pA1 <- ggplot(gender_inst_time, aes(x= year, y=publication, fill=gender)) +
   geom_bar(width = 1,position = "stack", stat = "identity") +
   scale_fill_manual(values = c("FEMALE" = "#4ADABF", "MALE" = "#4E4BD8"))+
   geom_hline(yintercept = 50, linetype = "dashed", color = "white") +
   theme_void() +
-  geom_label(data = label_num, aes(label=label), fill = NA,
-             x = 2001, y = 51, hjust= 0, vjust = 0,  label.size = NA,
-             family = "Oswald Bold", size = 7, color = "white" ,
+  geom_label(data = label_num, aes(label=label),
+             x = 2005, y = 51, vjust = 0,  label.size = NA,
+             family = "Oswald Bold", size = 6, color = "white" , fill = NA,
              inherit.aes = FALSE) +
-  geom_label(data = label_f, aes(label=label), fill = NA,
-             y = 4, x = 2019.85, hjust= 1,  label.size = NA,
-             family = "Oswald Bold", size = 9, color = "white" , # #4E4BD8
+  geom_label(data = label_f, aes(label=label), color = charcoal, fill = "white",
+             y = 8, x = 2005,  label.size = NA,
+             family = "Oswald Bold", size = 6,
              inherit.aes = FALSE) +
-  geom_label(data = label_m, aes(label=label), fill = NA,
-             y = 96, x = 2019.85, hjust= 1,  label.size = NA,
-             family = "Oswald Bold", size = 9, color ="white" , # #4ADABF
+  geom_label(data = label_m, aes(label=label), color = charcoal, fill = "white",
+             y = 92, x = 2005, label.size = NA,
+             family = "Oswald Bold", size = 6,
              inherit.aes = FALSE) +
   scale_x_continuous(breaks = c(2000, 2020)) +
   scale_y_continuous(expand = c(0.01,0), breaks = c(0, 100)) +
@@ -109,25 +111,25 @@ gender_inst_time$gender = factor(gender_inst_time$gender,levels = c("MALE","FEMA
 charcoal <-  "#31424B"
 
 label_num <- data.frame(organisation_name= unique(gender_inst_time$organisation_name), label= c("50%", rep("", 6)))
-label_f <- data.frame(organisation_name= unique(gender_inst_time$organisation_name), label= c("FEMALE", rep("", 6)))
-label_m <- data.frame(organisation_name= unique(gender_inst_time$organisation_name), label= c("MALE", rep("", 6)))
+label_f <- data.frame(organisation_name= unique(gender_inst_time$organisation_name), label= c("FEMALE", rep(NA_character_, 6)))
+label_m <- data.frame(organisation_name= unique(gender_inst_time$organisation_name), label= c("MALE", rep(NA_character_, 6)))
 
 pB1 <- ggplot(gender_inst_time, aes(x= year, y=employed, fill=gender)) +
   geom_bar(width = 1,position = "stack", stat = "identity") +
-  scale_fill_manual(values = c("FEMALE" = "#4ADABF", "MALE" = "#4E4BD8", "NA" = "grey"))+
+  scale_fill_manual(values = c("FEMALE" = "#4ADABF", "MALE" = "#4E4BD8", "NA" = "grey85"))+
   geom_hline(yintercept = 50, linetype = "dashed", color = "white") +
   theme_void() +
-  geom_label(data = label_num, aes(label=label), fill = NA,
+  geom_label(data = label_num, aes(label=label),
              x = 2013, y = 51, hjust= 0, vjust = 0,  label.size = NA,
-             family = "Oswald Bold", size = 7, color = "white" ,
+             family = "Oswald Bold", size = 6, color = "white" , fill = NA,
              inherit.aes = FALSE) +
-  geom_label(data = label_f, aes(label=label), fill = NA,
-             y = 4, x = 2019.85, hjust= 1,  label.size = NA,
-             family = "Oswald Bold", size = 9, color = "white" , # #4E4BD8
+  geom_label(data = label_f, aes(label=label), color = charcoal, fill = "white",
+             y = 8, x = 2015, hjust= 0.5,  label.size = NA,
+             family = "Oswald Bold", size = 6,
              inherit.aes = FALSE) +
-  geom_label(data = label_m, aes(label=label), fill = NA,
-             y = 96, x = 2019.85, hjust= 1,  label.size = NA,
-             family = "Oswald Bold", size = 9, color ="white" , # #4ADABF
+  geom_label(data = label_m, aes(label=label), color = charcoal, fill = "white",
+             y = 92, x = 2015, hjust= 0.5,  label.size = NA,
+             family = "Oswald Bold", size = 6,
              inherit.aes = FALSE) +
   scale_x_continuous(breaks = c(2000, 2013, 2020)) +
   scale_y_continuous(expand = c(0.01,0), breaks = c(0, 100)) +
@@ -189,8 +191,8 @@ author_dat <- bind_rows(author_first, author_last)
 
 
 label_num <- data.frame(organisation_name= unique(author_dat$organisation_name), label= c("50%", rep("", 6)))
-label_f <- data.frame(organisation_name= unique(author_dat$organisation_name), label= c("FIRST AUTHOR", rep("", 6)))
-label_l <- data.frame(organisation_name= unique(author_dat$organisation_name), label= c("LAST AUTHOR", rep("", 6)))
+label_f <- data.frame(organisation_name= unique(author_dat$organisation_name), label= c("FIRST AUTHOR", rep(NA_character_, 6)))
+label_l <- data.frame(organisation_name= unique(author_dat$organisation_name), label= c("LAST AUTHOR", rep(NA_character_, 6)))
 
 
 # plot
@@ -205,15 +207,15 @@ pA2 <- author_dat %>%
   theme_void() +
   geom_label(data = label_num, aes(label=label), fill = NA,
              x = 2001, y = 51, hjust= 0, vjust = 0,  label.size = NA,
-             family = "Oswald Bold", size = 7, color = "white" ,
+             family = "Oswald Bold", size = 6, color = "white" ,
              inherit.aes = FALSE) +
-  geom_label(data = label_f, aes(label=label), fill = NA,
-             y = 89, x = 2020, hjust= 1, vjust = 1,  label.size = NA,
-             family = "Oswald Bold", size = 7, color = "#4ADABF" ,
+  geom_label(data = label_f, aes(label=label), fill = charcoal,
+             y = 90, x = 2001, hjust= 0, vjust = 0.5,  label.size = NA,
+             family = "Oswald Bold", size = 6, color = "#4ADABF" ,
              inherit.aes = FALSE) +
-  geom_label(data = label_l, aes(label=label), fill = NA,
-             y = 82, x = 2020, hjust= 1, vjust = 1,  label.size = NA,
-             family = "Oswald Bold", size = 7, color = "white" ,
+  geom_label(data = label_l, aes(label=label), fill = charcoal,
+             y = 82, x = 2001, hjust= 0, vjust = 0.5,  label.size = NA,
+             family = "Oswald Bold", size = 6, color = "white" ,
              inherit.aes = FALSE) +
   facet_wrap(toupper(organisation_name)~., nrow = 1)+
   scale_color_manual(values = col_pal) +
@@ -258,8 +260,8 @@ prof_data_l <- prof_data %>%
 prof_data_l$organisation_name <- factor(prof_data_l$organisation_name, levels = sort(unique(prof_data_l$organisation_name)))
 
 label_num <- data.frame(organisation_name= unique(prof_data_l$organisation_name), label= c(rep("", 6), "50%"))
-label_p <- data.frame(organisation_name= unique(prof_data_l$organisation_name), label= c(rep("", 6), "ACADEMIC STAFF"))
-label_m <- data.frame(organisation_name= unique(prof_data_l$organisation_name), label= c(rep("", 6), "PROFESSORSHIPS"))
+label_p <- data.frame(organisation_name= unique(prof_data_l$organisation_name), label= c(rep(NA_character_, 6), "ACADEMIC STAFF"))
+label_m <- data.frame(organisation_name= unique(prof_data_l$organisation_name), label= c(rep(NA_character_, 6), "PROFESSORSHIPS"))
 
 
 
@@ -269,25 +271,26 @@ col_pal <- c("#4ADABF", "white")
 
 pB2 <- prof_data_l %>% 
   ggplot(aes(x = year, y = perc, color = position))+ 
+  geom_rect(xmin = -Inf, xmax = 2012.25, ymin = -Inf, ymax = Inf, fill = "grey85", color = NA) +
   geom_smooth(method = "lm",formula = y ~x, se = FALSE, fullrange=FALSE, size = 1.75) +
   geom_point(size = 3.5)+
   theme_void() +
   geom_label(data = label_num, aes(label=label), fill = NA,
-             x = 2001, y = 51, hjust= 0, vjust = 0,  label.size = NA,
+             x = 2015, y = 51, vjust = 0,  label.size = NA,
              family = "Oswald Bold", size = 6, color = "white" ,
              inherit.aes = FALSE) +
-  geom_label(data = label_p, aes(label=label), fill = NA,
-             y = 89, x = 2020, hjust= 1, vjust = 1,  label.size = NA,
+  geom_label(data = label_p, aes(label=label), fill = charcoal,
+             y = 90, x = 2001, hjust= 0, vjust = 0.5,  label.size = NA,
              family = "Oswald Bold", size = 6, color = "#4ADABF" ,
              inherit.aes = FALSE) +
-  geom_label(data = label_m, aes(label=label), fill = NA,
-             y = 82, x = 2020, hjust= 1, vjust = 1,  label.size = NA,
+  geom_label(data = label_m, aes(label=label), fill = charcoal,
+             y = 82, x = 2001, hjust= 0, vjust = 0.5,  label.size = NA,
              family = "Oswald Bold", size = 6, color = "white" ,
              inherit.aes = FALSE) +
   facet_wrap(toupper(organisation_name)~., nrow = 1)+
   scale_color_manual(values = col_pal) +
   geom_hline(yintercept = 50, linetype = "dashed", color = "white") +
-  scale_x_continuous(breaks = c(2000, 2020), limits = c(2000,2020)) +
+  scale_x_continuous(breaks = c(2000, 2013, 2020), limits = c(2000,2020)) +
   scale_y_continuous(breaks = c(0, 100), limits = c(0,100)) +
   labs(title = "PERCENTAGE OF FEMALES EMPLOYED: ACADEMIC STAFF VS. PROFESSORSHIPS (2013 - 2020)", 
        x = "YEAR", y = "PERCENTAGE",
@@ -307,70 +310,70 @@ pB2 <- prof_data_l %>%
     plot.caption =element_text(family = "Oswald ExtraLight", size = 20, hjust = 1, margin = margin(t = 20, b = 3, r = 3)))
 
 
-# FUNDING OVER TIME : CLINICAL VS. THE OTHER FACULTIES (?)
-# data
-gender_inst_time <- pub_data %>% 
-  select(year, gender_proportion, `Org-Swiss Tropical and Public Health Institute`: `Org-Basel Institute on Governance`) %>%
-  pivot_longer(!year:gender_proportion,names_to = "organisation_name", values_to = "applies") %>% 
-  filter(applies == 1) %>% #only select those rows that could be classified
-  mutate(organisation_name = case_when(organisation_name == "Org-Faculty of Theology" ~ "Theology",
-                                       organisation_name == "Org-Faculty of Science" ~ "Natural Sciences",
-                                       organisation_name == "Org-Faculty of Law" ~ "Law",
-                                       organisation_name == "Org-Faculty of Humanties and Social Sciences" ~ "Humanities &\nSocial Sciences",
-                                       organisation_name == "Org-Faculty of Medicine"  ~ "Medicine",
-                                       organisation_name == "Org-Faculty of Business and Economics" ~ "Business &\nEconomics",
-                                       organisation_name == "Org-Faculty of Psychology" ~ "Psychology")) %>% 
-  filter(!is.na(organisation_name)) %>% # ignoring non-faculty organizations
-  group_by(organisation_name, year) %>% 
-  summarise(FEMALE = 100*mean(gender_proportion, na.rm = TRUE),
-            MALE = 100 - FEMALE) %>%
-  pivot_longer(FEMALE:MALE, names_to = "gender", values_to = "publication")
-
-gender_inst_time$gender = factor(gender_inst_time$gender,levels = c("MALE","FEMALE"))
-
-
-# Plot
-
-charcoal <-  "#31424B"
-
-label_num <- data.frame(organisation_name= unique(gender_inst_time$organisation_name), label= c("50%", rep("", 6)))
-label_f <- data.frame(organisation_name= unique(gender_inst_time$organisation_name), label= c("FEMALE", rep("", 6)))
-label_m <- data.frame(organisation_name= unique(gender_inst_time$organisation_name), label= c("MALE", rep("", 6)))
-
-pA1 <- ggplot(gender_inst_time, aes(x= year, y=publication, fill=gender)) +
-  geom_bar(width = 1,position = "stack", stat = "identity") +
-  scale_fill_manual(values = c("FEMALE" = "#4ADABF", "MALE" = "#4E4BD8"))+
-  geom_hline(yintercept = 50, linetype = "dashed", color = "white") +
-  theme_void() +
-  geom_label(data = label_num, aes(label=label), fill = NA,
-             x = 2001, y = 51, hjust= 0, vjust = 0,  label.size = NA,
-             family = "Oswald Bold", size = 7, color = "white" ,
-             inherit.aes = FALSE) +
-  geom_label(data = label_f, aes(label=label), fill = NA,
-             y = 4, x = 2019.85, hjust= 1,  label.size = NA,
-             family = "Oswald Bold", size = 9, color = "white" , # #4E4BD8
-             inherit.aes = FALSE) +
-  geom_label(data = label_m, aes(label=label), fill = NA,
-             y = 96, x = 2019.85, hjust= 1,  label.size = NA,
-             family = "Oswald Bold", size = 9, color ="white" , # #4ADABF
-             inherit.aes = FALSE) +
-  scale_x_continuous(breaks = c(2000, 2020)) +
-  scale_y_continuous(expand = c(0.01,0), breaks = c(0, 100)) +
-  facet_wrap(.~ toupper(organisation_name), nrow = 1) +
-  labs(title = "PERCENTAGE OF FEMALE AUTHORS (2000 - 2020)", 
-       x = "YEAR", y = "PERCENTAGE",
-       caption = "Data from the University of Basel.") +
-  theme(legend.position = "none",
-        axis.text.x = element_text(family = "Oswald", size = 14, colour = "grey60"),
-        axis.text.y = element_text(family = "Oswald", size = 14, colour = "grey60"),
-        panel.spacing = unit(1, "lines"),
-        strip.text = element_text(family = "Oswald Bold", size = 18, colour = charcoal),
-        axis.title.x = element_text(family = "Oswald Bold", size = 18, colour = "grey60"),
-        axis.title.y = element_text(family = "Oswald Bold", size = 18, colour = "grey60", angle = 90),
-        plot.title = element_text(face = "bold", family = "Oswald", hjust = 0, margin = margin(t = 40,b = 25), size = 24, color = charcoal),
-        plot.subtitle = element_text(family = "Oswald", hjust = 0.008, margin = margin(b = 10), size = 17, color = charcoal),
-        plot.caption =element_text(family = "Oswald ExtraLight", size = 20, hjust = 1, margin = margin(t = 20, b = 3, r = 3)))
-
+# # FUNDING OVER TIME : CLINICAL VS. THE OTHER FACULTIES (?)
+# # data
+# gender_inst_time <- pub_data %>% 
+#   select(year, gender_proportion, `Org-Swiss Tropical and Public Health Institute`: `Org-Basel Institute on Governance`) %>%
+#   pivot_longer(!year:gender_proportion,names_to = "organisation_name", values_to = "applies") %>% 
+#   filter(applies == 1) %>% #only select those rows that could be classified
+#   mutate(organisation_name = case_when(organisation_name == "Org-Faculty of Theology" ~ "Theology",
+#                                        organisation_name == "Org-Faculty of Science" ~ "Natural Sciences",
+#                                        organisation_name == "Org-Faculty of Law" ~ "Law",
+#                                        organisation_name == "Org-Faculty of Humanties and Social Sciences" ~ "Humanities &\nSocial Sciences",
+#                                        organisation_name == "Org-Faculty of Medicine"  ~ "Medicine",
+#                                        organisation_name == "Org-Faculty of Business and Economics" ~ "Business &\nEconomics",
+#                                        organisation_name == "Org-Faculty of Psychology" ~ "Psychology")) %>% 
+#   filter(!is.na(organisation_name)) %>% # ignoring non-faculty organizations
+#   group_by(organisation_name, year) %>% 
+#   summarise(FEMALE = 100*mean(gender_proportion, na.rm = TRUE),
+#             MALE = 100 - FEMALE) %>%
+#   pivot_longer(FEMALE:MALE, names_to = "gender", values_to = "publication")
+# 
+# gender_inst_time$gender = factor(gender_inst_time$gender,levels = c("MALE","FEMALE"))
+# 
+# 
+# # Plot
+# 
+# charcoal <-  "#31424B"
+# 
+# label_num <- data.frame(organisation_name= unique(gender_inst_time$organisation_name), label= c("50%", rep("", 6)))
+# label_f <- data.frame(organisation_name= unique(gender_inst_time$organisation_name), label= c("FEMALE", rep("", 6)))
+# label_m <- data.frame(organisation_name= unique(gender_inst_time$organisation_name), label= c("MALE", rep("", 6)))
+# 
+# pA1 <- ggplot(gender_inst_time, aes(x= year, y=publication, fill=gender)) +
+#   geom_bar(width = 1,position = "stack", stat = "identity") +
+#   scale_fill_manual(values = c("FEMALE" = "#4ADABF", "MALE" = "#4E4BD8"))+
+#   geom_hline(yintercept = 50, linetype = "dashed", color = "white") +
+#   theme_void() +
+#   geom_label(data = label_num, aes(label=label), fill = NA,
+#              x = 2001, y = 51, hjust= 0, vjust = 0,  label.size = NA,
+#              family = "Oswald Bold", size = 7, color = "white" ,
+#              inherit.aes = FALSE) +
+#   geom_label(data = label_f, aes(label=label), fill = NA,
+#              y = 4, x = 2019.85, hjust= 1,  label.size = NA,
+#              family = "Oswald Bold", size = 9, color = "white" , # #4E4BD8
+#              inherit.aes = FALSE) +
+#   geom_label(data = label_m, aes(label=label), fill = NA,
+#              y = 96, x = 2019.85, hjust= 1,  label.size = NA,
+#              family = "Oswald Bold", size = 9, color ="white" , # #4ADABF
+#              inherit.aes = FALSE) +
+#   scale_x_continuous(breaks = c(2000, 2020)) +
+#   scale_y_continuous(expand = c(0.01,0), breaks = c(0, 100)) +
+#   facet_wrap(.~ toupper(organisation_name), nrow = 1) +
+#   labs(title = "PERCENTAGE OF FEMALE AUTHORS (2000 - 2020)", 
+#        x = "YEAR", y = "PERCENTAGE",
+#        caption = "Data from the University of Basel.") +
+#   theme(legend.position = "none",
+#         axis.text.x = element_text(family = "Oswald", size = 14, colour = "grey60"),
+#         axis.text.y = element_text(family = "Oswald", size = 14, colour = "grey60"),
+#         panel.spacing = unit(1, "lines"),
+#         strip.text = element_text(family = "Oswald Bold", size = 18, colour = charcoal),
+#         axis.title.x = element_text(family = "Oswald Bold", size = 18, colour = "grey60"),
+#         axis.title.y = element_text(family = "Oswald Bold", size = 18, colour = "grey60", angle = 90),
+#         plot.title = element_text(face = "bold", family = "Oswald", hjust = 0, margin = margin(t = 40,b = 25), size = 24, color = charcoal),
+#         plot.subtitle = element_text(family = "Oswald", hjust = 0.008, margin = margin(b = 10), size = 17, color = charcoal),
+#         plot.caption =element_text(family = "Oswald ExtraLight", size = 20, hjust = 1, margin = margin(t = 20, b = 3, r = 3)))
+# 
 
 
 
@@ -411,24 +414,24 @@ label_m <- data.frame(label= "MALE")
 
 pC1 <- ggplot(gender_inst_time, aes(x= year, y=funding, fill=gender)) +
   geom_bar(width = 1,position = "stack", stat = "identity") +
-  scale_fill_manual(values = c("FEMALE" = "#4ADABF", "MALE" = "#4E4BD8", "NA" = "grey"))+
+  scale_fill_manual(values = c("FEMALE" = "#4ADABF", "MALE" = "#4E4BD8", "NA" = "grey85"))+
   geom_hline(yintercept = 50, linetype = "dashed", color = "white") +
   theme_void() +
-  geom_label(data = label_num, aes(label=label), fill = NA,
-             x = 2009, y = 51, hjust= 0, vjust = 0,  label.size = NA,
-             family = "Oswald Bold", size = 7, color = "white" ,
+  geom_label(data = label_num, aes(label=label),
+             x = 2008, y = 51, hjust= 0, vjust = 0,  label.size = NA,
+             family = "Oswald Bold", size = 10, color = "white" , fill = NA,
              inherit.aes = FALSE) +
-  geom_label(data = label_f, aes(label=label), fill = NA,
-             y = 4, x = 2019.85, hjust= 1,  label.size = NA,
-             family = "Oswald Bold", size = 9, color = "white" , # #4E4BD8
+  geom_label(data = label_f, aes(label=label), color = charcoal, fill = "white",
+             y = 8, x = 2008, hjust= 0.5,  label.size = NA,
+             family = "Oswald Bold", size = 10,
              inherit.aes = FALSE) +
-  geom_label(data = label_m, aes(label=label), fill = NA,
-             y = 96, x = 2019.85, hjust= 1,  label.size = NA,
-             family = "Oswald Bold", size = 9, color ="white" , # #4ADABF
+  geom_label(data = label_m, aes(label=label), color = charcoal, fill = "white",
+             y = 92, x = 2008, hjust= 0.5,  label.size = NA,
+             family = "Oswald Bold", size = 10,
              inherit.aes = FALSE) +
   scale_x_continuous(breaks = c(2000, 2020)) +
   scale_y_continuous(expand = c(0.01,0), breaks = c(0, 100)) +
-  labs(title = "PERCENTAGE OF FEMALE FUNDING: GENERAL (2008 - 2020)", 
+  labs(title = "PERCENTAGE OF FEMALES FUNDED: GENERAL (2008 - 2020)", 
        x = "YEAR", y = "PERCENTAGE",
        caption = "Data from the University of Basel.") +
   theme(legend.position = "none",
@@ -477,24 +480,24 @@ label_m <- data.frame(label= "MALE")
 
 pC2 <- ggplot(gender_inst_time, aes(x= year, y=funding, fill=gender)) +
   geom_bar(width = 1,position = "stack", stat = "identity") +
-  scale_fill_manual(values = c("FEMALE" = "#4ADABF", "MALE" = "#4E4BD8", "NA" = "grey"))+
+  scale_fill_manual(values = c("FEMALE" = "#4ADABF", "MALE" = "#4E4BD8", "NA" = "grey85"))+
   geom_hline(yintercept = 50, linetype = "dashed", color = "white") +
   theme_void() +
-  geom_label(data = label_num, aes(label=label), fill = NA,
-             x = 2011, y = 51, hjust= 0, vjust = 0,  label.size = NA,
-             family = "Oswald Bold", size = 7, color = "white" ,
+  geom_label(data = label_num, aes(label=label),
+             x = 2010, y = 51, hjust= 0, vjust = 0,  label.size = NA,
+             family = "Oswald Bold", size = 10, color = "white" , fill = NA,
              inherit.aes = FALSE) +
-  geom_label(data = label_f, aes(label=label), fill = NA,
-             y = 4, x = 2019.85, hjust= 1,  label.size = NA,
-             family = "Oswald Bold", size = 9, color = "white" , # #4E4BD8
+  geom_label(data = label_f, aes(label=label), color = charcoal, fill = "white",
+             y = 8, x = 2010, hjust= 0.5,  label.size = NA,
+             family = "Oswald Bold", size = 10,
              inherit.aes = FALSE) +
-  geom_label(data = label_m, aes(label=label), fill = NA,
-             y = 96, x = 2019.85, hjust= 1,  label.size = NA,
-             family = "Oswald Bold", size = 9, color ="white" , # #4ADABF
+  geom_label(data = label_m, aes(label=label), color = charcoal, fill = "white",
+             y = 92, x = 2010, hjust= 0.5,  label.size = NA,
+             family = "Oswald Bold", size = 10,
              inherit.aes = FALSE) +
   scale_x_continuous(breaks = c(2000, 2020)) +
   scale_y_continuous(expand = c(0.01,0), breaks = c(0, 100)) +
-  labs(title = "PERCENTAGE OF FEMALE FUNDING: CLINICAL (2010 - 2020)", 
+  labs(title = "PERCENTAGE OF FEMALES FUNDED: CLINICAL (2010 - 2020)", 
        x = "YEAR", y = "PERCENTAGE",
        caption = "Data from the University of Basel.") +
   theme(legend.position = "none",
