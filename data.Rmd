@@ -17,7 +17,7 @@ In addition, we use data from the [Equal opportunities monitoring](https://www.u
 
 We use information concerning diversity derived from the authors' first names. 
 
-We recruit the services [genderize.io](https://genderize.io/), [agify.io](https://agify.io/), [nationalize.io](https://nationalize.io/) to determine the authors' probable gender, age, and nation, respectively. Estimates are provided based on the services' databases that include hundreds of thousands of confirmed mappings on the internet between first names and these three characteristics. In addition to probable categories, the services return information on confidence. For instance, for the name Alexandra, agify.io informs that 98% of 122'985 gender records point to a female gender, that the probable age is 27 based on 114,238 age records, and that there is a 11.7% probability that the nation is Romania, a 5.1% probability that the nation is Ecudor, and a 4.5% probability that the nation is Portugal.  
+We recruit the services [genderize.io](https://genderize.io/), [agify.io](https://agify.io/), [nationalize.io](https://nationalize.io/) to determine the authors' probable gender, age, and nation, respectively. Estimates are provided based on the services' databases that include hundreds of thousands of confirmed mappings on the internet between first names and these three characteristics. In addition to probable categories, the services return information on confidence. For instance, for the name Alexandra, agify.io informs that 98% of 122'985 gender records point to a female gender, that the probable age is 27 based on 114,238 age records, and that there is a 11.7% probability that the nation is Romania, a 5.1% probability that the nation is Ecuador, and a 4.5% probability that the nation is Portugal.  
 
 You can use the links above to try out the three services for yourself.  
 
@@ -27,7 +27,7 @@ https://agify.io?name=Samuel
 https://api.nationalize.io/?name=Samuel
 ```
 
-We have processed the data in the following way to simplify our analysis. For gender and age, we only use the probable value, irrespective of the number of instances or the assigned probability. For nation, we determine whether any of the three most probable nations include a "western" nation defined as geographic Europe, the US, Canada, and Australia. 
+We have processed the data in the following way to simplify our analysis. For gender and age, we only use the probable value, irrespective of the number of instances or the assigned probability. For nation, we determine whether any of the three most probable nations include a "western" nation defined as geographic Europe, the US, Canada, New Zealand, and Australia. Additional checking of names suggested that this categorization of nationality is suboptimal and we refrain to present results concerning this dimension in our report. 
 
 <i>Organizational Units</i>
 

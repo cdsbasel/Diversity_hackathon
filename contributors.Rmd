@@ -2,11 +2,16 @@
 title: "Contributors"
 description: Meet the team
 ---
-### Organizers:
-- Rui Mata
-- Dirk Wulff
 
-### Students, Assistants, Helpers:
+<img src="3_figures/cds_brownbag_26Oct_2021.png" width="80%"></img>
+*Discussion of Hackathon results @ CDS Brownbag, Oct 26th 2021*
+
+### Guests
+Patricia Zweifel, Diversity Office
+
+Karin Hediger, Prof Dr. and Diversity Representative, Faculty of Psychology
+
+### Contributors (code, text, comments):
 - Samuel Aeschbach
 - Alexandra Bagaïni
 - Nina Frings
@@ -19,3 +24,6 @@ description: Meet the team
 - Sophia Prix
 - Loreen Tisdall
 
+### Organizers:
+- Rui Mata
+- Dirk Wulff

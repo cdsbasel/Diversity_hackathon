@@ -1,6 +1,7 @@
 ---
 title: "Report"
 description: Visualizing diversity in research outputs at the University of Basel
+
 ---
 
 ```{r setup, include=FALSE}
@@ -13,7 +14,11 @@ library(readxl)
 
 pub_data <- read_csv("1_data/unibas_diversity.csv")
 prof_data <- read_xlsx("1_data/akademisches_unibas.xlsx", sheet = "female_perc")
+fund_data_a <- read_xlsx("1_data/forschungsfonds.xlsx", sheet = "forschungsfonds")
+fund_data_b <- read_xlsx("1_data/forschungsfonds.xlsx", sheet = "forschungsfonds_clinical")
 ```
+
+<img src="3_figures/header.png" width="80%"></img>
 
 ## Executive Summary
 
@@ -48,18 +53,36 @@ We use data from the [Equal opportunities monitoring](https://www.unibas.ch/en/U
 
 #### Diversity Labeling from Author First Names
 
-We use information concerning diversity derived from the authors' first names. We recruited existing publicly available services (e.g., [genderize.io](https://genderize.io/)) to determine each author's individual characteristics, such as gender. Estimates are provided based on the services' databases that include hundreds of thousands of confirmed mappings between first names and individuals' characteristics. The figure below shows the most frequent female (left) and male (right) names as identified by [genderize.io](https://genderize.io/). Additional details are provided on the [Data](data.html) page. 
+We use information concerning diversity derived from the authors' first names. We recruited existing publicly available services (e.g., [genderize.io](https://genderize.io/)) to determine each author's individual characteristics, such as gender. Estimates are provided based on the services' databases that include hundreds of thousands of confirmed mappings between first names and individuals' characteristics. The figure below shows the most frequent male (left) and female (right) names as identified by [genderize.io](https://genderize.io/). Additional details are provided on the [Data](data.html) page. 
 
-<img src="3_figures/wordcloud.png" width="100%"></img>
+<img src="3_figures/wordcloud_3.png" width="100%"></img>
 
-Our report focuses on gender in line with the majority of past monitoring of diversity at the University of Basel and other similar efforts. Ideally, however, diversity should be conceptualized through several dimensions, that could include cultural and socio-economic background, political views, age, nationality, or religion, to name but a few. In our efforts, we strove to include different dimensions beyond gender, namely, nationality and age. Our simple validation efforts suggested, however, that such categorizations are unreliable so we refrain from reporting results concerning these dimensions below. We discuss limitations of our approach and alternative methods in the *Limitations and Outlook* section. 
+Our report focuses on gender in line with the majority of past monitoring of diversity at the University of Basel and other similar efforts. Ideally, however, diversity should be conceptualized through several dimensions, that could include cultural and socio-economic background, political views, age, nationality, or religion, to name but a few. In our efforts, we strove to include different dimensions beyond gender, namely, nationality and age. Our simple validation efforts suggested, however, that such categorizations are unreliable so we refrain from reporting results concerning these dimensions below. We discuss limitations of our approach and alternative methods in the *Limitations* and *Outlook* sections. 
 
 #### Disclaimer
 
 Our analyses used first names to estimate the gender of authors using extant technology. This classification system assigns names to either "female" or "male", thus, providing a traditional, binary classification of gender. The contributors would like to state that this choice is of technical and pragmatic nature and should not be understood as a rejection of more inclusive, non-binary gender definitions. 
 
 ```{r, echo=FALSE, eval=TRUE}
-# OVER TIME GENDER BY FACULTY ----------------------------------------------------------------
+
+##### ALL PLOTS ########
+
+
+### TOC
+
+# pA1 = PERCENTAGE OF FEMALE AUTHORS (2000 - 2020)
+# pA2 = PERCENTAGE OF FEMALE AUTHORS: FIRST VS. LAST (2000 - 2020)
+
+# pB1 = PERCENTAGE OF FEMALE FACULTY (2013 - 2020)
+# pB2 = PERCENTAGE OF FEMALES EMPLOYED: ACADEMIC STAFF VS. PROFESSORSHIPS (2013 - 2020)
+
+# pC1 = PERCENTAGE OF FEMALES FUNDED: GENERAL (2008 - 2020)
+# pC2 = PERCENTAGE OF FEMALES FUNDED: CLINICAL (2010 - 2020)
+
+
+
+### PLOTS
+# PUBLICATION OVER TIME GENDER BY FACULTY ----------------------------------------------------------------
 
 # data
 gender_inst_time <- pub_data %>% 
@@ -87,25 +110,27 @@ gender_inst_time$gender = factor(gender_inst_time$gender,levels = c("MALE","FEMA
 charcoal <-  "#31424B"
 
 label_num <- data.frame(organisation_name= unique(gender_inst_time$organisation_name), label= c("50%", rep("", 6)))
-label_f <- data.frame(organisation_name= unique(gender_inst_time$organisation_name), label= c("FEMALE", rep("", 6)))
-label_m <- data.frame(organisation_name= unique(gender_inst_time$organisation_name), label= c("MALE", rep("", 6)))
+label_f <- data.frame(organisation_name= unique(gender_inst_time$organisation_name), 
+                      label= c("FEMALE", rep(NA_character_, 6)))
+label_m <- data.frame(organisation_name= unique(gender_inst_time$organisation_name),
+                      label= c("MALE", rep(NA_character_, 6)))
 
 pA1 <- ggplot(gender_inst_time, aes(x= year, y=publication, fill=gender)) +
   geom_bar(width = 1,position = "stack", stat = "identity") +
   scale_fill_manual(values = c("FEMALE" = "#4ADABF", "MALE" = "#4E4BD8"))+
   geom_hline(yintercept = 50, linetype = "dashed", color = "white") +
   theme_void() +
-  geom_label(data = label_num, aes(label=label), fill = NA,
-             x = 2001, y = 51, hjust= 0, vjust = 0,  label.size = NA,
-             family = "Oswald Bold", size = 7, color = "white" ,
+  geom_label(data = label_num, aes(label=label),
+             x = 2005, y = 51, vjust = 0,  label.size = NA,
+             family = "Oswald Bold", size = 7, color = "white" , fill = NA,
              inherit.aes = FALSE) +
-  geom_label(data = label_f, aes(label=label), fill = NA,
-             y = 4, x = 2019.85, hjust= 1,  label.size = NA,
-             family = "Oswald Bold", size = 9, color = "white" , # #4E4BD8
+  geom_label(data = label_f, aes(label=label), color = charcoal, fill = "white",
+             y = 8, x = 2005,  label.size = NA,
+             family = "Oswald Bold", size = 7,
              inherit.aes = FALSE) +
-  geom_label(data = label_m, aes(label=label), fill = NA,
-             y = 96, x = 2019.85, hjust= 1,  label.size = NA,
-             family = "Oswald Bold", size = 9, color ="white" , # #4ADABF
+  geom_label(data = label_m, aes(label=label), color = charcoal, fill = "white",
+             y = 92, x = 2005, label.size = NA,
+             family = "Oswald Bold", size = 7,
              inherit.aes = FALSE) +
   scale_x_continuous(breaks = c(2000, 2020)) +
   scale_y_continuous(expand = c(0.01,0), breaks = c(0, 100)) +
@@ -114,8 +139,8 @@ pA1 <- ggplot(gender_inst_time, aes(x= year, y=publication, fill=gender)) +
        x = "YEAR", y = "PERCENTAGE",
        caption = "Data from the University of Basel.") +
   theme(legend.position = "none",
-        axis.text.x = element_text(family = "Oswald", size = 18, colour = "grey60"),
-        axis.text.y = element_text(family = "Oswald", size = 18, colour = "grey60"),
+        axis.text.x = element_text(family = "Oswald", size = 14, colour = "grey60"),
+        axis.text.y = element_text(family = "Oswald", size = 14, colour = "grey60"),
         panel.spacing = unit(1, "lines"),
         strip.text = element_text(family = "Oswald Bold", size = 18, colour = charcoal),
         axis.title.x = element_text(family = "Oswald Bold", size = 18, colour = "grey60"),
@@ -125,11 +150,78 @@ pA1 <- ggplot(gender_inst_time, aes(x= year, y=publication, fill=gender)) +
         plot.caption =element_text(family = "Oswald ExtraLight", size = 20, hjust = 1, margin = margin(t = 20, b = 3, r = 3)))
 
 
-
-# OVER TIME FEMALE 1ST and LAST AUTHOR BY FACULTY ----------------------------------------------------------------
+# EMPLOYMENT OVER TIME GENDER BY FACULTY ----------------------------------------------------------------
 
 # data
+gender_inst_time <- prof_data %>% 
+  pivot_longer(!organisation_name:position,names_to = "year", values_to = "perc") %>% 
+  mutate(position = toupper(position),
+         year = as.numeric(year),
+         organisation_name = case_when(organisation_name == "Phil.-Hist. Fakultät" ~ "Humanities &\nSocial Sciences",                 
+                                       organisation_name =="Phil.-Nat. Fakultät"  ~"Natural Sciences",                
+                                       organisation_name == "Medizinische Fakultät"  ~ "Medicine",              
+                                       organisation_name == "Juristische Fakultät" ~ "Law",                
+                                       organisation_name == "Fakultät für Psychologie"  ~"Psychology",           
+                                       organisation_name == "Theologische Fakultät"  ~ "Theology",                
+                                       organisation_name == "Wirtschaftswissenschaftliche Fakultät" ~ "Business &\nEconomics")) %>% 
+  group_by(organisation_name, year) %>% 
+  summarise(FEMALE = mean(perc),
+            MALE = 100 - FEMALE) %>%
+  pivot_longer(FEMALE:MALE, names_to = "gender", values_to = "employed")
 
+
+missing_dat <- crossing(year = c(2000:2012),
+                       gender = c("NA"),
+                       organisation_name = unique(gender_inst_time$organisation_name),
+                       employed = 100)
+
+gender_inst_time <- bind_rows(gender_inst_time, missing_dat)
+gender_inst_time$gender = factor(gender_inst_time$gender,levels = c("MALE","FEMALE", "NA"))
+
+# Plot
+
+charcoal <-  "#31424B"
+
+label_num <- data.frame(organisation_name= unique(gender_inst_time$organisation_name), label= c("50%", rep("", 6)))
+label_f <- data.frame(organisation_name= unique(gender_inst_time$organisation_name), label= c("FEMALE", rep(NA_character_, 6)))
+label_m <- data.frame(organisation_name= unique(gender_inst_time$organisation_name), label= c("MALE", rep(NA_character_, 6)))
+
+pB1 <- ggplot(gender_inst_time, aes(x= year, y=employed, fill=gender)) +
+  geom_bar(width = 1,position = "stack", stat = "identity") +
+  scale_fill_manual(values = c("FEMALE" = "#4ADABF", "MALE" = "#4E4BD8", "NA" = "grey85"))+
+  geom_hline(yintercept = 50, linetype = "dashed", color = "white") +
+  theme_void() +
+  geom_label(data = label_num, aes(label=label),
+             x = 2013, y = 51, hjust= 0, vjust = 0,  label.size = NA,
+             family = "Oswald Bold", size = 7, color = "white" , fill = NA,
+             inherit.aes = FALSE) +
+  geom_label(data = label_f, aes(label=label), color = charcoal, fill = "white",
+             y = 8, x = 2015, hjust= 0.5,  label.size = NA,
+             family = "Oswald Bold", size = 7,
+             inherit.aes = FALSE) +
+  geom_label(data = label_m, aes(label=label), color = charcoal, fill = "white",
+             y = 92, x = 2015, hjust= 0.5,  label.size = NA,
+             family = "Oswald Bold", size = 7,
+             inherit.aes = FALSE) +
+  scale_x_continuous(breaks = c(2000, 2013, 2020)) +
+  scale_y_continuous(expand = c(0.01,0), breaks = c(0, 100)) +
+  facet_wrap(.~ toupper(organisation_name), nrow = 1) +
+  labs(title = "PERCENTAGE OF FEMALE FACULTY (2013 - 2020)", 
+       x = "YEAR", y = "PERCENTAGE",
+       caption = "Data from the University of Basel.") +
+  theme(legend.position = "none",
+        axis.text.x = element_text(family = "Oswald", size = 14, colour = "grey60"),
+        axis.text.y = element_text(family = "Oswald", size = 14, colour = "grey60"),
+        panel.spacing = unit(1, "lines"),
+        strip.text = element_text(family = "Oswald Bold", size = 18, colour = charcoal),
+        axis.title.x = element_text(family = "Oswald Bold", size = 18, colour = "grey60"),
+        axis.title.y = element_text(family = "Oswald Bold", size = 18, colour = "grey60", angle = 90),
+        plot.title = element_text(face = "bold", family = "Oswald", hjust = 0, margin = margin(t = 40,b = 25), size = 24, color = charcoal),
+        plot.subtitle = element_text(family = "Oswald", hjust = 0.008, margin = margin(b = 10), size = 17, color = charcoal),
+        plot.caption =element_text(family = "Oswald ExtraLight", size = 20, hjust = 1, margin = margin(t = 20, b = 3, r = 3)))
+
+
+# PUBLICATION OVER TIME FEMALE 1ST and LAST AUTHOR BY FACULTY ----------------------------------------------------------------
 
 author_first <- pub_data %>% 
   filter(n_authors > 1) %>% 
@@ -171,8 +263,8 @@ author_dat <- bind_rows(author_first, author_last)
 
 
 label_num <- data.frame(organisation_name= unique(author_dat$organisation_name), label= c("50%", rep("", 6)))
-label_f <- data.frame(organisation_name= unique(author_dat$organisation_name), label= c("FIRST AUTHOR", rep("", 6)))
-label_l <- data.frame(organisation_name= unique(author_dat$organisation_name), label= c("LAST AUTHOR", rep("", 6)))
+label_f <- data.frame(organisation_name= unique(author_dat$organisation_name), label= c("FIRST AUTHOR", rep(NA_character_, 6)))
+label_l <- data.frame(organisation_name= unique(author_dat$organisation_name), label= c("LAST AUTHOR", rep(NA_character_, 6)))
 
 
 # plot
@@ -189,12 +281,12 @@ pA2 <- author_dat %>%
              x = 2001, y = 51, hjust= 0, vjust = 0,  label.size = NA,
              family = "Oswald Bold", size = 7, color = "white" ,
              inherit.aes = FALSE) +
-  geom_label(data = label_f, aes(label=label), fill = NA,
-             y = 89, x = 2020, hjust= 1, vjust = 1,  label.size = NA,
+  geom_label(data = label_f, aes(label=label), fill = charcoal,
+             y = 90, x = 2001, hjust= 0, vjust = 0.5,  label.size = NA,
              family = "Oswald Bold", size = 7, color = "#4ADABF" ,
              inherit.aes = FALSE) +
-  geom_label(data = label_l, aes(label=label), fill = NA,
-             y = 82, x = 2020, hjust= 1, vjust = 1,  label.size = NA,
+  geom_label(data = label_l, aes(label=label), fill = charcoal,
+             y = 82, x = 2001, hjust= 0, vjust = 0.5,  label.size = NA,
              family = "Oswald Bold", size = 7, color = "white" ,
              inherit.aes = FALSE) +
   facet_wrap(toupper(organisation_name)~., nrow = 1)+
@@ -220,8 +312,7 @@ pA2 <- author_dat %>%
 
 
 
-
-# OVER TIME PROFESSORS & NON-PROFESSORS BY FACULTY ----------------------------------------------------------------
+# EMPLOYMENT OVER TIME PROFESSORS & NON-PROFESSORS BY FACULTY ----------------------------------------------------------------
 
 # data
 prof_data_l <- prof_data %>% 
@@ -241,8 +332,8 @@ prof_data_l <- prof_data %>%
 prof_data_l$organisation_name <- factor(prof_data_l$organisation_name, levels = sort(unique(prof_data_l$organisation_name)))
 
 label_num <- data.frame(organisation_name= unique(prof_data_l$organisation_name), label= c(rep("", 6), "50%"))
-label_p <- data.frame(organisation_name= unique(prof_data_l$organisation_name), label= c(rep("", 6), "ACADEMIC STAFF"))
-label_m <- data.frame(organisation_name= unique(prof_data_l$organisation_name), label= c(rep("", 6), "PROFESSORSHIPS"))
+label_p <- data.frame(organisation_name= unique(prof_data_l$organisation_name), label= c(rep(NA_character_, 6), "ACADEMIC STAFF"))
+label_m <- data.frame(organisation_name= unique(prof_data_l$organisation_name), label= c(rep(NA_character_, 6), "PROFESSORSHIPS"))
 
 
 
@@ -250,35 +341,36 @@ label_m <- data.frame(organisation_name= unique(prof_data_l$organisation_name), 
 charcoal <-  "#31424B"
 col_pal <- c("#4ADABF", "white")
 
-pA3 <- prof_data_l %>% 
+pB2 <- prof_data_l %>% 
   ggplot(aes(x = year, y = perc, color = position))+ 
-  geom_smooth(method = "lm",formula = y ~x, se = FALSE, fullrange=TRUE, size = 1.75) +
+  geom_rect(xmin = -Inf, xmax = 2012.25, ymin = -Inf, ymax = Inf, fill = "grey85", color = NA) +
+  geom_smooth(method = "lm",formula = y ~x, se = FALSE, fullrange=FALSE, size = 1.75) +
   geom_point(size = 3.5)+
   theme_void() +
   geom_label(data = label_num, aes(label=label), fill = NA,
-             x = 2001, y = 51, hjust= 0, vjust = 0,  label.size = NA,
+             x = 2015, y = 51, vjust = 0,  label.size = NA,
              family = "Oswald Bold", size = 7, color = "white" ,
              inherit.aes = FALSE) +
-  geom_label(data = label_p, aes(label=label), fill = NA,
-             y = 89, x = 2020, hjust= 1, vjust = 1,  label.size = NA,
+  geom_label(data = label_p, aes(label=label), fill = charcoal,
+             y = 90, x = 2001, hjust= 0, vjust = 0.5,  label.size = NA,
              family = "Oswald Bold", size = 7, color = "#4ADABF" ,
              inherit.aes = FALSE) +
-  geom_label(data = label_m, aes(label=label), fill = NA,
-             y = 82, x = 2020, hjust= 1, vjust = 1,  label.size = NA,
+  geom_label(data = label_m, aes(label=label), fill = charcoal,
+             y = 82, x = 2001, hjust= 0, vjust = 0.5,  label.size = NA,
              family = "Oswald Bold", size = 7, color = "white" ,
              inherit.aes = FALSE) +
   facet_wrap(toupper(organisation_name)~., nrow = 1)+
   scale_color_manual(values = col_pal) +
   geom_hline(yintercept = 50, linetype = "dashed", color = "white") +
-  scale_x_continuous(breaks = c(2000, 2020), limits = c(2000,2020)) +
+  scale_x_continuous(breaks = c(2000, 2013, 2020), limits = c(2000,2020)) +
   scale_y_continuous(breaks = c(0, 100), limits = c(0,100)) +
-  labs(title = "PERCENTAGE OF FEMALES EMPLOYED: ACADEMIC STAFF VS. PROFESSORSHIPS (2013 - 2019)", 
+  labs(title = "PERCENTAGE OF FEMALES EMPLOYED: ACADEMIC STAFF VS. PROFESSORSHIPS (2013 - 2020)", 
        x = "YEAR", y = "PERCENTAGE",
        caption = "Data from the University of Basel. Lines represent the predictions from linear regressions") +
   theme(
     legend.position = "none",
-    axis.text.x = element_text(family = "Oswald", size = 18, colour = "grey60"),
-    axis.text.y = element_text(family = "Oswald", size = 18, colour = "grey60"),
+    axis.text.x = element_text(family = "Oswald", size = 14, colour = "grey60"),
+    axis.text.y = element_text(family = "Oswald", size = 14, colour = "grey60"),
     strip.text = element_text(family = "Oswald Bold", size = 18, colour = charcoal, margin = margin(b= 1)),
     axis.title.x = element_text(family = "Oswald Bold", size = 18, colour = "grey60"),
     axis.title.y = element_text(family = "Oswald Bold", size = 18, colour = "grey60", angle = 90),
@@ -289,11 +381,144 @@ pA3 <- prof_data_l %>%
     plot.subtitle = element_text(family = "Oswald", hjust = 0, margin = margin(b = 10, t = 30),colour = charcoal, size = 17),
     plot.caption =element_text(family = "Oswald ExtraLight", size = 20, hjust = 1, margin = margin(t = 20, b = 3, r = 3)))
 
+
+# FUNDING OVER TIME: GENERAL ----------------------------------------------------------------
+
+# data
+
+colnames(fund_data_a)[1] <- "categ"
+colnames(fund_data_b)[1] <- "categ"
+
+fund_data_a <- fund_data_a %>%filter(categ == "Aufnahmen_Percentage") %>% mutate(faculty = "rest")
+fund_data_b <- fund_data_b %>%filter(categ == "Aufnahmen_Percentage")%>% mutate(faculty = "clinical")
+
+
+gender_inst_time <- fund_data_a %>% 
+  pivot_longer(!c(categ, faculty),names_to = "year", values_to = "perc") %>% 
+  mutate(year = as.numeric(year)) %>% 
+  group_by(year) %>% 
+  summarise(FEMALE = perc,
+            MALE = 100 - FEMALE) %>%
+  pivot_longer(FEMALE:MALE, names_to = "gender", values_to = "funding")
+
+missing_dat <- crossing(year = c(2000:2007),
+                        gender = c("NA"),
+                        funding = 100)
+
+gender_inst_time <- bind_rows(gender_inst_time, missing_dat)
+gender_inst_time$gender = factor(gender_inst_time$gender,levels = c("MALE","FEMALE", "NA"))
+
+# Plot
+
+charcoal <-  "#31424B"
+
+label_num <- data.frame(label= "50%")
+label_f <- data.frame(label= "FEMALE")
+label_m <- data.frame(label= "MALE")
+
+pC1 <- ggplot(gender_inst_time, aes(x= year, y=funding, fill=gender)) +
+  geom_bar(width = 1,position = "stack", stat = "identity") +
+  scale_fill_manual(values = c("FEMALE" = "#4ADABF", "MALE" = "#4E4BD8", "NA" = "grey85"))+
+  geom_hline(yintercept = 50, linetype = "dashed", color = "white") +
+  theme_void() +
+  geom_label(data = label_num, aes(label=label),
+             x = 2008, y = 51, hjust= 0, vjust = 0,  label.size = NA,
+             family = "Oswald Bold", size = 10, color = "white" , fill = NA,
+             inherit.aes = FALSE) +
+  geom_label(data = label_f, aes(label=label), color = charcoal, fill = "white",
+             y = 8, x = 2008, hjust= 0.5,  label.size = NA,
+             family = "Oswald Bold", size = 10,
+             inherit.aes = FALSE) +
+  geom_label(data = label_m, aes(label=label), color = charcoal, fill = "white",
+             y = 92, x = 2008, hjust= 0.5,  label.size = NA,
+             family = "Oswald Bold", size = 10,
+             inherit.aes = FALSE) +
+  scale_x_continuous(breaks = c(2000, 2020)) +
+  scale_y_continuous(expand = c(0.01,0), breaks = c(0, 100)) +
+  labs(title = "PERCENTAGE OF FEMALES FUNDED: GENERAL (2008 - 2020)", 
+       x = "YEAR", y = "PERCENTAGE" ) +
+  theme(legend.position = "none",
+        axis.text.x = element_text(family = "Oswald", size = 14, colour = "grey60"),
+        axis.text.y = element_text(family = "Oswald", size = 14, colour = "grey60"),
+        panel.spacing = unit(1, "lines"),
+        strip.text = element_text(family = "Oswald Bold", size = 18, colour = charcoal),
+        axis.title.x = element_text(family = "Oswald Bold", size = 18, colour = "grey60"),
+        axis.title.y = element_text(family = "Oswald Bold", size = 18, colour = "grey60", angle = 90),
+        plot.title = element_text(face = "bold", family = "Oswald", hjust = 0, margin = margin(t = 40,b = 25), size = 24, color = charcoal),
+        # plot.caption =element_text(family = "Oswald ExtraLight", size = 20, hjust = 1, margin = margin(t = 20, b = 3, r = 3)),
+        plot.subtitle = element_text(family = "Oswald", hjust = 0.008, margin = margin(b = 10), size = 17, color = charcoal))
+
+
+# FUNDING OVER TIME: CLINICAL ----------------------------------------------------------------
+
+# data
+
+colnames(fund_data_b)[1] <- "categ"
+
+fund_data_b <- fund_data_b %>%filter(categ == "Aufnahmen_Percentage")%>% mutate(faculty = "clinical")
+
+
+gender_inst_time <- fund_data_b %>% 
+  pivot_longer(!c(categ, faculty),names_to = "year", values_to = "perc") %>% 
+  mutate(year = as.numeric(year)) %>% 
+  group_by(year) %>% 
+  summarise(FEMALE = perc,
+            MALE = 100 - FEMALE) %>%
+  pivot_longer(FEMALE:MALE, names_to = "gender", values_to = "funding")
+
+missing_dat <- crossing(year = c(2000:2009),
+                        gender = c("NA"),
+                        funding = 100)
+
+gender_inst_time <- bind_rows(gender_inst_time, missing_dat)
+gender_inst_time$gender = factor(gender_inst_time$gender,levels = c("MALE","FEMALE", "NA"))
+
+# Plot
+
+charcoal <-  "#31424B"
+
+label_num <- data.frame(label= "50%")
+label_f <- data.frame(label= "FEMALE")
+label_m <- data.frame(label= "MALE")
+
+pC2 <- ggplot(gender_inst_time, aes(x= year, y=funding, fill=gender)) +
+  geom_bar(width = 1,position = "stack", stat = "identity") +
+  scale_fill_manual(values = c("FEMALE" = "#4ADABF", "MALE" = "#4E4BD8", "NA" = "grey85"))+
+  geom_hline(yintercept = 50, linetype = "dashed", color = "white") +
+  theme_void() +
+  geom_label(data = label_num, aes(label=label),
+             x = 2010, y = 51, hjust= 0, vjust = 0,  label.size = NA,
+             family = "Oswald Bold", size = 10, color = "white" , fill = NA,
+             inherit.aes = FALSE) +
+  geom_label(data = label_f, aes(label=label), color = charcoal, fill = "white",
+             y = 8, x = 2010, hjust= 0.5,  label.size = NA,
+             family = "Oswald Bold", size = 10,
+             inherit.aes = FALSE) +
+  geom_label(data = label_m, aes(label=label), color = charcoal, fill = "white",
+             y = 92, x = 2010, hjust= 0.5,  label.size = NA,
+             family = "Oswald Bold", size = 10,
+             inherit.aes = FALSE) +
+  scale_x_continuous(breaks = c(2000, 2020)) +
+  scale_y_continuous(expand = c(0.01,0), breaks = c(0, 100)) +
+  labs(title = "PERCENTAGE OF FEMALES FUNDED: CLINICAL (2010 - 2020)", 
+       x = "YEAR", y = "PERCENTAGE",
+       caption = "Data from the University of Basel.") +
+  theme(legend.position = "none",
+        axis.text.x = element_text(family = "Oswald", size = 14, colour = "grey60"),
+        axis.text.y = element_text(family = "Oswald", size = 14, colour = "grey60"),
+        panel.spacing = unit(1, "lines"),
+        strip.text = element_text(family = "Oswald Bold", size = 18, colour = charcoal),
+        axis.title.x = element_text(family = "Oswald Bold", size = 18, colour = "grey60"),
+        axis.title.y = element_text(family = "Oswald Bold", size = 18, colour = "grey60", angle = 90),
+        plot.title = element_text(face = "bold", family = "Oswald", hjust = 0, margin = margin(t = 40,b = 25), size = 24, color = charcoal),
+        plot.subtitle = element_text(family = "Oswald", hjust = 0.008, margin = margin(b = 10), size = 17, color = charcoal),
+        plot.caption =element_text(family = "Oswald ExtraLight", size = 20, hjust = 1, margin = margin(t = 20, b = 3, r = 3)))
+
 ```
 
 ## The Publication Gender Gap at the University of Basel
 
-Past work has show a publication gender gap in the sciences (e.g., Ni, Smith, Yuan, Larivière, & Sugimoto, 2021; Odic & Wojcik, 2020). In what follows, we assess the publication gender gap at the University of Basel based on all outputs available in the university's research database. The figure below shows the publication gap over time separately for each of the 7 faculties of the University of Basel. 
+Past work has show a publication gender gap in the sciences (e.g., Huang, Gates, Sinatra, & Barabási, 2020; Ni, Smith, Yuan, Larivière, & Sugimoto, 2021; Odic & Wojcik, 2020). In what follows, we assess the publication gender gap at the University of Basel based on all outputs available in the university's research database. The figure below shows the publication gap over time separately for each of the 7 faculties of the University of Basel. 
 
 ```{r, echo=FALSE, eval=TRUE, fig.width = 20, fig.height= 10}
 
@@ -387,6 +612,25 @@ table<-left_join(table,prop_fem_inst,by="organisation_name") %>%  # add
 
 names(table)<-c("Faculty","Pubs","Total % Female","2000 % Female", "2020 % Female", "Diff %")
   
+# total % females employed
+
+gender_inst_time <- prof_data %>% 
+  pivot_longer(!organisation_name:position,names_to = "year", values_to = "perc") %>% 
+  mutate(position = toupper(position),
+         year = as.numeric(year),
+         organisation_name = case_when(organisation_name == "Phil.-Hist. Fakultät" ~ "Humanities &\nSocial Sciences",                 
+                                       organisation_name =="Phil.-Nat. Fakultät"  ~"Natural Sciences",                
+                                       organisation_name == "Medizinische Fakultät"  ~ "Medicine",              
+                                       organisation_name == "Juristische Fakultät" ~ "Law",                
+                                       organisation_name == "Fakultät für Psychologie"  ~"Psychology",           
+                                       organisation_name == "Theologische Fakultät"  ~ "Theology",                
+                                       organisation_name == "Wirtschaftswissenschaftliche Fakultät" ~ "Business &\nEconomics")) %>% 
+  group_by(year) %>% 
+  summarise(FEMALE = mean(perc)) 
+
+
+prop_fem_employ <-  mean(gender_inst_time$FEMALE, na.rm = TRUE)
+
 
 ```
 
@@ -402,32 +646,78 @@ kable(table)
 ```
 ## Linking the Publication and Employment Gender Gaps: The Role of Seniority
 
-First authorship is typically (but not always) associated with junior academic roles in publications involving multiple authors, while last authorship typically cues seniority. Consequently, distinguishing between first and last authorship can allow us to consider trends in the publication gender gap as a function of seniority (i.e., career stage). When considering these analysis and, particularly, comparing between faculties, it should be noted that determination of authorship order follows different practices across fields (e.g., alphabetical order in economics). Below, we show the breakdown of the publication gap by first vs. last author for publications involving multiple authors (upper panel) along with the percentage employment of females in professorships vs. academic staff (lower panel). 
+First authorship is typically (but not always) associated with junior academic roles in publications involving multiple authors, while last authorship typically cues seniority. Consequently, distinguishing between first and last authorship can allow us to consider trends in the publication gender gap as a function of seniority (i.e., career stage). When considering these analysis and, particularly, comparing between faculties, it should be noted that determination of authorship order follows different practices across fields (e.g., alphabetical order in economics). Below, we show the breakdown of the publication gap by first vs. last author for publications involving multiple authors (upper panel) along with the percentage employment of females in professorships vs. academic staff (lower panel). Please note that we only present employment data for the 2013-2019 period (available from the Equal Opportunities Monitoring) and extrapolate the temporal pattern for the full 2000-2020 period using a statistical model (linear regression). 
 
-```{r, echo=FALSE, eval=TRUE, fig.width = 20, fig.height= 19}
+```{r, echo=FALSE, eval=TRUE, fig.width = 20, fig.height= 28}
 
-fig_authors_staff <- pA2/pA3
+
+fig_authors_staff <- pB1/pA2/pB2
 fig_authors_staff 
 
 ```
 
-- As can be seen in the upper panel, there is a general trend for larger proportion of females in first vs. last authors; this pattern matches the larger prevalence of females in junior (academic staff) vs. senior (professorships) roles that is evident in the lower panel. 
+- As can be seen in the upper panel, across nearly all faculties and time, the predominance of the dark blue color indicates there were overall more males (`r 100 - round(prop_fem_employ, 0)`%) relative to females (`r round(prop_fem_employ, 0)`%) employed as researchers.
+
+- As can be seen in the middle panel, there is a general trend for larger proportion of females in first vs. last authors; this pattern matches the larger prevalence of females in junior (academic staff) vs. senior (professorships) roles that is evident in the lower panel. 
 
 - As presented in the previous section concerning the overall percentage of females, the temporal trends split by first vs. last author show similar increases over time, and, again, patterns differ somewhat betwen faculties. Crucially, the temporal trends observed are not always parallel for first and last authors suggesting that the dynamics underlying academic productivity can differ somewhat for the different career stages, at least for some faculties (cf. Natural Sciences, Psychology, Theology). 
 
-### Key findings
 
-- We identified a persistent and sizable publication gender gap at the University of Basel in the 2000 to 2020 period. 
+## Linking the Publication and Employment Gender Gaps: The Role of Funding
+```{r, echo=FALSE, eval=TRUE, fig.width = 20, fig.height= 20}
 
-- The publication gender gap has decreased over the last 20 years, albeit at different rates across the 7 faculties that compose the University of Basel. 
+fig_funding <- pC1/pC2
+fig_funding 
+
+```
+- SOME TEXT
+
+
+## Key Findings and Implications
+
+- We identified a persistent and sizable publication gender gap at the University of Basel in the 2000 to 2020 period. This goes beyond the current monitoring of equal opportunities at the University of Basel which focuses mostly on employment (and gender representation in different universitary committees) but does not consider research output. 
+
+- Our results show that the publication gender gap has decreased over the last 20 years, albeit at different rates across the 7 faculties that compose the University of Basel.  
 
 - The publication gender gap is larger and more persistent for last (i.e., senior) authors for some faculties, suggesting that different dynamics are at play for different career stages for some organizational units of the University of Basel. 
 
-## Limitations and Outlook
+## Limitations
 
-To be included after group discussion and input from Diversity Office (Oct 26th, 2021).
+There are a number of limitations associated with the results we present above, we list and discuss a few of these below.
+
+- The number of publications per faculty and year are limited and relatively small for some organizational units (e.g., Theology) which makes difficult to assess trends over time, particularly when distinguishing between authors roles. 
+
+- We use faculty as organizational unit but some faculties are composed of an htereogenous number of departments covering different academic fields that may differ from each other in several respects (e.g., Faculty of Natural Sciences). Future work could conduct more specific analysis per department or academic field, albeit smaller number of publications per organizational unit may present a limiting factor for such analyses. 
+
+- We cannot guarantee that the research database we relied upoon provides full and equal coverage of all researchers of the University of Basel. Future work could include the use of additional databases (e.g., Dimensions, Scopus, Web of Science) to assess the current coverage of the research database we used. 
+
+- We used authorship order (i.e., first vs. last author) as a proxy for seniority, however, this practice is deferentially prevalent across fields and time. Using admistrative data could be helpful in assessing the role of seniority on academic productivity and the publication gap at the University of Basel. 
+
+- Our report identifies a gender publication gap but does not address potential underlying causes beyond differences in employment. Additional work could involve using additional monitoring (see Outlook) or adopting other approaches such as interviews or targeted questionnaires involving specific groups of researchers to investigate the underlying causes leading to a publication gap. 
+
+- We should point out that the gender categorization used in our analyzes may function as a proxy for other individual characteristics or personal situations that correlate but are not equivalent to gender. For example, past research suggest that female academics spend more time caring for children and other family members, so gender may capture effects due to family responsibilities rather than gender per se (see also Outlook). 
+
+- Finally, we analyzed only one dimension of diversity: Gender. The use of similar approaches using other services that  categorize other individual characteristics could, however, be used in the future to complement the diversity monitoring of the University of Basel, for example, regarding country of origin or ethnicity (e.g., [https://www.namsor.com](https://www.namsor.com)). 
+
+## Outlook
+
+To the extent that factors leading to the employment gap are the same or correlated with the factors leading to publication success, one can expect the publication gap to be of the same or greater magnitude than the employment gap. Past work suggests that females are more likely to dedicate more time to teaching, have more family responsibilities, and receive less funding and recognition, each of these contributing to a widening of the gender publication gap over time relative to the extant employment gap. Monitoring the publication gap and, ideally, its underlying causes - particularly the available institutional resources - could be an important contribution of higher-education institutions to advancing equal opportunities in science and innovation. 
+
+The flow diagram above presents a framework destilled from the existing literature (e.g.Huang et al., 2020; Ni et al. 2021, Odic & Woicik, 2020) and lists factors that may contribute to a widening gap between employment and academic output. 
+
+<img src="3_figures/leakypipeline.png" width="80%"></img>
+
+There are a few recommendations that result from the framework above. 
+
+- The University of Basel could expand its monitoring to assess inequalities in research productivity and its associated factors, specifically the university could expand current monitoring of financial support to academic staff to include financial amounts to males vs. females (cf.  [Career Advancement Activity Reports](https://www.unibas.ch/de/Universitaet/Administration-Services/Vizerektorat-Forschung/Nachwuchsfoerderung/Taetigkeitsberichte.html)) and additional monitoring of internal funding at the professorial level (startup, support staff, lab space). 
+
+- The University of Basel could be interested in linking academic productivity with individual characteristics that are not currently available for analysis (e.g., family status, childcare). There are several challenges associated with this approach, including issues of privacy, but analyses of academic output we present above using such variables have the potential to guide decisions concerning the role of personal characteristics (e.g., family responsibilities) that could receive specific attention by higher-education institutions. 
+
+- Despite our documentation of employment and publication gaps, one should acknoweldge that the University of Basel already has in place a number of programs to counteract these effects (e.g., Antelope). These programs are recent and likely to exert their effects over a time beyond the period we analyzed. Further, while our results support the claim of a (universally) larger publication relative to an employment gaps, the proportion of female authors seems to be increasing more strongly than female employment, which could be indicative of intervention success. A broader focus on program evaluation, including increases in academic productivity could be an important focus for future work on reducing inequalities at the University of Basel.
 
 ## References 
+
+Huang, J., Gates, A. J., Sinatra, R., & Barabási, A.-L. (2020). Historical comparison of gender inequality in scientific careers across countries and disciplines. *Proceedings of the National Academy of Sciences of the United States of America, 117*(9), 4609–4616. [http://doi.org/10.1073/pnas.1914221117](http://doi.org/10.1073/pnas.1914221117)
 
 Ni, C., Smith, E., Yuan, H., Larivière, V., & Sugimoto, C. R. (2021). The gendered nature of authorship. *Science Advances, 7*(36), eabe4639. [http://doi.org/10.1126/sciadv.abe4639](http://doi.org/10.1126/sciadv.abe4639)
 
