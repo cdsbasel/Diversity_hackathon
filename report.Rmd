@@ -12,7 +12,7 @@ library(ggtext)
 library(patchwork)
 library(readxl)
 
-pub_data <- read_csv("1_data/unibas_diversity.csv")
+pub_data <- read_csv("1_data/unibas_diversity_noduplicates.csv")
 prof_data <- read_xlsx("1_data/akademisches_unibas.xlsx", sheet = "female_perc")
 fund_data_a <- read_xlsx("1_data/forschungsfonds.xlsx", sheet = "forschungsfonds")
 fund_data_b <- read_xlsx("1_data/forschungsfonds.xlsx", sheet = "forschungsfonds_clinical")
