@@ -1,6 +1,6 @@
 ---
 title: "Report"
-description: Visualizing diversity in research outputs at the University of Basel
+description: Visualizing gender diversity in research outputs at the University of Basel
 
 ---
 
@@ -22,19 +22,26 @@ fund_data_b <- read_xlsx("1_data/forschungsfonds.xlsx", sheet = "forschungsfonds
 
 ## Executive Summary
 
-Monitoring of diversity is an important first step towards reducing inequalities in access to scientific innovation and research. We contribute to monitoring of author diversity in scientific production at the University of Basel by conducting an analysis of gender distribution in scientific publications. We analysed the diversity of the University of Basel's research output by categorizing authors' gender based on authors' first names and visualizing temporal trends between 2000 and 2020 in gender distribution for all 7 faculties of the University of Basel. Our results for the University of Basel match similar reports of gender publication gaps in the sciences. Crucially, we find large differences across faculties and author positions (first vs. last) suggesting that targeted measures may be needed for different organizational units and career stages. We discuss implications for future efforts to monitoring diversity in scientific production and associated interventions at the University of Basel and beyond.
+Monitoring of diversity is an important first step towards reducing inequalities in access to scientific innovation and research. We contribute to monitoring of author diversity in scientific production at the University of Basel by conducting an analysis of gender distribution in scientific publications. We categorized authors' gender based on authors' first names and visualized temporal trends between 2000 and 2020 in gender distribution for all 7 faculties of the University of Basel. Our results for the University of Basel match similar reports of gender publication gaps in the sciences: over the past 20 years, there were overall more publications involving males relative to females (69% vs. 31%). Crucially, we find large differences across faculties and author positions (first vs. last) suggesting that targeted measures may be needed for different organizational units and career stages.
  
 ## Background
 
 #### Why does diversity matter?
 
-Achieving gender equality (SDG 5) and reducing inequalities (SDG10) are central parts of the [Sustainable Development Goals (SDGs)](https://sdgs.un.org/goals). Universities can play a key role in advancing these goals by empowering women and disadvantaged minorities to allow them to make contributions to scientific innovation and research. The University of Basel is strongly committed to monitoring and increasing diversity of its staff and student population in a number of efforts spearheaded by its [Diversity Office](https://www.unibas.ch/en/University/Administration-Services/Vice-President-s-Office-for-People-and-Culture/Diversity-and-Inclusion/Diversity.html). 
+Achieving gender equality (SDG 5) and reducing inequalities (SDG10) are central parts of the [Sustainable Development Goals (SDGs)](https://sdgs.un.org/goals). Universities can play a key role in advancing these goals by empowering women and disadvantaged minorities that allow them to make contributions to scientific innovation and research. The University of Basel is strongly committed to monitoring and increasing diversity of its staff and student population in a number of efforts spearheaded by its [Diversity Office](https://www.unibas.ch/en/University/Administration-Services/Vice-President-s-Office-for-People-and-Culture/Diversity-and-Inclusion/Diversity.html). 
 
 #### Why does monitoring of research outputs matter?
 
-Monitoring diversity is a first step towards identifying inequalities and potential solutions to reduce them. As a consequence, there have been continued efforts on the part of the [Diversity Office](https://www.unibas.ch/en/University/Administration-Services/Vice-President-s-Office-for-People-and-Culture/Diversity-and-Inclusion/Diversity.html) of the University of Basel to monitor diversity, for example, in the form of an [Equal opportunities monitoring](https://www.unibas.ch/en/University/Administration-Services/Vice-President-s-Office-for-People-and-Culture/Diversity-and-Inclusion/Diversity/Diversity-Management/Monitoring.html). However, the current monitoring does not fully capture all aspects of equal opportunities to scientific production. The monitoring of publication outputs can be helpful as an additional indicator because it has the potential to reflect access to resources (e.g., time, internal funding) that go beyond employment and are otherwise not easily quantifiable. 
+Monitoring diversity is a first step towards identifying inequalities and potential solutions to reduce them. As a consequence, there have been continued efforts on the part of the [Diversity Office](https://www.unibas.ch/en/University/Administration-Services/Vice-President-s-Office-for-People-and-Culture/Diversity-and-Inclusion/Diversity.html) of the University of Basel to monitor diversity, for example, in the form of an [Equal opportunities monitoring](https://www.unibas.ch/en/University/Administration-Services/Vice-President-s-Office-for-People-and-Culture/Diversity-and-Inclusion/Diversity/Diversity-Management/Monitoring.html). However, the monitoring of the gender employment gap does not fully capture all aspects of equal opportunities to scientific production. The monitoring of publication outputs can be helpful as an additional indicator because it has the potential to reflect access to resources (e.g., time, internal funding) that go beyond employment and are otherwise not easily quantifiable. 
+
+The flow diagram below presents a framework distilled from the existing literature that lists some factors that may contribute to a widening gap between employment and academic output (e.g. Huang et al., 2020; Ni et al. 2021, Odic & Woicik, 2020). 
+
+<img src="3_figures/leakypipeline.png" width="80%"></img>
+
+To the extent that factors leading to the employment gap are the same or correlated with the factors leading to publication success, one can expect the publication gap to be of the same or greater magnitude than the employment gap. Past work suggests that females are more likely to dedicate more time to teaching, have more family responsibilities, and receive less funding and recognition, each of these contributing to a widening of the gender publication gap over time relative to the extant employment gap. Monitoring the publication gap and, ideally, its underlying causes - particularly the available institutional resources - could be an important contribution of higher-education institutions to advancing equal opportunities in science and innovation. 
 
 ## Goals of this Report
+
 - visualize the gender diversity in research outputs at the University Basel;
 - provide ideas for future monitoring of diversity at the University of Basel, including future methodological approaches or data collection efforts;
 - discuss whether the monitoring of research outputs can help guide future interventions aimed at increasing diversity at the University of Basel.
@@ -45,11 +52,7 @@ Monitoring diversity is a first step towards identifying inequalities and potent
 
 We use data from a database listing the University of Basel's research output. We focus on data between 2000 and 2020 because availability for earlier years is limited and this time range allows some comparability to previous efforts (e.g., Odic & Wojcik, 2019). We focus our analyses on University of Basel's 7 faculties and neglect smaller associated institutes because there is a relatively large number of institutes with relatively few publications that make it difficult to consider trends over time.
 
-We analyze a total 67'269 publications including several different categories: 43'997 journal articles, 11'959 book chapters, 3'454 books (edited and authored), 2'014 proceedings articles, 1'671 theses, and 4'174 other items including news articles and discussion papers.    
-
-#### Employment Information of the University of Basel
-
-We use data from the [Equal opportunities monitoring](https://www.unibas.ch/en/University/Administration-Services/Vice-President-s-Office-for-People-and-Culture/Diversity-and-Inclusion/Diversity/Diversity-Management/Monitoring.html) concerning the percentage of females in different positions (i.e., professorships, academic staff) available for the period 2013-2019. 
+We analyze a total `r nrow(pub_data)` research outputs of various kinds, which consist of journal articles (`r pub_data %>% filter(category=="journal") %>% summarize(prop=n()/nrow(pub_data)*100) %>% round(1)`%), book chapters (`r pub_data %>% filter(category=="chapter") %>% summarize(prop=n()/nrow(pub_data)*100) %>% round(1)`%), books (edited and authored; `r pub_data %>% filter(category=="book") %>% summarize(prop=n()/nrow(pub_data)*100) %>% round(1)`%), proceedings articles (`r pub_data %>% filter(category=="proceeding") %>% summarize(prop=n()/nrow(pub_data)*100) %>% round(1)`%), theses (`r pub_data %>% filter(category=="thesis") %>% summarize(prop=n()/nrow(pub_data)*100) %>% round(1)`%), and other items such as news articles (`r pub_data %>% filter(category=="other") %>% summarize(prop=n()/nrow(pub_data)*100) %>% round(1)`%).  
 
 #### Diversity Labeling from Author First Names
 
@@ -57,11 +60,16 @@ We use information concerning diversity derived from the authors' first names. W
 
 <img src="3_figures/wordcloud_3.png" width="100%"></img>
 
-Our report focuses on gender in line with the majority of past monitoring of diversity at the University of Basel and other similar efforts. Ideally, however, diversity should be conceptualized through several dimensions, that could include cultural and socio-economic background, political views, age, nationality, or religion, to name but a few. In our efforts, we strove to include different dimensions beyond gender, namely, nationality and age. Our simple validation efforts suggested, however, that such categorizations are unreliable so we refrain from reporting results concerning these dimensions below. We discuss limitations of our approach and alternative methods in the *Limitations* and *Outlook* sections. 
+Our report focuses on gender in line with the majority of past monitoring of diversity at the University of Basel and other similar efforts. Ideally, however, diversity should be conceptualized through several dimensions, that could include cultural and socio-economic background, political views, age, nationality, or religion, to name but a few. In our efforts, we strove to include different dimensions beyond gender, namely, nationality and age. Our simple validation efforts suggested, however, that such categorizations are unreliable so we refrain from reporting results concerning these dimensions below. We discuss limitations of our approach and alternative methods in the *Limitations* sections. 
 
 #### Disclaimer
 
 Our analyses used first names to estimate the gender of authors using extant technology. This classification system assigns names to either "female" or "male", thus, providing a traditional, binary classification of gender. The contributors would like to state that this choice is of technical and pragmatic nature and should not be understood as a rejection of more inclusive, non-binary gender definitions. 
+
+#### Employment Information of the University of Basel
+
+We also use data from the [Equal opportunities monitoring](https://www.unibas.ch/en/University/Administration-Services/Vice-President-s-Office-for-People-and-Culture/Diversity-and-Inclusion/Diversity/Diversity-Management/Monitoring.html) concerning the percentage of females in different positions (i.e., professorships, academic staff) available for the period 2013-2019. We provide this information along side with our results for publications so as to give context concerning the gender distribution in employment for each faculty. 
+
 
 ```{r, echo=FALSE, eval=TRUE}
 
@@ -73,7 +81,7 @@ Our analyses used first names to estimate the gender of authors using extant tec
 # pA1 = PERCENTAGE OF FEMALE AUTHORS (2000 - 2020)
 # pA2 = PERCENTAGE OF FEMALE AUTHORS: FIRST VS. LAST (2000 - 2020)
 
-# pB1 = PERCENTAGE OF FEMALE FACULTY (2013 - 2020)
+# pB1 = PERCENTAGE OF FEMALES EMPLOYED (2013 - 2020)
 # pB2 = PERCENTAGE OF FEMALES EMPLOYED: ACADEMIC STAFF VS. PROFESSORSHIPS (2013 - 2020)
 
 # pC1 = PERCENTAGE OF FEMALES FUNDED: GENERAL (2008 - 2020)
@@ -121,23 +129,22 @@ pA1 <- ggplot(gender_inst_time, aes(x= year, y=publication, fill=gender)) +
   geom_hline(yintercept = 50, linetype = "dashed", color = "white") +
   theme_void() +
   geom_label(data = label_num, aes(label=label),
-             x = 2005, y = 51, vjust = 0,  label.size = NA,
+             x = 2015, y = 51, vjust = 0,  label.size = NA,
              family = "Oswald Bold", size = 7, color = "white" , fill = NA,
              inherit.aes = FALSE) +
   geom_label(data = label_f, aes(label=label), color = charcoal, fill = "white",
-             y = 8, x = 2005,  label.size = NA,
+             y = 8, x = 2015,  label.size = NA,
              family = "Oswald Bold", size = 7,
              inherit.aes = FALSE) +
   geom_label(data = label_m, aes(label=label), color = charcoal, fill = "white",
-             y = 92, x = 2005, label.size = NA,
+             y = 92, x = 2015, label.size = NA,
              family = "Oswald Bold", size = 7,
              inherit.aes = FALSE) +
   scale_x_continuous(breaks = c(2000, 2020)) +
   scale_y_continuous(expand = c(0.01,0), breaks = c(0, 100)) +
   facet_wrap(.~ toupper(organisation_name), nrow = 1) +
   labs(title = "PERCENTAGE OF FEMALE AUTHORS (2000 - 2020)", 
-       x = "YEAR", y = "PERCENTAGE",
-       caption = "Data from the University of Basel.") +
+       x = "YEAR", y = "PERCENTAGE") +
   theme(legend.position = "none",
         axis.text.x = element_text(family = "Oswald", size = 14, colour = "grey60"),
         axis.text.y = element_text(family = "Oswald", size = 14, colour = "grey60"),
@@ -192,7 +199,7 @@ pB1 <- ggplot(gender_inst_time, aes(x= year, y=employed, fill=gender)) +
   geom_hline(yintercept = 50, linetype = "dashed", color = "white") +
   theme_void() +
   geom_label(data = label_num, aes(label=label),
-             x = 2013, y = 51, hjust= 0, vjust = 0,  label.size = NA,
+             x = 2015, y = 51, hjust= 0, vjust = 0,  label.size = NA,
              family = "Oswald Bold", size = 7, color = "white" , fill = NA,
              inherit.aes = FALSE) +
   geom_label(data = label_f, aes(label=label), color = charcoal, fill = "white",
@@ -206,7 +213,7 @@ pB1 <- ggplot(gender_inst_time, aes(x= year, y=employed, fill=gender)) +
   scale_x_continuous(breaks = c(2000, 2013, 2020)) +
   scale_y_continuous(expand = c(0.01,0), breaks = c(0, 100)) +
   facet_wrap(.~ toupper(organisation_name), nrow = 1) +
-  labs(title = "PERCENTAGE OF FEMALE FACULTY (2013 - 2020)", 
+  labs(title = "PERCENTAGE OF FEMALES EMPLOYED (2013 - 2020)", 
        x = "YEAR", y = "PERCENTAGE",
        caption = "Data from the University of Basel.") +
   theme(legend.position = "none",
@@ -518,14 +525,14 @@ pC2 <- ggplot(gender_inst_time, aes(x= year, y=funding, fill=gender)) +
 
 ## The Publication Gender Gap at the University of Basel
 
-Past work has show a publication gender gap in the sciences (e.g., Huang, Gates, Sinatra, & Barabási, 2020; Ni, Smith, Yuan, Larivière, & Sugimoto, 2021; Odic & Wojcik, 2020). In what follows, we assess the publication gender gap at the University of Basel based on all outputs available in the university's research database. The figure below shows the publication gap over time separately for each of the 7 faculties of the University of Basel. 
+Past work has show a publication gender gap in the sciences (e.g., Huang, Gates, Sinatra, & Barabási, 2020; Ni, Smith, Yuan, Larivière, & Sugimoto, 2021; Odic & Wojcik, 2020). In what follows, we assess the publication gender gap at the University of Basel based on the outputs available in the university's research database. The figure below (upper panel) shows the main result of our analysis which makes visible the publication gap over time separately for each of the 7 faculties of the University of Basel for the period 2000-2020. The lower panel provides context by showing information concerning the percentage of females reported in the University of Basel's [Equal opportuntities monitoring](https://www.unibas.ch/en/University/Administration-Services/Vice-President-s-Office-for-People-and-Culture/Diversity-and-Inclusion/Diversity/Diversity-Management/Monitoring.html) that is available for the period 2013-2020. 
 
-```{r, echo=FALSE, eval=TRUE, fig.width = 20, fig.height= 10}
+```{r, echo=FALSE, eval=TRUE, fig.width = 20, fig.height= 20}
 
 #pA <- pA1/pA2/pA3
 #pA
 
-fig_authors<- pA1
+fig_authors<- pA1/pB1
 
 fig_authors
 
@@ -634,9 +641,12 @@ prop_fem_employ <-  mean(gender_inst_time$FEMALE, na.rm = TRUE)
 
 ```
 
-- The figure above shows evidence of a publication gender gap at the University of Basel. Across all faculties and time, the predominance of the dark blue color indicates there were overall more publications involving males (`r 100-round(prop_fem_total$prop_female, 0)`%) relative to females (`r round(prop_fem_total$prop_female, 0)`%). Notwithstanding, the figure suggests a general upward trend in the percentage of publications involving females over the last two decades, while in 2000 the percentage of female authors was `r round(prop_fem_total_year$prop_female[1], 0)`%, in 2020 this percentage was `r round(prop_fem_total_year$prop_female[2], 0)`%.
+- The upper panel of the figure above shows evidence of a publication gender gap at the University of Basel. Across all faculties and time, the predominance of the dark blue color indicates there were overall more publications involving males (`r 100-round(prop_fem_total$prop_female, 0)`%) relative to females (`r round(prop_fem_total$prop_female, 0)`%). Notwithstanding, the figure suggests a general upward trend in the percentage of publications involving females over the last two decades, while in 2000 the percentage of female authors was `r round(prop_fem_total_year$prop_female[1], 0)`%, in 2020 this percentage was `r round(prop_fem_total_year$prop_female[2], 0)`%.
 
-- The overall levels as well as temporal trends vary, however, markedly between faculties: some faculties show a greater percentage of publications involving females across the full 20-year period (2000-2020), most notably the Faculty of Psychology (`r round(prop_fem_inst$prop_female[prop_fem_inst_nyr$organisation_name == "Psychology"], 0)`%), the Faculty of Humanities and Social Sciences (`r round(prop_fem_inst$prop_female[prop_fem_inst_nyr$organisation_name == "Humanities &\nSocial Sciences"], 0)`%), and the Faculty of Law (`r round(prop_fem_inst$prop_female[prop_fem_inst_nyr$organisation_name == "Law"], 0)`%). Concerning temporal trends, some faculties have seen a greater increase, most notably the Faculty of Psychology, which saw an increase of `r round(prop_fem_inst_diff$diff[prop_fem_inst_diff$organisation_name == "Psychology" & prop_fem_inst_diff$year == 2000], 0)`% from 2000 to 2020. The following table shows the total number of publications, the overal percentage of publications involving females, as well as a breakdown for 2000 vs. 2020, along with the difference between the two. 
+- The lower panel depicts the percentage of females employed (professors and research staff) across time and for each faculty. In line with the publication gap figures, across nearly all faculties and time, the predominance of the dark blue color indicates there were overall more male (`r 100 - round(prop_fem_employ, 0)`%) relative to female researchers (`r round(prop_fem_employ, 0)`%) employed at the University of Basel. Naturally, the employment gap largely matches the publication gap identified for each faculty, albeit the difference between employment and publication gaps seems to be larger for some faculties relative to others. 
+
+- One should further note that the temporal trends concerning the publication gender gap vary markedly between faculties. The table below makes this clearer by showing along with the total number of publications per faculty, the overall percentage of publications involving females, as well as a breakdown for 2000 vs. 2020, along with the difference between the two. As can be seen in the table, some faculties have seen a greater increase, most notably the Faculty of Psychology, which saw an increase of `r round(prop_fem_inst_diff$diff[prop_fem_inst_diff$organisation_name == "Psychology" & prop_fem_inst_diff$year == 2000], 0)`% from 2000 to 2020. 
+
 
 ```{r, echo=FALSE, eval=TRUE}
 
@@ -644,38 +654,44 @@ library(knitr)
 kable(table)
 
 ```
-## Linking the Publication and Employment Gender Gaps: The Role of Seniority
 
-First authorship is typically (but not always) associated with junior academic roles in publications involving multiple authors, while last authorship typically cues seniority. Consequently, distinguishing between first and last authorship can allow us to consider trends in the publication gender gap as a function of seniority (i.e., career stage). When considering these analysis and, particularly, comparing between faculties, it should be noted that determination of authorship order follows different practices across fields (e.g., alphabetical order in economics). Below, we show the breakdown of the publication gap by first vs. last author for publications involving multiple authors (upper panel) along with the percentage employment of females in professorships vs. academic staff (lower panel). Please note that we only present employment data for the 2013-2019 period (available from the Equal Opportunities Monitoring) and extrapolate the temporal pattern for the full 2000-2020 period using a statistical model (linear regression). 
+## The Publication Gender Gap at the University of Basel: The Role of Seniority
 
-```{r, echo=FALSE, eval=TRUE, fig.width = 20, fig.height= 28}
+One possibility to further understand and characterize the dynamics in research productivity is to understand the role of senior and junior researchers and their relative contributions to publications. First authorship is typically (albeit not always) associated with junior academic roles in publications involving multiple authors, while last authorship typically cues seniority. Consequently, distinguishing between first and last authorship can allow us to consider trends in the publication gender gap as a function of career stage, which may be important to devise specific interventions that target more or less senior researchers. When considering these analysis and, particularly, comparing between faculties, it should be noted that determination of authorship order follows different practices across fields (e.g., alphabetical order in economics). Below, we show the breakdown of the publication gap by first vs. last author for publications involving multiple authors. Again, we also present the percentage of females employed in each faculty over time for additional context. 
 
-
-fig_authors_staff <- pB1/pA2/pB2
-fig_authors_staff 
-
-```
-
-- As can be seen in the upper panel, across nearly all faculties and time, the predominance of the dark blue color indicates there were overall more males (`r 100 - round(prop_fem_employ, 0)`%) relative to females (`r round(prop_fem_employ, 0)`%) employed as researchers.
-
-- As can be seen in the middle panel, there is a general trend for larger proportion of females in first vs. last authors; this pattern matches the larger prevalence of females in junior (academic staff) vs. senior (professorships) roles that is evident in the lower panel. 
-
-- As presented in the previous section concerning the overall percentage of females, the temporal trends split by first vs. last author show similar increases over time, and, again, patterns differ somewhat betwen faculties. Crucially, the temporal trends observed are not always parallel for first and last authors suggesting that the dynamics underlying academic productivity can differ somewhat for the different career stages, at least for some faculties (cf. Natural Sciences, Psychology, Theology). 
-
-
-## Linking the Publication and Employment Gender Gaps: The Role of Funding
 ```{r, echo=FALSE, eval=TRUE, fig.width = 20, fig.height= 20}
 
-fig_funding <- pC1/pC2
-fig_funding 
+
+#fig_authors_staff <- pB1/pA2/pB2
+#fig_authors_staff 
+
+
+fig_authors_staff <- pA2/pB2
+fig_authors_staff 
+
+#fig_authors_staff <- pA2
+#fig_authors_staff 
 
 ```
-- SOME TEXT
 
 
-## Key Findings and Implications
+- Across almost all faculties there is a trend towards larger proportion of females in first vs. last authorship roles; this pattern matches the larger prevalence of females in junior (academic staff) vs. senior (professorships) roles that is evident in the lower panel. 
 
-- We identified a persistent and sizable publication gender gap at the University of Basel in the 2000 to 2020 period. This goes beyond the current monitoring of equal opportunities at the University of Basel which focuses mostly on employment (and gender representation in different universitary committees) but does not consider research output. 
+- Crucially, concerning the temporal trend, and matching the previous section concerning the overall percentage of publications, the temporal trends split by first vs. last author show increases over time, with the patterns differing somewhat between faculties. Crucially, the temporal trends observed are not always parallel for first and last authors suggesting that the dynamics underlying academic productivity differed somewhat for the different career stages for some faculties (cf. Natural Sciences, Psychology, Theology). 
+
+```{r, echo=FALSE, eval=TRUE, fig.width = 20, fig.height= 20}
+
+## Linking the Publication and Employment Gender Gaps: The Role of Funding
+
+
+#fig_funding <- pC1/pC2
+#fig_funding 
+
+```
+
+## Key Findings 
+
+- We identified a persistent and sizable publication gender gap at the University of Basel in the 2000 to 2020 period. This goes beyond the current monitoring of equal opportunities at the University of Basel which focuses mostly on employment (and gender representation in different university committees) but does not consider research output. 
 
 - Our results show that the publication gender gap has decreased over the last 20 years, albeit at different rates across the 7 faculties that compose the University of Basel.  
 
@@ -687,33 +703,25 @@ There are a number of limitations associated with the results we present above, 
 
 - The number of publications per faculty and year are limited and relatively small for some organizational units (e.g., Theology) which makes difficult to assess trends over time, particularly when distinguishing between authors roles. 
 
-- We use faculty as organizational unit but some faculties are composed of an htereogenous number of departments covering different academic fields that may differ from each other in several respects (e.g., Faculty of Natural Sciences). Future work could conduct more specific analysis per department or academic field, albeit smaller number of publications per organizational unit may present a limiting factor for such analyses. 
+- We use faculty as organizational unit but some faculties are composed of an heterogeneous number of departments covering different academic fields that may differ from each other in several respects (e.g., Faculty of Natural Sciences). Future work could conduct more specific analysis per department or academic field, albeit smaller number of publications per organizational unit may present a limiting factor for such analyses. 
 
-- We cannot guarantee that the research database we relied upoon provides full and equal coverage of all researchers of the University of Basel. Future work could include the use of additional databases (e.g., Dimensions, Scopus, Web of Science) to assess the current coverage of the research database we used. 
+- We cannot guarantee that the research database we relied on provides full and equal coverage of all researchers of the University of Basel. Future work could include the use of additional databases (e.g., Dimensions, Scopus, Web of Science) to assess the current coverage of the research database we used. 
 
-- We used authorship order (i.e., first vs. last author) as a proxy for seniority, however, this practice is deferentially prevalent across fields and time. Using admistrative data could be helpful in assessing the role of seniority on academic productivity and the publication gap at the University of Basel. 
+- We used authorship order (i.e., first vs. last author) as a proxy for seniority, however, this practice is deferentially prevalent across fields and time. Using administrative data could be helpful in assessing the role of seniority on academic productivity and the publication gap at the University of Basel. 
 
-- Our report identifies a gender publication gap but does not address potential underlying causes beyond differences in employment. Additional work could involve using additional monitoring (see Outlook) or adopting other approaches such as interviews or targeted questionnaires involving specific groups of researchers to investigate the underlying causes leading to a publication gap. 
+- Our report identifies a gender publication gap but does not address potential underlying causes beyond differences in employment. Additional work could involve using additional monitoring or adopting other approaches such as interviews or targeted questionnaires involving specific groups of researchers to investigate the underlying causes leading to a publication gap. 
 
 - We should point out that the gender categorization used in our analyzes may function as a proxy for other individual characteristics or personal situations that correlate but are not equivalent to gender. For example, past research suggest that female academics spend more time caring for children and other family members, so gender may capture effects due to family responsibilities rather than gender per se (see also Outlook). 
 
-- Finally, we analyzed only one dimension of diversity: Gender. The use of similar approaches using other services that  categorize other individual characteristics could, however, be used in the future to complement the diversity monitoring of the University of Basel, for example, regarding country of origin or ethnicity (e.g., [https://www.namsor.com](https://www.namsor.com)). 
+- Finally, we analyzed only one dimension of diversity: Gender. The use of similar approaches using other services (e.g., [https://www.namsor.com](https://www.namsor.com)) that categorize other individual characteristics could, however, be used in the future to complement the diversity monitoring of the University of Basel, for example, regarding country of origin or ethnicity.
 
 ## Outlook
 
-To the extent that factors leading to the employment gap are the same or correlated with the factors leading to publication success, one can expect the publication gap to be of the same or greater magnitude than the employment gap. Past work suggests that females are more likely to dedicate more time to teaching, have more family responsibilities, and receive less funding and recognition, each of these contributing to a widening of the gender publication gap over time relative to the extant employment gap. Monitoring the publication gap and, ideally, its underlying causes - particularly the available institutional resources - could be an important contribution of higher-education institutions to advancing equal opportunities in science and innovation. 
+- Our results suggest that the University of Basel could expand its monitoring to assess inequalities in research productivity by measuring research outputs. The type of analysis we present here could also in principle contribute to a broader understanding of diversity at the University of Basel if expanded to include other dimensions (e.g., cultural or ethnic background). 
 
-The flow diagram above presents a framework destilled from the existing literature (e.g.Huang et al., 2020; Ni et al. 2021, Odic & Woicik, 2020) and lists factors that may contribute to a widening gap between employment and academic output. 
+- Our results suggest there may be a slightly larger publication relative to an employment gap in some faculties of the University of Basel. Such results emphasize the importance of monitoring developments for specific research cultures, environments, and associated interventions. 
 
-<img src="3_figures/leakypipeline.png" width="80%"></img>
-
-There are a few recommendations that result from the framework above. 
-
-- The University of Basel could expand its monitoring to assess inequalities in research productivity and its associated factors, specifically the university could expand current monitoring of financial support to academic staff to include financial amounts to males vs. females (cf.  [Career Advancement Activity Reports](https://www.unibas.ch/de/Universitaet/Administration-Services/Vizerektorat-Forschung/Nachwuchsfoerderung/Taetigkeitsberichte.html)) and additional monitoring of internal funding at the professorial level (startup, support staff, lab space). 
-
-- The University of Basel could be interested in linking academic productivity with individual characteristics that are not currently available for analysis (e.g., family status, childcare). There are several challenges associated with this approach, including issues of privacy, but analyses of academic output we present above using such variables have the potential to guide decisions concerning the role of personal characteristics (e.g., family responsibilities) that could receive specific attention by higher-education institutions. 
-
-- Despite our documentation of employment and publication gaps, one should acknoweldge that the University of Basel already has in place a number of programs to counteract these effects (e.g., Antelope). These programs are recent and likely to exert their effects over a time beyond the period we analyzed. Further, while our results support the claim of a (universally) larger publication relative to an employment gaps, the proportion of female authors seems to be increasing more strongly than female employment, which could be indicative of intervention success. A broader focus on program evaluation, including increases in academic productivity could be an important focus for future work on reducing inequalities at the University of Basel.
+- More generally, the leaky-pipeline framework underlying our project suggests that the university could overall expand monitoring of factors that contribute to and link the employment and publication gaps, namely, support to academic staff at the junior and senior levels (e.g., startup funds, support staff, lab space, family support). 
 
 ## References 
 
