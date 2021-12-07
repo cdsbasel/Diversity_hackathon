@@ -213,7 +213,7 @@ pB1 <- ggplot(gender_inst_time, aes(x= year, y=employed, fill=gender)) +
   scale_x_continuous(breaks = c(2000, 2013, 2020)) +
   scale_y_continuous(expand = c(0.01,0), breaks = c(0, 100)) +
   facet_wrap(.~ toupper(organisation_name), nrow = 1) +
-  labs(title = "PERCENTAGE OF FEMALES EMPLOYED (2013 - 2020)", 
+  labs(title = "PERCENTAGE OF FEMALE SCIENTISTS (2013 - 2020)", 
        x = "YEAR", y = "PERCENTAGE",
        caption = "Data from the University of Basel.") +
   theme(legend.position = "none",
@@ -371,7 +371,7 @@ pB2 <- prof_data_l %>%
   geom_hline(yintercept = 50, linetype = "dashed", color = "white") +
   scale_x_continuous(breaks = c(2000, 2013, 2020), limits = c(2000,2020)) +
   scale_y_continuous(breaks = c(0, 100), limits = c(0,100)) +
-  labs(title = "PERCENTAGE OF FEMALES EMPLOYED: ACADEMIC STAFF VS. PROFESSORSHIPS (2013 - 2020)", 
+  labs(title = "PERCENTAGE OF FEMALE SCIENTISTS: ACADEMIC STAFF VS. PROFESSORSHIPS (2013 - 2020)", 
        x = "YEAR", y = "PERCENTAGE",
        caption = "Data from the University of Basel. Lines represent the predictions from linear regressions") +
   theme(
